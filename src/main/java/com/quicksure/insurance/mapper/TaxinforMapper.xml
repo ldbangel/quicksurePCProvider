@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.TaxinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Taxinfor">
+    <id column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+    <result column="taxType" jdbcType="VARCHAR" property="taxtype" />
+    <result column="taxValType" jdbcType="VARCHAR" property="taxvaltype" />
+    <result column="lateFee" jdbcType="DECIMAL" property="latefee" />
+    <result column="currentTax" jdbcType="DECIMAL" property="currenttax" />
+    <result column="formerTax" jdbcType="DECIMAL" property="formertax" />
+    <result column="sumupTax" jdbcType="DECIMAL" property="sumuptax" />
+    <result column="minusTaxAmt" jdbcType="DECIMAL" property="minustaxamt" />
+    <result column="fuelType" jdbcType="VARCHAR" property="fueltype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    taxinforId, taxType, taxValType, lateFee, currentTax, formerTax, sumupTax, minusTaxAmt, 
+    fuelType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_taxinfor
+    where taxinforId = #{taxinforid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_taxinfor
+    where taxinforId = #{taxinforid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="taxinforid" parameterType="com.quicksure.insurance.entity.Taxinfor">
+    insert into ludimb_taxinfor (taxinforId, taxType, taxValType, 
+      lateFee, currentTax, formerTax, 
+      sumupTax, minusTaxAmt, fuelType
+      )
+    values (#{taxinforid,jdbcType=INTEGER}, #{taxtype,jdbcType=VARCHAR}, #{taxvaltype,jdbcType=VARCHAR}, 
+      #{latefee,jdbcType=DECIMAL}, #{currenttax,jdbcType=DECIMAL}, #{formertax,jdbcType=DECIMAL}, 
+      #{sumuptax,jdbcType=DECIMAL}, #{minustaxamt,jdbcType=DECIMAL}, #{fueltype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="taxinforid"  parameterType="com.quicksure.insurance.entity.Taxinfor">
+    insert into ludimb_taxinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taxinforid != null">
+        taxinforId,
+      </if>
+      <if test="taxtype != null">
+        taxType,
+      </if>
+      <if test="taxvaltype != null">
+        taxValType,
+      </if>
+      <if test="latefee != null">
+        lateFee,
+      </if>
+      <if test="currenttax != null">
+        currentTax,
+      </if>
+      <if test="formertax != null">
+        formerTax,
+      </if>
+      <if test="sumuptax != null">
+        sumupTax,
+      </if>
+      <if test="minustaxamt != null">
+        minusTaxAmt,
+      </if>
+      <if test="fueltype != null">
+        fuelType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taxinforid != null">
+        #{taxinforid,jdbcType=INTEGER},
+      </if>
+      <if test="taxtype != null">
+        #{taxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="taxvaltype != null">
+        #{taxvaltype,jdbcType=VARCHAR},
+      </if>
+      <if test="latefee != null">
+        #{latefee,jdbcType=DECIMAL},
+      </if>
+      <if test="currenttax != null">
+        #{currenttax,jdbcType=DECIMAL},
+      </if>
+      <if test="formertax != null">
+        #{formertax,jdbcType=DECIMAL},
+      </if>
+      <if test="sumuptax != null">
+        #{sumuptax,jdbcType=DECIMAL},
+      </if>
+      <if test="minustaxamt != null">
+        #{minustaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="fueltype != null">
+        #{fueltype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Taxinfor">
+    update ludimb_taxinfor
+    <set>
+      <if test="taxtype != null">
+        taxType = #{taxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="taxvaltype != null">
+        taxValType = #{taxvaltype,jdbcType=VARCHAR},
+      </if>
+      <if test="latefee != null">
+        lateFee = #{latefee,jdbcType=DECIMAL},
+      </if>
+      <if test="currenttax != null">
+        currentTax = #{currenttax,jdbcType=DECIMAL},
+      </if>
+      <if test="formertax != null">
+        formerTax = #{formertax,jdbcType=DECIMAL},
+      </if>
+      <if test="sumuptax != null">
+        sumupTax = #{sumuptax,jdbcType=DECIMAL},
+      </if>
+      <if test="minustaxamt != null">
+        minusTaxAmt = #{minustaxamt,jdbcType=DECIMAL},
+      </if>
+      <if test="fueltype != null">
+        fuelType = #{fueltype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where taxinforId = #{taxinforid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Taxinfor">
+    update ludimb_taxinfor
+    set taxType = #{taxtype,jdbcType=VARCHAR},
+      taxValType = #{taxvaltype,jdbcType=VARCHAR},
+      lateFee = #{latefee,jdbcType=DECIMAL},
+      currentTax = #{currenttax,jdbcType=DECIMAL},
+      formerTax = #{formertax,jdbcType=DECIMAL},
+      sumupTax = #{sumuptax,jdbcType=DECIMAL},
+      minusTaxAmt = #{minustaxamt,jdbcType=DECIMAL},
+      fuelType = #{fueltype,jdbcType=VARCHAR}
+    where taxinforId = #{taxinforid,jdbcType=INTEGER}
+  </update>
+</mapper>

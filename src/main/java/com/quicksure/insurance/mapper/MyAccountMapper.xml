@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.MyAccountMapper">
+  <resultMap type="com.quicksure.insurance.entity.InsuranceDetailsVO" id="insuranceDetailsVOs">
+  	<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+  	<collection property="baseinfor" javaType="com.quicksure.insurance.entity.Baseinfor">
+  		<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+	    <result column="OwnersName" jdbcType="VARCHAR" property="ownersname" />
+	    <result column="base_applicationName" jdbcType="VARCHAR" property="base_applicationname" />
+	    <result column="insrntName" jdbcType="VARCHAR" property="insrntname" />
+	    <result column="businessSource" jdbcType="INTEGER" property="businesssource" />
+	    <result column="jqpolicyStartDate" jdbcType="TIMESTAMP" property="jqpolicystartdate" />
+	    <result column="jqpolicyEndDate" jdbcType="TIMESTAMP" property="jqpolicyenddate" />
+	    <result column="sypolicyStartDate" jdbcType="TIMESTAMP" property="sypolicystartdate" />
+	    <result column="syapplicationNo" jdbcType="VARCHAR" property="syapplicationno" />
+	    <result column="sypolicyNo" jdbcType="VARCHAR" property="sypolicyno" />
+	    <result column="jqpolicyNo" jdbcType="VARCHAR" property="jqpolicyno" />
+	    <result column="jqapplicationNo" jdbcType="VARCHAR" property="jqapplicationno" />
+	    <result column="sypolicyEndDate" jdbcType="TIMESTAMP" property="sypolicyenddate" />
+	    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+	    <result column="taxPremium" jdbcType="REAL" property="taxpremium" />
+	    <result column="jqPremium" jdbcType="REAL" property="jqpremium" />
+	    <result column="syPremium" jdbcType="REAL" property="sypremium" />
+	    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+	    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+	    <result column="userInforId" jdbcType="INTEGER" property="userinforid" />
+	    <result column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+	    <result column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+	    <result column="vhlinforId" jdbcType="INTEGER" property="vhlinforid" />
+	    <result column="deliveryInforId" jdbcType="INTEGER" property="deliveryinforid" />
+	    <result column="orderstate" jdbcType="INTEGER" property="orderstate" />
+	    <result column="deptNo" jdbcType="INTEGER" property="deptno" />
+	    <result column="quoteNo" jdbcType="VARCHAR" property="quoteno" />
+	    <result column="underWritingCode" jdbcType="INTEGER" property="underwritingcode" />
+	    <result column="jqPolicyStatus" jdbcType="VARCHAR" property="jqpolicystatus" />
+	    <result column="syPolicyStatus" jdbcType="VARCHAR" property="sypolicystatus" />
+	    <result column="paymentinforId" jdbcType="INTEGER" property="paymentinforid" />
+	    <result column="totalPremium" jdbcType="VARCHAR" property="totalPremium" />
+	    <result column="deptAddress" jdbcType="VARCHAR" property="deptAddress" />
+	    <result column="claimAdjustRsn" jdbcType="VARCHAR" property="claimAdjustRsn" />
+	    <result column="applyTotalAdj" jdbcType="VARCHAR" property="applyTotalAdj" />
+  	</collection>
+  	<collection property="userinfor" javaType="com.quicksure.insurance.entity.Userinfor">
+  		<id column="userId" jdbcType="INTEGER" property="userid" />
+	    <result column="userName" jdbcType="VARCHAR" property="username" />
+	    <result column="password" jdbcType="VARCHAR" property="password" />
+	    <result column="user_phoneNo" jdbcType="VARCHAR" property="phoneno" />
+	    <result column="address" jdbcType="VARCHAR" property="address" />
+	    <result column="emailsAddress" jdbcType="VARCHAR" property="emailsaddress" />
+	    <result column="userType" jdbcType="INTEGER" property="usertype" />
+	    <result column="zipAddress" jdbcType="VARCHAR" property="zipaddress" />
+	   <result column="agentFlag" jdbcType="INTEGER" property="agentFlag" />
+	    <result column="createTimes" jdbcType="TIMESTAMP" property="createtimes" />
+	    <result column="updateTimes" jdbcType="TIMESTAMP" property="updatetimes" />
+	    <result column="couponCode" jdbcType="VARCHAR" property="couponCode" />
+  	</collection>
+  	<collection property="insuranceperinfor" javaType="com.quicksure.insurance.entity.Insuranceperinfor">
+  		<id column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+	    <result column="ownersName" jdbcType="VARCHAR" property="ownersname" />
+	    <result column="ownersCertIType" jdbcType="VARCHAR" property="ownerscertitype" />
+	    <result column="ownersCertICode" jdbcType="VARCHAR" property="ownerscerticode" />
+	    <result column="ownersPhoneNo" jdbcType="INTEGER" property="ownersphoneno" />
+	    <result column="ownersZipCode" jdbcType="INTEGER" property="ownerszipcode" />
+	    <result column="applicationName" jdbcType="VARCHAR" property="applicationname" />
+	    <result column="applicationCertIType" jdbcType="VARCHAR" property="applicationcertitype" />
+	    <result column="applicationCertICode" jdbcType="VARCHAR" property="applicationcerticode" />
+	    <result column="applicationPhoneNo" jdbcType="INTEGER" property="applicationphoneno" />
+	    <result column="applicationZipCode" jdbcType="INTEGER" property="applicationzipcode" />
+	    <result column="applicationaddress" jdbcType="VARCHAR" property="applicationaddress" />
+	    <result column="insureName" jdbcType="VARCHAR" property="insurename" />
+	    <result column="insureCertIType" jdbcType="VARCHAR" property="insurecertitype" />
+	    <result column="insureCertICode" jdbcType="VARCHAR" property="insurecerticode" />
+	    <result column="insureaddress" jdbcType="VARCHAR" property="insureaddress" />
+	    <result column="insurePhoneNo" jdbcType="INTEGER" property="insurephoneno" />
+	    <result column="insureZipCode" jdbcType="INTEGER" property="insurezipcode" />
+	    <result column="creatDataTime" jdbcType="TIMESTAMP" property="creatdatatime" />
+	    <result column="updateDataTime" jdbcType="TIMESTAMP" property="updatedatatime" />
+  	</collection>
+  	<collection property="vhlinfor" javaType="com.quicksure.insurance.entity.Vhlinfor">
+  		<id column="vhiinforId" jdbcType="INTEGER" property="vhiinforid" />
+	    <result column="lcnNo" jdbcType="VARCHAR" property="lcnno" />
+	    <result column="engNo" jdbcType="VARCHAR" property="engno" />
+	    <result column="vinNo" jdbcType="VARCHAR" property="vinno" />
+	    <result column="brandCode" jdbcType="VARCHAR" property="brandcode" />
+	    <result column="vhlVal" jdbcType="REAL" property="vhlval" />
+	    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+	    <result column="carSort" jdbcType="INTEGER" property="carsort" />
+	    <result column="carStyle" jdbcType="VARCHAR" property="carstyle" />
+	    <result column="carMaker" jdbcType="VARCHAR" property="carmaker" />
+	    <result column="tonnage" jdbcType="REAL" property="tonnage" />
+	    <result column="setNo" jdbcType="INTEGER" property="setno" />
+	    <result column="displacement" jdbcType="REAL" property="displacement" />
+	    <result column="quality" jdbcType="REAL" property="quality" />
+	    <result column="marketYear" jdbcType="DATE" property="marketyear" />
+	    <result column="carReMark" jdbcType="VARCHAR" property="carremark" />
+	    <result column="riskName" jdbcType="VARCHAR" property="riskname" />
+	    <result column="fuelFlag" jdbcType="INTEGER" property="fuelflag" />
+	    <result column="newEnergyFlag" jdbcType="INTEGER" property="newenergyflag" />
+	    <result column="model" jdbcType="VARCHAR" property="model" />
+	    <result column="registerDate" jdbcType="DATE" property="registerdate" />
+	    <result column="chgownerFlag" jdbcType="INTEGER" property="chgownerflag" />
+	    <result column="transferDate" jdbcType="DATE" property="transferdate" />
+	    <result column="glassType" jdbcType="VARCHAR" property="glasstype" />
+	    <result column="certiFicateType" jdbcType="VARCHAR" property="certificatetype" />
+	    <result column="certiFicateNo" jdbcType="VARCHAR" property="certificateno" />
+	    <result column="certiFicateDate" jdbcType="DATE" property="certificatedate" />
+	    <result column="drvOwner" jdbcType="VARCHAR" property="drvowner" />
+	    <result column="certIType" jdbcType="VARCHAR" property="certitype" />
+	    <result column="certICode" jdbcType="VARCHAR" property="certicode" />
+	    <result column="owner_phoneNo" jdbcType="VARCHAR" property="phoneno" />
+	    <result column="createDataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+	    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+	    <result column="brandName" jdbcType="VARCHAR" property="brandName" />
+	    <result column="codeName" jdbcType="VARCHAR" property="codeName" />
+  	</collection>
+  	<collection property="taxinfor" javaType="com.quicksure.insurance.entity.Taxinfor">
+  		<id column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+	    <result column="taxType" jdbcType="VARCHAR" property="taxtype" />
+	    <result column="taxValType" jdbcType="VARCHAR" property="taxvaltype" />
+	    <result column="lateFee" jdbcType="DECIMAL" property="latefee" />
+	    <result column="currentTax" jdbcType="DECIMAL" property="currenttax" />
+	    <result column="formerTax" jdbcType="DECIMAL" property="formertax" />
+	    <result column="sumupTax" jdbcType="DECIMAL" property="sumuptax" />
+	    <result column="minusTaxAmt" jdbcType="DECIMAL" property="minustaxamt" />
+	    <result column="fuelType" jdbcType="VARCHAR" property="fueltype" />
+  	</collection>
+  	<collection property="deliveryinfor" javaType="com.quicksure.insurance.entity.Deliveryinfor">
+  		<id column="deliveryId" jdbcType="INTEGER" property="deliveryid" />
+	    <result column="deliveryName" jdbcType="VARCHAR" property="deliveryname" />
+	    <result column="deliveryPhone" jdbcType="VARCHAR" property="deliveryphone" />
+	    <result column="deliveryAddress" jdbcType="VARCHAR" property="deliveryaddress" />
+	    <result column="deliverydate" jdbcType="TIMESTAMP" property="deliverydate" />
+	    <result column="createDateTime" jdbcType="TIMESTAMP" property="createdatetime" />
+	    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+	    <result column="deliveryState" jdbcType="INTEGER" property="deliverystate" />
+	    <result column="jqsequenceNo" jdbcType="VARCHAR" property="jqsequenceno" />
+	    <result column="sysequenceNo" jdbcType="VARCHAR" property="sysequenceNo" />
+  	</collection>
+  	<collection property="paymentinfor" javaType="com.quicksure.insurance.entity.Paymentinfor">
+  		<id column="paymentInforId" jdbcType="INTEGER" property="paymentinforid" />
+	    <result column="paymentURL" jdbcType="VARCHAR" property="paymenturl" />
+	    <result column="paymentNo" jdbcType="VARCHAR" property="paymentno" />
+	    <result column="paymentState" jdbcType="INTEGER" property="paymentstate" />
+	    <result column="paymentPremium" jdbcType="VARCHAR" property="paymentpremium" />
+	    <result column="paymentTimes" jdbcType="TIMESTAMP" property="paymenttimes" />
+	    <result column="createdateTimes" jdbcType="TIMESTAMP" property="createdatetimes" />
+	    <result column="updateTimes" jdbcType="TIMESTAMP" property="updatetimes" />
+  	</collection>
+  </resultMap>
+  
+  <!-- 对单条订单进行操作，例如继续投保等 -->
+  <select id="getInsuranceByOrderNo" parameterType="java.lang.String" resultMap="insuranceDetailsVOs">
+  	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+		 
+ 	where 1=1 and baseinfor.orderNo= #{orderno,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 查询 一个页面要展示的订单信息 -->
+  <select id="getMyOrders" parameterType="java.util.Map" resultMap="insuranceDetailsVOs">
+  	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+		 
+ 	where    1=1 
+ 		 <choose>
+ 			<when test="bindUserId!=0">
+ 				and (userinfor.userId=#{userid} or userinfor.userId=#{bindUserId})
+ 			</when>
+ 			<otherwise>
+ 				and userinfor.userId = #{userid}
+ 			</otherwise>
+ 		</choose>
+ 		 <!-- <if test="content!=null and content!=''">
+		  and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+		 </if> -->
+		 <if test="startTime!=null and startTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+ 		 </if>
+ 		 <if test="endTime!=null and endTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+ 		 </if>
+ 		 <choose>
+ 		 	<when test="index==0">
+ 		 		and baseinfor.orderstate in (10,20,30,40,50,60,70,80,90)
+ 		 	</when>
+ 		 	<when test="index==1">
+ 		 		and baseinfor.orderstate in (30,40)
+ 		 	</when>
+ 		 	<when test="index==2">
+ 		 		and baseinfor.orderstate in (50,60,70,90)
+ 		 	</when>
+ 		 	<when test="index==3">
+ 		 		and baseinfor.orderstate in (10,20)
+ 		 	</when>
+ 		 	<when test="index==4">
+ 		 		and baseinfor.orderstate = 80
+ 		 	</when>
+ 		 	<otherwise>
+ 		 	</otherwise>
+ 		 </choose>
+ 	order by baseinfor.updateTime DESC
+ 	limit #{currentNum},#{pageSize}
+  </select>
+  
+  <!-- 初始化时查询的订单前十条订单信息 -->
+  <select id="getMyOrdersTopTen0" parameterType="java.util.Map" resultMap="insuranceDetailsVOs">
+	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+ 	where    1=1 
+ 	 	<choose>
+ 			<when test="bindUserId!=0">
+ 				and (userinfor.userId=#{userid} or userinfor.userId=#{bindUserId})
+ 			</when>
+ 			<otherwise>
+ 				and userinfor.userId = #{userid}
+ 			</otherwise>
+ 		</choose>
+ 		<if test="startTime!=null and startTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+ 		</if>
+ 		<if test="endTime!=null and endTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+ 		</if>
+ 		order by baseinfor.updateTime DESC
+ 		limit 5
+  </select>
+  
+  <!-- 初始化时查询的待支付前十条订单信息 -->
+  <select id="getMyOrdersTopTen1" parameterType="java.util.Map" resultMap="insuranceDetailsVOs">
+	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+ 	where    1=1 and baseinfor.orderstate in(30,40)
+ 	 	<choose>
+ 			<when test="bindUserId!=0">
+ 				and (userinfor.userId=#{userid} or userinfor.userId=#{bindUserId})
+ 			</when>
+ 			<otherwise>
+ 				and userinfor.userId = #{userid}
+ 			</otherwise>
+ 		</choose>
+ 		<!-- <if test="content!=null and content!=''">
+			and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+		</if> -->
+		<if test="startTime!=null and startTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+ 		</if>
+ 		<if test="endTime!=null and endTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+ 		</if>
+ 		order by baseinfor.updateTime DESC
+ 		limit 5
+  </select>
+  
+  <!-- 初始化时查询的已支付前十条订单信息 -->
+  <select id="getMyOrdersTopTen2" parameterType="java.util.Map" resultMap="insuranceDetailsVOs">
+	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+ 	where    1=1 and baseinfor.orderstate in(50,60,70,90)
+ 		<choose>
+ 			<when test="bindUserId!=0">
+ 				and (userinfor.userId=#{userid} or userinfor.userId=#{bindUserId})
+ 			</when>
+ 			<otherwise>
+ 				and userinfor.userId = #{userid}
+ 			</otherwise>
+ 		</choose>
+ 	 	<!-- <if test="userid!=null"> 
+ 		  and userinfor.userId=#{userid}
+ 		</if> -->
+ 		<!-- <if test="content!=null and content!=''">
+			and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+		</if> -->
+		<if test="startTime!=null and startTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+ 		</if>
+ 		<if test="endTime!=null and endTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+ 		</if>
+ 		order by baseinfor.updateTime DESC
+ 		limit 5
+  </select>
+  
+  <!-- 初始化时查询的暂存前十条订单信息 -->
+  <select id="getMyOrdersTopTen3" parameterType="java.util.Map" resultMap="insuranceDetailsVOs">
+	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+ 	where    1=1 and baseinfor.orderstate in(10,20)
+ 	 	<!-- <if test="userid!=null"> 
+ 		  and userinfor.userId=#{userid}
+ 		</if> -->
+ 		<choose>
+ 			<when test="bindUserId!=0">
+ 				and (userinfor.userId=#{userid} or userinfor.userId=#{bindUserId})
+ 			</when>
+ 			<otherwise>
+ 				and userinfor.userId = #{userid}
+ 			</otherwise>
+ 		</choose>
+ 		<!-- <if test="content!=null and content!=''">
+			and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+		</if> -->
+		<if test="startTime!=null and startTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+ 		</if>
+ 		<if test="endTime!=null and endTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+ 		</if>
+ 		order by baseinfor.updateTime DESC
+ 		limit 5
+  </select>
+  
+  <!-- 初始化时查询的已撤销前十条订单信息 -->
+  <select id="getMyOrdersTopTen4" parameterType="java.util.Map" resultMap="insuranceDetailsVOs">
+	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+ 	where    1=1 and baseinfor.orderstate = 80
+ 		<choose>
+ 			<when test="bindUserId!=0">
+ 				and (userinfor.userId=#{userid} or userinfor.userId=#{bindUserId})
+ 			</when>
+ 			<otherwise>
+ 				and userinfor.userId = #{userid}
+ 			</otherwise>
+ 		</choose>
+ 		<!-- <if test="content!=null and content!=''">
+			and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+		</if> -->
+		<if test="startTime!=null and startTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+ 		</if>
+ 		<if test="endTime!=null and endTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+ 		</if>
+ 		order by baseinfor.updateTime DESC
+ 		limit 5
+  </select>
+  
+  <!-- 查询总订单数量 -->
+  <select id="getMyOrdersCount0" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select 
+		count(*) 
+	from ludimb_baseinfor baseinfor 
+		LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+	where 1=1
+	<choose>
+		<when test="bindUserId!=0">
+			and (baseinfor.userInforId=#{userid} or baseinfor.userInforId=#{bindUserId})
+		</when>
+		<otherwise>
+			and baseinfor.userInforId = #{userid}
+		</otherwise>
+	</choose>
+	<!-- <if test="content!=null and content!=''">
+		and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+	</if> -->
+	<if test="startTime!=null and startTime!=''"> 
+	  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+	</if>
+	<if test="endTime!=null and endTime!=''"> 
+	 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+	</if>
+  </select>
+  
+  <!-- 查询待支付订单数量 -->
+  <select id="getMyOrdersCount1" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select 
+		count(*) 
+	from ludimb_baseinfor baseinfor 
+		LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+	where baseinfor.orderstate in (30,40)
+	<!-- <if test="userid!=null">  
+		and baseinfor.userInforId = #{userid}
+	</if> -->
+	<choose>
+		<when test="bindUserId!=0">
+			and (baseinfor.userInforId=#{userid} or baseinfor.userInforId=#{bindUserId})
+		</when>
+		<otherwise>
+			and baseinfor.userInforId = #{userid}
+		</otherwise>
+	</choose>
+	<!-- <if test="content!=null and content!=''">
+		and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+	</if> -->
+	<if test="startTime!=null and startTime!=''"> 
+	  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+	</if>
+	<if test="endTime!=null and endTime!=''"> 
+	 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+	</if>
+  </select>
+  
+  <!-- 查询已支付订单数量 -->
+  <select id="getMyOrdersCount2" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select 
+		count(*) 
+	from ludimb_baseinfor baseinfor 
+		LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+	where baseinfor.orderstate in (50,60,70,90)
+	<!-- <if test="userid!=null">  
+		and baseinfor.userInforId = #{userid}
+	</if> -->
+	<choose>
+		<when test="bindUserId!=0">
+			and (baseinfor.userInforId=#{userid} or baseinfor.userInforId=#{bindUserId})
+		</when>
+		<otherwise>
+			and baseinfor.userInforId = #{userid}
+		</otherwise>
+	</choose>
+	<!-- <if test="content!=null and content!=''">
+		and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+	</if> -->
+	<if test="startTime!=null and startTime!=''"> 
+	  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+	</if>
+	<if test="endTime!=null and endTime!=''"> 
+	 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+	</if>
+  </select>
+  
+  <!-- 查询暂存订单数量 -->
+  <select id="getMyOrdersCount3" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select 
+		count(*) 
+	from ludimb_baseinfor baseinfor 
+		LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+	where baseinfor.orderstate in (10,20)
+	<!-- <if test="userid!=null">  
+		and baseinfor.userInforId = #{userid}
+	</if> -->
+	<choose>
+		<when test="bindUserId!=0">
+			and (baseinfor.userInforId=#{userid} or baseinfor.userInforId=#{bindUserId})
+		</when>
+		<otherwise>
+			and baseinfor.userInforId = #{userid}
+		</otherwise>
+	</choose>
+	<!-- <if test="content!=null and content!=''">
+		and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+	</if> -->
+	<if test="startTime!=null and startTime!=''"> 
+	  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+	</if>
+	<if test="endTime!=null and endTime!=''"> 
+	 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+	</if>
+  </select>
+  
+  <!-- 查询已撤销订单数量 -->
+  <select id="getMyOrdersCount4" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select 
+		count(*) 
+	from ludimb_baseinfor baseinfor 
+		LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+	where baseinfor.orderstate in (80)
+	<!-- <if test="userid!=null">  
+		and baseinfor.userInforId = #{userid}
+	</if> -->
+	<choose>
+		<when test="bindUserId!=0">
+			and (baseinfor.userInforId=#{userid} or baseinfor.userInforId=#{bindUserId})
+		</when>
+		<otherwise>
+			and baseinfor.userInforId = #{userid}
+		</otherwise>
+	</choose>
+	<!-- <if test="content!=null and content!=''">
+		and (vhinfor.lcnNo = #{content} or vhinfor.drvOwner = #{content})
+	</if> -->
+	<if test="startTime!=null and startTime!=''"> 
+	  	<![CDATA[ and baseinfor.createtime >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00') ]]>
+	</if>
+	<if test="endTime!=null and endTime!=''"> 
+	 	<![CDATA[ and baseinfor.createtime <= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59') ]]>
+	</if>
+  </select>
+  
+  
+</mapper>

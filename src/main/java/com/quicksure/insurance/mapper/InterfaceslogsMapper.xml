@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.InterfaceslogsMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Interfaceslogs">
+    <id column="interfaceslogsId" jdbcType="INTEGER" property="interfaceslogsid" />
+    <result column="interfacescode" jdbcType="INTEGER" property="interfacescode" />
+    <result column="requestTime" jdbcType="TIMESTAMP" property="requesttime" />
+    <result column="resposneTime" jdbcType="TIMESTAMP" property="resposnetime" />
+    <result column="interfacesStatu" jdbcType="INTEGER" property="interfacesstatu" />
+    <result column="baseinforOrderNo" jdbcType="VARCHAR" property="baseinfororderno" />
+    <result column="createdataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+    <result column="updatedataTime" jdbcType="TIMESTAMP" property="updatedatatime" />
+    <result column="underwriterCode" jdbcType="VARCHAR" property="underwritercode" />
+    <result column="responseCode" jdbcType="VARCHAR" property="responsecode" />
+    <result column="responseMessage" jdbcType="LONGVARCHAR" property="responsemessage" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.quicksure.insurance.entity.InterfaceslogsWithBLOBs">
+    <result column="requestXML" jdbcType="LONGVARCHAR" property="requestxml" />
+    <result column="responseXML" jdbcType="LONGVARCHAR" property="responsexml" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    interfaceslogsId, interfacescode, requestTime, resposneTime, interfacesStatu, baseinforOrderNo, 
+    createdataTime, updatedataTime, underwriterCode, responseCode, responseMessage
+  </sql>
+  <sql id="Blob_Column_List">
+    requestXML, responseXML
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ludimb_interfaceslogs
+    where interfaceslogsId = #{interfaceslogsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_interfaceslogs
+    where interfaceslogsId = #{interfaceslogsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="interfaceslogsid" parameterType="com.quicksure.insurance.entity.InterfaceslogsWithBLOBs">
+    insert into ludimb_interfaceslogs (interfaceslogsId, interfacescode, 
+      requestTime, resposneTime, interfacesStatu, 
+      baseinforOrderNo, createdataTime, updatedataTime, 
+      underwriterCode, requestXML, responseXML, responseCode, responseMessage
+      )
+    values (#{interfaceslogsid,jdbcType=INTEGER}, #{interfacescode,jdbcType=INTEGER}, 
+      #{requesttime,jdbcType=TIMESTAMP}, #{resposnetime,jdbcType=TIMESTAMP}, #{interfacesstatu,jdbcType=INTEGER}, 
+      #{baseinfororderno,jdbcType=VARCHAR}, #{createdatatime,jdbcType=TIMESTAMP}, #{updatedatatime,jdbcType=TIMESTAMP}, 
+      #{underwritercode,jdbcType=VARCHAR}, #{requestxml,jdbcType=LONGVARCHAR}, #{responsexml,jdbcType=LONGVARCHAR},
+      #{responsecode,jdbcType=VARCHAR}, #{responsemessage,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="interfaceslogsid" parameterType="com.quicksure.insurance.entity.InterfaceslogsWithBLOBs">
+    insert into ludimb_interfaceslogs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="interfaceslogsid != null">
+        interfaceslogsId,
+      </if>
+      <if test="interfacescode != null">
+        interfacescode,
+      </if>
+      <if test="requesttime != null">
+        requestTime,
+      </if>
+      <if test="resposnetime != null">
+        resposneTime,
+      </if>
+      <if test="interfacesstatu != null">
+        interfacesStatu,
+      </if>
+      <if test="baseinfororderno != null">
+        baseinforOrderNo,
+      </if>
+      <if test="createdatatime != null">
+        createdataTime,
+      </if>
+      <if test="updatedatatime != null">
+        updatedataTime,
+      </if>
+      <if test="underwritercode != null">
+        underwriterCode,
+      </if>
+      <if test="requestxml != null">
+        requestXML,
+      </if>
+      <if test="responsexml != null">
+        responseXML,
+      </if>
+      <if test="responsecode != null">
+        responseCode,
+      </if>
+      <if test="responsemessage != null">
+        responseMessage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="interfaceslogsid != null">
+        #{interfaceslogsid,jdbcType=INTEGER},
+      </if>
+      <if test="interfacescode != null">
+        #{interfacescode,jdbcType=INTEGER},
+      </if>
+      <if test="requesttime != null">
+        #{requesttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resposnetime != null">
+        #{resposnetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interfacesstatu != null">
+        #{interfacesstatu,jdbcType=INTEGER},
+      </if>
+      <if test="baseinfororderno != null">
+        #{baseinfororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatatime != null">
+        #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedatatime != null">
+        #{updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="underwritercode != null">
+        #{underwritercode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestxml != null">
+        #{requestxml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responsexml != null">
+        #{responsexml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responsecode != null">
+        #{responsecode,jdbcType=VARCHAR},
+      </if>
+      <if test="responsemessage != null">
+        #{responsemessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.InterfaceslogsWithBLOBs">
+    update ludimb_interfaceslogs
+    <set>
+      <if test="interfacescode != null">
+        interfacescode = #{interfacescode,jdbcType=INTEGER},
+      </if>
+      <if test="requesttime != null">
+        requestTime = #{requesttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resposnetime != null">
+        resposneTime = #{resposnetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interfacesstatu != null">
+        interfacesStatu = #{interfacesstatu,jdbcType=INTEGER},
+      </if>
+      <if test="baseinfororderno != null">
+        baseinforOrderNo = #{baseinfororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatatime != null">
+        createdataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedatatime != null">
+        updatedataTime = #{updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="underwritercode != null">
+        underwriterCode = #{underwritercode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestxml != null">
+        requestXML = #{requestxml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responsexml != null">
+        responseXML = #{responsexml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responsecode != null">
+        responseCode = #{responsecode,jdbcType=VARCHAR},
+      </if>
+      <if test="responsemessage != null">
+        responseMessage = #{responsemessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where interfaceslogsId = #{interfaceslogsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.quicksure.insurance.entity.InterfaceslogsWithBLOBs">
+    update ludimb_interfaceslogs
+    set     
+      resposneTime = #{resposnetime,jdbcType=TIMESTAMP},
+      interfacesStatu = #{interfacesstatu,jdbcType=INTEGER},    
+      updatedataTime = #{updatedatatime,jdbcType=TIMESTAMP},  
+      requestTime = #{requesttime,jdbcType=TIMESTAMP},   
+      responseXML = #{responsexml,jdbcType=LONGVARCHAR},
+      responseCode = #{responsecode,jdbcType=VARCHAR},
+      responseMessage = #{responsemessage,jdbcType=LONGVARCHAR}
+    where interfaceslogsId = #{interfaceslogsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Interfaceslogs">
+    update ludimb_interfaceslogs
+    set interfacescode = #{interfacescode,jdbcType=INTEGER},
+      requestTime = #{requesttime,jdbcType=TIMESTAMP},
+      resposneTime = #{resposnetime,jdbcType=TIMESTAMP},
+      interfacesStatu = #{interfacesstatu,jdbcType=INTEGER},
+      baseinforOrderNo = #{baseinfororderno,jdbcType=VARCHAR},
+      createdataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      updatedataTime = #{updatedatatime,jdbcType=TIMESTAMP},
+      underwriterCode = #{underwritercode,jdbcType=VARCHAR}
+    where interfaceslogsId = #{interfaceslogsid,jdbcType=INTEGER}
+  </update>
+</mapper>

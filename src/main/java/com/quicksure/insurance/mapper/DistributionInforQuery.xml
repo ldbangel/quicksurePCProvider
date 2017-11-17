@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quicksure.insurance.dao.DistributionInforMapper">
+  <resultMap id="queryDeliverinfor" type="com.quicksure.insurance.entity.InsuranceDetailsVO">
+  	<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+  	<collection property="baseinfor" ofType="com.quicksure.insurance.entity.Baseinfor" resultMap="baseinforResult"></collection>
+  	<collection property="deliveryinfor" ofType="com.quicksure.insurance.entity.Deliveryinfor" resultMap="deliveryinforResult"></collection>
+  </resultMap>
+   
+  <resultMap id="baseinforResult" type="com.quicksure.insurance.entity.Baseinfor">
+	<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="OwnersName" jdbcType="VARCHAR" property="ownersname" />
+    <result column="base_applicationName" jdbcType="VARCHAR" property="base_applicationname" />
+    <result column="insrntName" jdbcType="VARCHAR" property="insrntname" />
+    <result column="businessSource" jdbcType="INTEGER" property="businesssource" />
+    <result column="jqpolicyStartDate" jdbcType="TIMESTAMP" property="jqpolicystartdate" />
+    <result column="jqpolicyEndDate" jdbcType="TIMESTAMP" property="jqpolicyenddate" />
+    <result column="sypolicyStartDate" jdbcType="TIMESTAMP" property="sypolicystartdate" />
+    <result column="syapplicationNo" jdbcType="VARCHAR" property="syapplicationno" />
+    <result column="sypolicyNo" jdbcType="VARCHAR" property="sypolicyno" />
+    <result column="jqpolicyNo" jdbcType="VARCHAR" property="jqpolicyno" />
+    <result column="jqapplicationNo" jdbcType="VARCHAR" property="jqapplicationno" />
+    <result column="sypolicyEndDate" jdbcType="TIMESTAMP" property="sypolicyenddate" />
+    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+    <result column="taxPremium" jdbcType="REAL" property="taxpremium" />
+    <result column="jqPremium" jdbcType="REAL" property="jqpremium" />
+    <result column="syPremium" jdbcType="REAL" property="sypremium" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="userInforId" jdbcType="INTEGER" property="userinforid" />
+    <result column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+    <result column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+    <result column="vhlinforId" jdbcType="INTEGER" property="vhlinforid" />
+    <result column="deliveryInforId" jdbcType="INTEGER" property="deliveryinforid" />
+    <result column="orderstate" jdbcType="INTEGER" property="orderstate" />
+    <result column="deptNo" jdbcType="INTEGER" property="deptno" />
+    <result column="quoteNo" jdbcType="VARCHAR" property="quoteno" />
+    <result column="underWritingCode" jdbcType="INTEGER" property="underwritingcode" />
+    <result column="jqPolicyStatus" jdbcType="VARCHAR" property="jqpolicystatus" />
+    <result column="syPolicyStatus" jdbcType="VARCHAR" property="sypolicystatus" />
+    <result column="paymentinforId" jdbcType="INTEGER" property="paymentinforid" />
+    <result column="totalPremium" jdbcType="VARCHAR" property="totalPremium" />
+    <result column="deptAddress" jdbcType="VARCHAR" property="deptAddress" />
+    <result column="agentCode" jdbcType="VARCHAR" property="agentCode" />
+    <result column="paymentMethod" jdbcType="INTEGER" property="paymentMethod" />
+    <result column="syquerySequenceNo" jdbcType="VARCHAR" property="syquerySequenceNo" />
+    <result column="jqquerySequenceNo" jdbcType="VARCHAR" property="jqquerySequenceNo" />  
+    
+  </resultMap>
+  
+   <resultMap id="deliveryinforResult" type="com.quicksure.insurance.entity.Deliveryinfor">
+    <id column="deliveryId" jdbcType="INTEGER" property="deliveryid" />
+    <result column="deliveryName" jdbcType="VARCHAR" property="deliveryname" />
+    <result column="deliveryPhone" jdbcType="VARCHAR" property="deliveryphone" />
+    <result column="deliveryAddress" jdbcType="VARCHAR" property="deliveryaddress" />
+    <result column="deliverydate" jdbcType="TIMESTAMP" property="deliverydate" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createdatetime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="deliveryState" jdbcType="INTEGER" property="deliverystate" />
+    <result column="jqsequenceNo" jdbcType="VARCHAR" property="jqsequenceno" />
+    <result column="sysequenceNo" jdbcType="VARCHAR" property="sysequenceNo" />
+  </resultMap>
+  
+  <select id="selectDistributionInfor" parameterType="com.quicksure.insurance.entity.Baseinfor" resultMap="queryDeliverinfor">
+   	select    	
+	baseinfor.deptNo,
+	baseinfor.orderNo,
+	baseinfor.insrntName,
+	deliveryinfor.deliveryName,
+	deliveryinfor.deliveryPhone,
+	deliveryinfor.deliveryAddress,
+	baseinfor.sypolicyNo,
+	baseinfor.jqpolicyNo,
+	baseinfor.jqapplicationNo,
+	baseinfor.syapplicationNo,
+	baseinfor.syquerySequenceNo,
+	baseinfor.jqquerySequenceNo,
+	baseinfor.totalPremium,
+	baseinfor.jqPremium,
+	baseinfor.taxPremium,
+	baseinfor.sypremium
+	
+   	from 
+    ludimb_baseinfor baseinfor  
+    LEFT JOIN ludimb_deliveryinfor deliveryinfor ON baseinfor.deliveryInforId = deliveryinfor.deliveryId
+   	where 1=1
+   	 <if test="jqapplicationno!=null and jqapplicationno!=''"> 
+ 		   and baseinfor.jqapplicationNo=#{jqapplicationno}
+     </if>
+     <if test="syapplicationno!=null and syapplicationno!=''"> 
+ 		   and baseinfor.syapplicationNo=#{syapplicationno}
+ 	</if>
+ 	<if test="orderno!=null and orderno!=''"> 
+ 		   and baseinfor.orderNo=#{orderno}
+ 	</if>
+   	
+  </select>
+    
+</mapper>

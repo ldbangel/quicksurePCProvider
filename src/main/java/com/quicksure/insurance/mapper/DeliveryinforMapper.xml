@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.DeliveryinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Deliveryinfor">
+    <id column="deliveryId" jdbcType="INTEGER" property="deliveryid" />
+    <result column="deliveryName" jdbcType="VARCHAR" property="deliveryname" />
+    <result column="deliveryPhone" jdbcType="VARCHAR" property="deliveryphone" />
+    <result column="deliveryAddress" jdbcType="VARCHAR" property="deliveryaddress" />
+    <result column="deliverydate" jdbcType="TIMESTAMP" property="deliverydate" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createdatetime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="deliveryState" jdbcType="INTEGER" property="deliverystate" />
+    <result column="jqsequenceNo" jdbcType="VARCHAR" property="jqsequenceno" />
+    <result column="sysequenceNo" jdbcType="VARCHAR" property="sysequenceNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    deliveryId, deliveryName, deliveryPhone, deliveryAddress, deliverydate, createDateTime, 
+    updateTime, deliveryState
+  </sql>
+  <sql id="Base_Column_List1">
+    deliveryId, deliveryName, deliveryPhone, deliveryAddress, deliverydate, createDateTime, 
+    deli.updateTime, deliveryState
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_deliveryinfor
+    where deliveryId = #{deliveryid,jdbcType=INTEGER}
+  </select>
+  <select id="getDevlieryByorderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List1" />
+  	from ludimb_deliveryinfor deli LEFT JOIN ludimb_baseinfor base on deli.deliveryId=base.deliveryinforId 
+  	where base.orderno=#{orderno,jdbcType=VARCHAR} 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_deliveryinfor
+    where deliveryId = #{deliveryid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.Deliveryinfor">
+    insert into ludimb_deliveryinfor (deliveryId, deliveryName, deliveryPhone, 
+      deliveryAddress, deliverydate, createDateTime, 
+      updateTime, deliveryState)
+    values (#{deliveryid,jdbcType=INTEGER}, #{deliveryname,jdbcType=VARCHAR}, #{deliveryphone,jdbcType=VARCHAR}, 
+      #{deliveryaddress,jdbcType=VARCHAR}, #{deliverydate,jdbcType=TIMESTAMP}, #{createdatetime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{deliverystate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="deliveryid" parameterType="com.quicksure.insurance.entity.Deliveryinfor">
+    insert into ludimb_deliveryinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deliveryid != null">
+        deliveryId,
+      </if>
+      <if test="deliveryname != null">
+        deliveryName,
+      </if>
+      <if test="deliveryphone != null">
+        deliveryPhone,
+      </if>
+      <if test="deliveryaddress != null">
+        deliveryAddress,
+      </if>
+      <if test="deliverydate != null">
+        deliverydate,
+      </if>
+      <if test="createdatetime != null">
+        createDateTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="deliverystate != null">
+        deliveryState,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deliveryid != null">
+        #{deliveryid,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryname != null">
+        #{deliveryname,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryphone != null">
+        #{deliveryphone,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryaddress != null">
+        #{deliveryaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverydate != null">
+        #{deliverydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdatetime != null">
+        #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverystate != null">
+        #{deliverystate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Deliveryinfor">
+    update ludimb_deliveryinfor
+    <set>
+      <if test="deliveryname != null">
+        deliveryName = #{deliveryname,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryphone != null">
+        deliveryPhone = #{deliveryphone,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryaddress != null">
+        deliveryAddress = #{deliveryaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverydate != null">
+        deliverydate = #{deliverydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdatetime != null">
+        createDateTime = #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverystate != null">
+        deliveryState = #{deliverystate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where deliveryId = #{deliveryid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Deliveryinfor">
+    update ludimb_deliveryinfor
+    set deliveryName = #{deliveryname,jdbcType=VARCHAR},
+      deliveryPhone = #{deliveryphone,jdbcType=VARCHAR},
+      deliveryAddress = #{deliveryaddress,jdbcType=VARCHAR},
+      deliverydate = #{deliverydate,jdbcType=TIMESTAMP},
+      createDateTime = #{createdatetime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      deliveryState = #{deliverystate,jdbcType=INTEGER}
+    where deliveryId = #{deliveryid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getDevlieryIdByCreateTime" resultType="java.lang.Integer">
+	select deliveryId from ludimb_deliveryinfor order by createDateTime desc LIMIT 0,1;  
+  </select>
+  
+</mapper>

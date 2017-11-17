@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.AgreementinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Agreementinfor">
+    <id column="agreementId" jdbcType="INTEGER" property="agreementid" />
+    <result column="prodNo" jdbcType="VARCHAR" property="prodno" />
+    <result column="agreementCode" jdbcType="VARCHAR" property="agreementcode" />
+    <result column="agreementName" jdbcType="VARCHAR" property="agreementname" />
+    <result column="agreementDetailed" jdbcType="VARCHAR" property="agreementdetailed" />
+    <result column="is_modified" jdbcType="INTEGER" property="isModified" />
+    <result column="is_mandatory" jdbcType="INTEGER" property="isMandatory" />
+    <result column="orderNo" jdbcType="VARCHAR" property="orderno" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    agreementId, prodNo, agreementCode, agreementName, agreementDetailed, is_modified, 
+    is_mandatory, orderNo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_agreementinfor
+    where agreementId = #{agreementid,jdbcType=INTEGER}
+  </select>
+  <select id="getListAgreement" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from ludimb_agreementinfor
+  	where orderNo=#{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_agreementinfor
+    where agreementId = #{agreementid,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByPrimary" parameterType="com.quicksure.insurance.entity.Agreementinfor">
+    delete from ludimb_agreementinfor
+    where orderNo = #{orderno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.Agreementinfor">
+    insert into ludimb_agreementinfor (agreementId, prodNo, agreementCode, 
+      agreementName, agreementDetailed, is_modified, 
+      is_mandatory, orderNo)
+    values (#{agreementid,jdbcType=INTEGER}, #{prodno,jdbcType=VARCHAR}, #{agreementcode,jdbcType=VARCHAR}, 
+      #{agreementname,jdbcType=VARCHAR}, #{agreementdetailed,jdbcType=VARCHAR}, #{isModified,jdbcType=INTEGER}, 
+      #{isMandatory,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.Agreementinfor">
+    insert into ludimb_agreementinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="agreementid != null">
+        agreementId,
+      </if>
+      <if test="prodno != null">
+        prodNo,
+      </if>
+      <if test="agreementcode != null">
+        agreementCode,
+      </if>
+      <if test="agreementname != null">
+        agreementName,
+      </if>
+      <if test="agreementdetailed != null">
+        agreementDetailed,
+      </if>
+      <if test="isModified != null">
+        is_modified,
+      </if>
+      <if test="isMandatory != null">
+        is_mandatory,
+      </if>
+      <if test="orderno != null">
+        orderNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="agreementid != null">
+        #{agreementid,jdbcType=INTEGER},
+      </if>
+      <if test="prodno != null">
+        #{prodno,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementcode != null">
+        #{agreementcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementname != null">
+        #{agreementname,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementdetailed != null">
+        #{agreementdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="isModified != null">
+        #{isModified,jdbcType=INTEGER},
+      </if>
+      <if test="isMandatory != null">
+        #{isMandatory,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Agreementinfor">
+    update ludimb_agreementinfor
+    <set>
+      <if test="prodno != null">
+        prodNo = #{prodno,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementcode != null">
+        agreementCode = #{agreementcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementname != null">
+        agreementName = #{agreementname,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementdetailed != null">
+        agreementDetailed = #{agreementdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="isModified != null">
+        is_modified = #{isModified,jdbcType=INTEGER},
+      </if>
+      <if test="isMandatory != null">
+        is_mandatory = #{isMandatory,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null">
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where agreementId = #{agreementid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Agreementinfor">
+    update ludimb_agreementinfor
+    set prodNo = #{prodno,jdbcType=VARCHAR},
+      agreementCode = #{agreementcode,jdbcType=VARCHAR},
+      agreementName = #{agreementname,jdbcType=VARCHAR},
+      agreementDetailed = #{agreementdetailed,jdbcType=VARCHAR},
+      is_modified = #{isModified,jdbcType=INTEGER},
+      is_mandatory = #{isMandatory,jdbcType=INTEGER},
+      orderNo = #{orderno,jdbcType=VARCHAR}
+    where agreementId = #{agreementid,jdbcType=INTEGER}
+  </update>
+  <insert id="insertAgreementinforBatch"  parameterType="java.util.List" >
+   <foreach collection="list" item="item" index="index" separator=";">
+    insert into ludimb_agreementinfor    
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="item.agreementid != null">
+        agreementid,
+      </if>
+      <if test="item.prodno != null">
+        prodno,
+      </if>
+      <if test="item.agreementcode != null">
+        agreementcode,
+      </if>
+      <if test="item.agreementname != null">
+        agreementname,
+      </if>
+      <if test="item.agreementdetailed != null">
+        agreementdetailed,
+      </if>
+      <if test="item.ismodified != null">
+        is_modified,
+      </if>
+      <if test="item.ismandatory != null">
+        is_mandatory,
+      </if>
+      <if test="item.orderno != null">
+        orderno,
+      </if>
+      <if test="item.createdatatime != null">
+        createdataTime,
+      </if>
+      <if test="item.updatedatatime != null">
+        updatedataTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="item.agreementid != null">
+        #{item.agreementid,jdbcType=INTEGER},
+      </if>
+      <if test="item.prodno != null">
+        #{item.prodno,jdbcType=VARCHAR},
+      </if>
+      <if test="item.agreementcode != null">
+        #{item.agreementcode,jdbcType=VARCHAR},
+      </if>
+	  <if test="item.agreementname != null">
+        #{item.agreementname,jdbcType=VARCHAR},
+      </if>
+      <if test="item.agreementdetailed != null">
+        #{item.agreementdetailed,jdbcType=VARCHAR},
+      </if>
+	  <if test="item.ismodified != null">
+        #{item.ismodified,jdbcType=INTEGER},
+      </if>
+	  <if test="item.ismandatory != null">
+        #{item.ismandatory,jdbcType=INTEGER},
+      </if>
+      <if test="item.orderno != null">
+        #{item.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createdatatime != null">
+        #{item.createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.updatedatatime != null">
+        #{item.updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    </foreach>
+  </insert>
+  
+  <update id="updateAgreementinforBatch" parameterType="java.util.List" >  
+  <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+     update ludimb_agreementinfor
+    <set>
+      <if test="item.prodno != null">
+        prodno = #{item.prodno,jdbcType=VARCHAR},
+      </if>
+      <if test="item.ismodified != null">
+        is_modified = #{item.ismodified,jdbcType=INTEGER},
+      </if>
+      <if test="item.ismandatory != null">
+        is_mandatory = #{item.ismandatory,jdbcType=INTEGER},
+      </if>
+	  <if test="item.agreementcode != null">
+        agreementcode = #{item.agreementcode,jdbcType=VARCHAR},
+      </if>
+	  <if test="item.agreementname != null">
+        agreementname = #{item.agreementname,jdbcType=VARCHAR},
+      </if>
+	  <if test="item.agreementdetailed != null">
+        agreementdetailed = #{item.agreementdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="item.orderno != null">
+        orderno = #{item.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createdatatime != null">
+        createDataTime = #{item.createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.updatedatatime != null">
+        updateDataTime = #{item.updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where agreementid = #{item.agreementid,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  
+  <delete id="deleteAgreementBatch" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" separator=";">
+  		delete from  ludimb_agreementinfor 
+  		where agreementId = #{item.agreementid,jdbcType=INTEGER}
+  	</foreach>
+  </delete>
+  
+</mapper>

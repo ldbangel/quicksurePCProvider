@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 添加 DUBBO SCHEMA -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 应用名 -->
+    <dubbo:application name="dubbodemo-provider"/>
+    <!-- 连接到哪个本地注册中心 -->
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.registry.address}"/>
+   
+    <!-- 协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受  -->
+    <dubbo:protocol name="dubbo" server="netty" port="${dubbo.port}" serialization="hessian2" />
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service timeout="60000" interface="com.quicksure.insurance.service.InsuranceService" ref="insuranceService"/>
+    <dubbo:service timeout="60000" interface="com.quicksure.insurance.service.MyAccountService" ref="myAccountService"/>
+</beans>

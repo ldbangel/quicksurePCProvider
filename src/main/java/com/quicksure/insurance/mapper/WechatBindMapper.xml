@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.WechatBindMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.WechatBind">
+    <id column="bindUserId" jdbcType="INTEGER" property="binduserid" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+    <result column="phoneNo" jdbcType="VARCHAR" property="phoneno" />
+    <result column="phoneuserId" jdbcType="INTEGER" property="phoneuserid" />
+    <result column="wechatuserId" jdbcType="INTEGER" property="wechatuserid" />
+    <result column="createTimes" jdbcType="TIMESTAMP" property="createtimes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bindUserId, openId, phoneNo, phoneuserId, wechatuserId, createTimes
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_wechatBind
+    where bindUserId = #{binduserid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByOpenId" parameterType="String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_wechatBind
+    where openId = #{openid,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectByphoneUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_wechatBind
+    where phoneuserId = #{phoneuserid,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectByWechatUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_wechatBind
+    where wechatuserId = #{wechatuserid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_wechatBind
+    where bindUserId = #{binduserid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.WechatBind">
+    insert into ludimb_wechatBind (bindUserId, openId, phoneNo, 
+      phoneuserId, wechatuserId
+      )
+    values (#{binduserid,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{phoneno,jdbcType=VARCHAR}, 
+      #{phoneuserid,jdbcType=INTEGER}, #{wechatuserid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.WechatBind">
+    insert into ludimb_wechatBind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="binduserid != null">
+        bindUserId,
+      </if>
+      <if test="openid != null">
+        openId,
+      </if>
+      <if test="phoneno != null">
+        phoneNo,
+      </if>
+      <if test="phoneuserid != null">
+        phoneuserId,
+      </if>
+      <if test="wechatuserid != null">
+        wechatuserId,
+      </if>
+      <if test="createtimes != null">
+        createTimes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="binduserid != null">
+        #{binduserid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        #{phoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneuserid != null">
+        #{phoneuserid,jdbcType=INTEGER},
+      </if>
+      <if test="wechatuserid != null">
+        #{wechatuserid,jdbcType=INTEGER},
+      </if>
+      <if test="createtimes != null">
+        #{createtimes,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.WechatBind">
+    update ludimb_wechatBind
+    <set>
+      <if test="openid != null">
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        phoneNo = #{phoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneuserid != null">
+        phoneuserId = #{phoneuserid,jdbcType=INTEGER},
+      </if>
+      <if test="wechatuserid != null">
+        wechatuserId = #{wechatuserid,jdbcType=INTEGER},
+      </if>
+      <if test="createtimes != null">
+        createTimes = #{createtimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bindUserId = #{binduserid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.WechatBind">
+    update ludimb_wechatBind
+    set openId = #{openid,jdbcType=VARCHAR},
+      phoneNo = #{phoneno,jdbcType=VARCHAR},
+      phoneuserId = #{phoneuserid,jdbcType=INTEGER},
+      wechatuserId = #{wechatuserid,jdbcType=INTEGER},
+      createTimes = #{createtimes,jdbcType=TIMESTAMP}
+    where bindUserId = #{binduserid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       					http://www.springframework.org/schema/beans/spring-beans.xsd 
+       					http://www.springframework.org/schema/context 
+       					http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- scanner jdbc properties -->
+	<context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true" />
+	<!-- scanner redis properties -->
+	<context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true" />
+	<!--  注解扫描 -->
+	<context:component-scan base-package="com.quicksure.test.util,
+									com.quicksure.insurance.dms,
+									com.quicksure.insurance.entity,
+									com.quicksure.insurance.sinosafeFactory,
+									com.quicksure.insurance.dmsUtils,
+									com.quicksure.test.service.impl,
+									com.quicksure.website.serviceimpl"/>
+
+	<!-- 引入服务提供provider属性配置文件 -->
+	<import resource="classpath:insurance-provider.xml"/>
+	<!-- 引入redis属性配置文件 -->
+    <import resource="classpath:redis-config.xml"/>
+    
+    <import resource="classpath:spring-mybatis.xml"/>
+
+
+</beans>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.InsuranceperinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Insuranceperinfor">
+    <id column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+    <result column="ownersName" jdbcType="VARCHAR" property="ownersname" />
+    <result column="ownersCertIType" jdbcType="VARCHAR" property="ownerscertitype" />
+    <result column="ownersCertICode" jdbcType="VARCHAR" property="ownerscerticode" />
+    <result column="ownersPhoneNo" jdbcType="INTEGER" property="ownersphoneno" />
+    <result column="ownersZipCode" jdbcType="INTEGER" property="ownerszipcode" />
+    <result column="applicationName" jdbcType="VARCHAR" property="applicationname" />
+    <result column="applicationCertIType" jdbcType="VARCHAR" property="applicationcertitype" />
+    <result column="applicationCertICode" jdbcType="VARCHAR" property="applicationcerticode" />
+    <result column="applicationPhoneNo" jdbcType="INTEGER" property="applicationphoneno" />
+    <result column="applicationZipCode" jdbcType="INTEGER" property="applicationzipcode" />
+    <result column="insureName" jdbcType="VARCHAR" property="insurename" />
+    <result column="insureCertIType" jdbcType="VARCHAR" property="insurecertitype" />
+    <result column="insureCertICode" jdbcType="VARCHAR" property="insurecerticode" />
+    <result column="insurePhoneNo" jdbcType="INTEGER" property="insurephoneno" />
+    <result column="insureZipCode" jdbcType="INTEGER" property="insurezipcode" />
+    <result column="creatDataTime" jdbcType="TIMESTAMP" property="creatdatatime" />
+    <result column="updateDataTime" jdbcType="TIMESTAMP" property="updatedatatime" />
+    <result column="applicationaddress" jdbcType="VARCHAR" property="applicationaddress" />
+    <result column="insureaddress" jdbcType="VARCHAR" property="insureaddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    insuranceperinforId, ownersName, ownersCertIType, ownersCertICode, ownersPhoneNo, 
+    ownersZipCode, applicationName, applicationCertIType, applicationCertICode, applicationPhoneNo, 
+    applicationZipCode, insureName, insureCertIType, insureCertICode, insurePhoneNo, 
+    insureZipCode, creatDataTime, updateDataTime, applicationaddress, insureaddress 
+  </sql>
+  <sql id="Base_Column_List1">
+    insu.insuranceperinforId, insu.ownersName, ownersCertIType, ownersCertICode, ownersPhoneNo, 
+    ownersZipCode, applicationName, applicationCertIType, applicationCertICode, applicationPhoneNo, 
+    applicationZipCode, insureName, insureCertIType, insureCertICode, insurePhoneNo, 
+    insureZipCode, creatDataTime, updateDataTime, applicationaddress, insureaddress 
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_insuranceperinfor
+    where insuranceperinforId = #{insuranceperinforid,jdbcType=INTEGER}
+  </select>
+  <select id="getInsuranceByorderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+	select 
+    <include refid="Base_Column_List1" />  
+  	from ludimb_insuranceperinfor insu LEFT JOIN ludimb_baseinfor base
+ 	on base.insuranceperinforid=insu.insuranceperinforid where base.orderno=#{orderno,jdbcType=VARCHAR}	
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_insuranceperinfor
+    where insuranceperinforId = #{insuranceperinforid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="insuranceperinforid" parameterType="com.quicksure.insurance.entity.Insuranceperinfor">
+    insert into ludimb_insuranceperinfor (insuranceperinforId, ownersName, 
+      ownersCertIType, ownersCertICode, ownersPhoneNo, 
+      ownersZipCode, applicationName, applicationCertIType, 
+      applicationCertICode, applicationPhoneNo, 
+      applicationZipCode, insureName, insureCertIType, 
+      insureCertICode, insurePhoneNo, insureZipCode, 
+      creatDataTime, updateDataTime, applicationaddress, insureaddress)
+    values (#{insuranceperinforid,jdbcType=INTEGER}, #{ownersname,jdbcType=VARCHAR}, 
+      #{ownerscertitype,jdbcType=VARCHAR}, #{ownerscerticode,jdbcType=VARCHAR}, #{ownersphoneno,jdbcType=INTEGER}, 
+      #{ownerszipcode,jdbcType=INTEGER}, #{applicationname,jdbcType=VARCHAR}, #{applicationcertitype,jdbcType=VARCHAR}, 
+      #{applicationcerticode,jdbcType=VARCHAR}, #{applicationphoneno,jdbcType=INTEGER}, 
+      #{applicationzipcode,jdbcType=INTEGER}, #{insurename,jdbcType=VARCHAR}, #{insurecertitype,jdbcType=VARCHAR}, 
+      #{insurecerticode,jdbcType=VARCHAR}, #{insurephoneno,jdbcType=INTEGER}, #{insurezipcode,jdbcType=INTEGER}, 
+      #{creatdatatime,jdbcType=TIMESTAMP}, #{updatedatatime,jdbcType=TIMESTAMP}, #{applicationaddress,jdbcType=VARCHAR}, 
+      #{insureaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.Insuranceperinfor" useGeneratedKeys="true" keyProperty="insuranceperinforid">
+    insert into ludimb_insuranceperinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insuranceperinforid != null">
+        insuranceperinforId,
+      </if>
+      <if test="ownersname != null">
+        ownersName,
+      </if>
+      <if test="ownerscertitype != null">
+        ownersCertIType,
+      </if>
+      <if test="ownerscerticode != null">
+        ownersCertICode,
+      </if>
+      <if test="ownersphoneno != null">
+        ownersPhoneNo,
+      </if>
+      <if test="ownerszipcode != null">
+        ownersZipCode,
+      </if>
+      <if test="applicationname != null">
+        applicationName,
+      </if>
+      <if test="applicationcertitype != null">
+        applicationCertIType,
+      </if>
+      <if test="applicationcerticode != null">
+        applicationCertICode,
+      </if>
+      <if test="applicationphoneno != null">
+        applicationPhoneNo,
+      </if>
+      <if test="applicationzipcode != null">
+        applicationZipCode,
+      </if>
+      <if test="insurename != null">
+        insureName,
+      </if>
+      <if test="insurecertitype != null">
+        insureCertIType,
+      </if>
+      <if test="insurecerticode != null">
+        insureCertICode,
+      </if>
+      <if test="insurephoneno != null">
+        insurePhoneNo,
+      </if>
+      <if test="insurezipcode != null">
+        insureZipCode,
+      </if>
+      <if test="creatdatatime != null">
+        creatDataTime,
+      </if>
+      <if test="updatedatatime != null">
+        updateDataTime,
+      </if>
+      <if test="applicationaddress != null">
+        applicationaddress,
+      </if>
+      <if test="insureaddress != null">
+        insureaddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insuranceperinforid != null">
+        #{insuranceperinforid,jdbcType=INTEGER},
+      </if>
+      <if test="ownersname != null">
+        #{ownersname,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerscertitype != null">
+        #{ownerscertitype,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerscerticode != null">
+        #{ownerscerticode,jdbcType=VARCHAR},
+      </if>
+      <if test="ownersphoneno != null">
+        #{ownersphoneno,jdbcType=INTEGER},
+      </if>
+      <if test="ownerszipcode != null">
+        #{ownerszipcode,jdbcType=INTEGER},
+      </if>
+      <if test="applicationname != null">
+        #{applicationname,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationcertitype != null">
+        #{applicationcertitype,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationcerticode != null">
+        #{applicationcerticode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationphoneno != null">
+        #{applicationphoneno,jdbcType=INTEGER},
+      </if>
+      <if test="applicationzipcode != null">
+        #{applicationzipcode,jdbcType=INTEGER},
+      </if>
+      <if test="insurename != null">
+        #{insurename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurecertitype != null">
+        #{insurecertitype,jdbcType=VARCHAR},
+      </if>
+      <if test="insurecerticode != null">
+        #{insurecerticode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurephoneno != null">
+        #{insurephoneno,jdbcType=INTEGER},
+      </if>
+      <if test="insurezipcode != null">
+        #{insurezipcode,jdbcType=INTEGER},
+      </if>
+      <if test="creatdatatime != null">
+        #{creatdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedatatime != null">
+        #{updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applicationaddress != null">
+        #{applicationaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insureaddress != null">
+        #{insureaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Insuranceperinfor">
+    update ludimb_insuranceperinfor
+    <set>
+      <if test="ownersname != null">
+        ownersName = #{ownersname,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerscertitype != null">
+        ownersCertIType = #{ownerscertitype,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerscerticode != null">
+        ownersCertICode = #{ownerscerticode,jdbcType=VARCHAR},
+      </if>
+      <if test="ownersphoneno != null">
+        ownersPhoneNo = #{ownersphoneno,jdbcType=INTEGER},
+      </if>
+      <if test="ownerszipcode != null">
+        ownersZipCode = #{ownerszipcode,jdbcType=INTEGER},
+      </if>
+      <if test="applicationname != null">
+        applicationName = #{applicationname,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationcertitype != null">
+        applicationCertIType = #{applicationcertitype,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationcerticode != null">
+        applicationCertICode = #{applicationcerticode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationphoneno != null">
+        applicationPhoneNo = #{applicationphoneno,jdbcType=INTEGER},
+      </if>
+      <if test="applicationzipcode != null">
+        applicationZipCode = #{applicationzipcode,jdbcType=INTEGER},
+      </if>
+      <if test="insurename != null">
+        insureName = #{insurename,jdbcType=VARCHAR},
+      </if>
+      <if test="insurecertitype != null">
+        insureCertIType = #{insurecertitype,jdbcType=VARCHAR},
+      </if>
+      <if test="insurecerticode != null">
+        insureCertICode = #{insurecerticode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurephoneno != null">
+        insurePhoneNo = #{insurephoneno,jdbcType=INTEGER},
+      </if>
+      <if test="insurezipcode != null">
+        insureZipCode = #{insurezipcode,jdbcType=INTEGER},
+      </if>
+      <if test="creatdatatime != null">
+        creatDataTime = #{creatdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedatatime != null">
+        updateDataTime = #{updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applicationaddress != null">
+        applicationaddress = #{applicationaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insureaddress != null">
+       insureaddress = #{insureaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where insuranceperinforId = #{insuranceperinforid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Insuranceperinfor">
+    update ludimb_insuranceperinfor
+    set ownersName = #{ownersname,jdbcType=VARCHAR},
+      ownersCertIType = #{ownerscertitype,jdbcType=VARCHAR},
+      ownersCertICode = #{ownerscerticode,jdbcType=VARCHAR},
+      ownersPhoneNo = #{ownersphoneno,jdbcType=INTEGER},
+      ownersZipCode = #{ownerszipcode,jdbcType=INTEGER},
+      applicationName = #{applicationname,jdbcType=VARCHAR},
+      applicationCertIType = #{applicationcertitype,jdbcType=VARCHAR},
+      applicationCertICode = #{applicationcerticode,jdbcType=VARCHAR},
+      applicationPhoneNo = #{applicationphoneno,jdbcType=INTEGER},
+      applicationZipCode = #{applicationzipcode,jdbcType=INTEGER},
+      insureName = #{insurename,jdbcType=VARCHAR},
+      insureCertIType = #{insurecertitype,jdbcType=VARCHAR},
+      insureCertICode = #{insurecerticode,jdbcType=VARCHAR},
+      insurePhoneNo = #{insurephoneno,jdbcType=INTEGER},
+      insureZipCode = #{insurezipcode,jdbcType=INTEGER},
+      creatDataTime = #{creatdatatime,jdbcType=TIMESTAMP},
+      updateDataTime = #{updatedatatime,jdbcType=TIMESTAMP},
+      applicationaddress = #{applicationaddress,jdbcType=VARCHAR},
+      insureaddress = #{insureaddress,jdbcType=VARCHAR}
+    where insuranceperinforId = #{insuranceperinforid,jdbcType=INTEGER}
+  </update>
+</mapper>

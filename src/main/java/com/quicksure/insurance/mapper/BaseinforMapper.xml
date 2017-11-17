@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.BaseinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Baseinfor">
+    <id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="OwnersName" jdbcType="VARCHAR" property="ownersname" />
+    <result column="base_applicationName" jdbcType="VARCHAR" property="base_applicationname" />
+    <result column="insrntName" jdbcType="VARCHAR" property="insrntname" />
+    <result column="businessSource" jdbcType="INTEGER" property="businesssource" />
+    <result column="jqpolicyStartDate" jdbcType="TIMESTAMP" property="jqpolicystartdate" />
+    <result column="jqpolicyEndDate" jdbcType="TIMESTAMP" property="jqpolicyenddate" />
+    <result column="sypolicyStartDate" jdbcType="TIMESTAMP" property="sypolicystartdate" />
+    <result column="syapplicationNo" jdbcType="VARCHAR" property="syapplicationno" />
+    <result column="sypolicyNo" jdbcType="VARCHAR" property="sypolicyno" />
+    <result column="jqpolicyNo" jdbcType="VARCHAR" property="jqpolicyno" />
+    <result column="jqapplicationNo" jdbcType="VARCHAR" property="jqapplicationno" />
+    <result column="sypolicyEndDate" jdbcType="TIMESTAMP" property="sypolicyenddate" />
+    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+    <result column="taxPremium" jdbcType="REAL" property="taxpremium" />
+    <result column="jqPremium" jdbcType="REAL" property="jqpremium" />
+    <result column="syPremium" jdbcType="REAL" property="sypremium" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="userInforId" jdbcType="INTEGER" property="userinforid" />
+    <result column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+    <result column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+    <result column="vhlinforId" jdbcType="INTEGER" property="vhlinforid" />
+    <result column="deliveryInforId" jdbcType="INTEGER" property="deliveryinforid" />
+    <result column="orderstate" jdbcType="INTEGER" property="orderstate" />
+    <result column="deptNo" jdbcType="INTEGER" property="deptno" />
+    <result column="quoteNo" jdbcType="VARCHAR" property="quoteno" />
+    <result column="underWritingCode" jdbcType="INTEGER" property="underwritingcode" />
+    <result column="jqPolicyStatus" jdbcType="VARCHAR" property="jqpolicystatus" />
+    <result column="syPolicyStatus" jdbcType="VARCHAR" property="sypolicystatus" />
+    <result column="paymentinforId" jdbcType="INTEGER" property="paymentinforid" />
+    <result column="totalPremium" jdbcType="REAL" property="totalPremium" />
+    <result column="deptAddress" jdbcType="VARCHAR" property="deptAddress" />
+    <result column="agentCode" jdbcType="VARCHAR" property="agentCode" />     
+    <result column="syquerySequenceNo" jdbcType="VARCHAR" property="syquerySequenceNo" />
+    <result column="jqquerySequenceNo" jdbcType="VARCHAR" property="jqquerySequenceNo" />   
+    <result column="paymentMethod" jdbcType="INTEGER" property="paymentMethod" /> 
+    <result column="lastImplementPage" jdbcType="INTEGER" property="lastImplementPage" />
+    <result column="origFlg" jdbcType="VARCHAR" property="origFlg" />    
+  </resultMap> 
+  
+  <sql id="Base_Column_List">
+    orderNo, OwnersName, base_applicationName, insrntName, businessSource, jqpolicyStartDate, 
+    jqpolicyEndDate, sypolicyStartDate, syapplicationNo, sypolicyNo, jqpolicyNo, jqapplicationNo, 
+    sypolicyEndDate, vehicleName, taxPremium, jqPremium, syPremium, createTime, updateTime, 
+    userInforId, insuranceperinforId, taxinforId, vhlinforId, deliveryInforId, orderstate, 
+    deptNo, quoteNo, underWritingCode, jqPolicyStatus, syPolicyStatus, paymentinforId,totalPremium,
+    deptAddress,agentCode,paymentMethod,lastImplementPage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_baseinfor
+    where orderNo = #{orderno,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 定时任务查询时间段内订单状态为30的订单 -->
+  <select id="selectByTimes" parameterType="Map" resultMap="BaseResultMap">
+  	select 
+  	orderNo, createTime, paymentinforId, syapplicationNo, jqapplicationNo, orderstate<!-- Base_Column_List这个写好了之后这里就直接引用全部字段 -->
+  	from ludimb_baseinfor
+  	where 1=1 and orderstate = 30
+  	<if test="startTime !=null and startTime !='' ">
+         <![CDATA[ and createTime  >  #{startTime}  ]]>
+    </if>
+    <if test="endTime !=null and endTime!='' "  >
+         <![CDATA[ and createTime  <=  #{endTime}  ]]>
+    </if>
+  </select>
+  <!-- 根据车主名称(drvOwner)和车主手机号(phoneNo)查询订单号(orderNo) -->
+  <select id="getBaseinforByVhlinfor" parameterType="com.quicksure.insurance.entity.Vhlinfor" resultMap="BaseResultMap">
+  	SELECT 
+  	orderNo, userInforId, vhlinforId
+  	FROM ludimb_baseinfor
+	WHERE vhlinforId IN (
+			SELECT
+				vhiinforId
+			FROM
+				ludimb_vhlinfor
+			WHERE
+				drvOwner = #{drvowner}
+			AND phoneNo = #{phoneno}
+		)
+  </select>
+  
+  <select id="selectByApplicationNo" parameterType="com.quicksure.insurance.entity.Baseinfor" resultMap="BaseResultMap">
+  	select 
+  		orderNo,paymentinforId
+  	from ludimb_baseinfor
+  	where
+  	<trim prefix=" " suffix=" " prefixOverrides="and">
+	  	<if test="syapplicationno != null and syapplicationno!=''">
+	  		AND syapplicationNo = #{syapplicationno, jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="jqapplicationno != null and jqapplicationno!=''">
+	  		AND jqapplicationNo = #{jqapplicationno, jdbcType=VARCHAR}
+	  	</if>
+  	</trim>
+  	
+  	
+  </select>
+  
+      <select id="getOrderNo"  statementType="CALLABLE"  
+     resultType="String" >  
+      {call generate_orderNo(
+      #{orderNamePre,jdbcType=VARCHAR,mode=IN},
+      #{number,jdbcType=INTEGER,mode=IN},  
+      #{orderNo,jdbcType=VARCHAR,mode=OUT})
+        }
+    </select>
+     <!-- 查询所有30状态和40状态的单子 -->
+    <select id="selectAllOrder" parameterType="com.quicksure.insurance.entity.Baseinfor" resultMap="BaseResultMap">
+    select * 
+    from ludimb_baseinfor
+    where orderstate = 40 or orderstate = 30
+  </select>   
+       
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ludimb_baseinfor
+    where orderNo = #{orderno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.Baseinfor">
+    insert into ludimb_baseinfor (orderNo, OwnersName, base_applicationName, 
+      insrntName, businessSource, jqpolicyStartDate, 
+      jqpolicyEndDate, sypolicyStartDate, 
+      syapplicationNo, sypolicyNo, jqpolicyNo, 
+      jqapplicationNo, sypolicyEndDate, vehicleName, 
+      taxPremium, jqPremium, syPremium, 
+      createTime, updateTime, userInforId, 
+      insuranceperinforId, taxinforId, vhlinforId, 
+      deliveryInforId, orderstate, deptNo, 
+      quoteNo, underWritingCode, jqPolicyStatus, 
+      syPolicyStatus, paymentinforId)
+    values (#{orderno,jdbcType=VARCHAR}, #{ownersname,jdbcType=VARCHAR}, #{base_applicationname,jdbcType=VARCHAR}, 
+      #{insrntname,jdbcType=VARCHAR}, #{businesssource,jdbcType=INTEGER}, #{jqpolicystartdate,jdbcType=TIMESTAMP}, 
+      #{jqpolicyenddate,jdbcType=TIMESTAMP}, #{sypolicystartdate,jdbcType=TIMESTAMP}, 
+      #{syapplicationno,jdbcType=VARCHAR}, #{sypolicyno,jdbcType=VARCHAR}, #{jqpolicyno,jdbcType=VARCHAR}, 
+      #{jqapplicationno,jdbcType=VARCHAR}, #{sypolicyenddate,jdbcType=TIMESTAMP}, #{vehiclename,jdbcType=VARCHAR}, 
+      #{taxpremium,jdbcType=REAL}, #{jqpremium,jdbcType=REAL}, #{sypremium,jdbcType=REAL}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{userinforid,jdbcType=INTEGER}, 
+      #{insuranceperinforid,jdbcType=INTEGER}, #{taxinforid,jdbcType=INTEGER}, #{vhlinforid,jdbcType=INTEGER}, 
+      #{deliveryinforid,jdbcType=INTEGER}, #{orderstate,jdbcType=INTEGER}, #{deptno,jdbcType=INTEGER}, 
+      #{quoteno,jdbcType=VARCHAR}, #{underwritingcode,jdbcType=INTEGER}, #{jqpolicystatus,jdbcType=VARCHAR},
+      #{sypolicystatus,jdbcType=VARCHAR}, #{paymentinforid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.Baseinfor">
+    insert into ludimb_baseinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderno != null">
+        orderNo,
+      </if>
+      <if test="ownersname != null">
+        OwnersName,
+      </if>
+      <if test="base_applicationname != null">
+        base_applicationName,
+      </if>
+      <if test="insrntname != null">
+        insrntName,
+      </if>
+      <if test="businesssource != null">
+        businessSource,
+      </if>
+      <if test="jqpolicystartdate != null">
+        jqpolicyStartDate,
+      </if>
+      <if test="jqpolicyenddate != null">
+        jqpolicyEndDate,
+      </if>
+      <if test="sypolicystartdate != null">
+        sypolicyStartDate,
+      </if>
+      <if test="syapplicationno != null">
+        syapplicationNo,
+      </if>
+      <if test="sypolicyno != null">
+        sypolicyNo,
+      </if>
+      <if test="jqpolicyno != null">
+        jqpolicyNo,
+      </if>
+      <if test="jqapplicationno != null">
+        jqapplicationNo,
+      </if>
+      <if test="sypolicyenddate != null">
+        sypolicyEndDate,
+      </if>
+      <if test="vehiclename != null">
+        vehicleName,
+      </if>
+      <if test="taxpremium != null">
+        taxPremium,
+      </if>
+      <if test="jqpremium != null">
+        jqPremium,
+      </if>
+      <if test="sypremium != null">
+        syPremium,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="userinforid != null">
+        userInforId,
+      </if>
+      <if test="insuranceperinforid != null">
+        insuranceperinforId,
+      </if>
+      <if test="taxinforid != null">
+        taxinforId,
+      </if>
+      <if test="vhlinforid != null">
+        vhlinforId,
+      </if>
+      <if test="deliveryinforid != null">
+        deliveryInforId,
+      </if>
+      <if test="orderstate != null">
+        orderstate,
+      </if>
+      <if test="deptno != null">
+        deptNo,
+      </if>
+      <if test="quoteno != null">
+        quoteNo,
+      </if>
+      <if test="underwritingcode != null">
+        underWritingCode,
+      </if>
+      <if test="jqpolicystatus != null">
+        jqPolicyStatus,
+      </if>
+      <if test="sypolicystatus != null">
+        syPolicyStatus,
+      </if>
+      <if test="paymentinforid != null">
+        paymentinforId,
+      </if>
+      <if test="deptAddress != null">
+        deptAddress,
+      </if>
+      <if test="lastImplementPage != null">
+        lastImplementPage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ownersname != null">
+        #{ownersname,jdbcType=VARCHAR},
+      </if>
+      <if test="base_applicationname != null">
+        #{base_applicationname,jdbcType=VARCHAR},
+      </if>
+      <if test="insrntname != null">
+        #{insrntname,jdbcType=VARCHAR},
+      </if>
+      <if test="businesssource != null">
+        #{businesssource,jdbcType=INTEGER},
+      </if>
+      <if test="jqpolicystartdate != null">
+        #{jqpolicystartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jqpolicyenddate != null">
+        #{jqpolicyenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sypolicystartdate != null">
+        #{sypolicystartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syapplicationno != null">
+        #{syapplicationno,jdbcType=VARCHAR},
+      </if>
+      <if test="sypolicyno != null">
+        #{sypolicyno,jdbcType=VARCHAR},
+      </if>
+      <if test="jqpolicyno != null">
+        #{jqpolicyno,jdbcType=VARCHAR},
+      </if>
+      <if test="jqapplicationno != null">
+        #{jqapplicationno,jdbcType=VARCHAR},
+      </if>
+      <if test="sypolicyenddate != null">
+        #{sypolicyenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vehiclename != null">
+        #{vehiclename,jdbcType=VARCHAR},
+      </if>
+      <if test="taxpremium != null">
+        #{taxpremium,jdbcType=REAL},
+      </if>
+      <if test="jqpremium != null">
+        #{jqpremium,jdbcType=REAL},
+      </if>
+      <if test="sypremium != null">
+        #{sypremium,jdbcType=REAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userinforid != null">
+        #{userinforid,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceperinforid != null">
+        #{insuranceperinforid,jdbcType=INTEGER},
+      </if>
+      <if test="taxinforid != null">
+        #{taxinforid,jdbcType=INTEGER},
+      </if>
+      <if test="vhlinforid != null">
+        #{vhlinforid,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryinforid != null">
+        #{deliveryinforid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstate != null">
+        #{orderstate,jdbcType=INTEGER},
+      </if>
+      <if test="deptno != null">
+        #{deptno,jdbcType=INTEGER},
+      </if>
+      <if test="quoteno != null">
+        #{quoteno,jdbcType=VARCHAR},
+      </if>
+      <if test="underwritingcode != null">
+        #{underwritingcode,jdbcType=INTEGER},
+      </if>
+      <if test="jqpolicystatus != null">
+        #{jqpolicystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sypolicystatus != null">
+        #{sypolicystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentinforid != null">
+        #{paymentinforid,jdbcType=INTEGER},
+      </if>
+      <if test="deptAddress != null">
+        #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lastImplementPage != null">
+        #{lastImplementPage,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Baseinfor">
+    update ludimb_baseinfor
+    <set>
+      <if test="ownersname != null">
+        OwnersName = #{ownersname,jdbcType=VARCHAR},
+      </if>
+      <if test="base_applicationname != null">
+        base_applicationName = #{base_applicationname,jdbcType=VARCHAR},
+      </if>
+      <if test="insrntname != null">
+        insrntName = #{insrntname,jdbcType=VARCHAR},
+      </if>
+      <if test="businesssource != null">
+        businessSource = #{businesssource,jdbcType=INTEGER},
+      </if>
+      <if test="jqpolicystartdate != null and jqpolicystartdate != ''">
+        jqpolicyStartDate = #{jqpolicystartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jqpolicyenddate != null and jqpolicyenddate != ''">
+        jqpolicyEndDate = #{jqpolicyenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sypolicystartdate != null and sypolicystartdate != ''">
+        sypolicyStartDate = #{sypolicystartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syapplicationno != null and syapplicationno!=''">
+        syapplicationNo = #{syapplicationno,jdbcType=VARCHAR},
+      </if>
+      <if test="sypolicyno != null and sypolicyno!=''">
+        sypolicyNo = #{sypolicyno,jdbcType=VARCHAR},
+      </if>
+      <if test="jqpolicyno != null and jqpolicyno!=''">
+        jqpolicyNo = #{jqpolicyno,jdbcType=VARCHAR},
+      </if>
+      <if test="jqapplicationno != null and jqapplicationno!=''">
+        jqapplicationNo = #{jqapplicationno,jdbcType=VARCHAR},
+      </if>
+      <if test="sypolicyenddate != null and sypolicyenddate != ''">
+        sypolicyEndDate = #{sypolicyenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vehiclename != null">
+        vehicleName = #{vehiclename,jdbcType=VARCHAR},
+      </if>
+      <if test="taxpremium != null">
+        taxPremium = #{taxpremium,jdbcType=REAL},
+      </if>
+      <if test="jqpremium != null">
+        jqPremium = #{jqpremium,jdbcType=REAL},
+      </if>
+      <if test="sypremium != null">
+        syPremium = #{sypremium,jdbcType=REAL},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userinforid != null">
+        userInforId = #{userinforid,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceperinforid != null">
+        insuranceperinforId = #{insuranceperinforid,jdbcType=INTEGER},
+      </if>
+      <if test="taxinforid != null">
+        taxinforId = #{taxinforid,jdbcType=INTEGER},
+      </if>
+      <if test="vhlinforid != null">
+        vhlinforId = #{vhlinforid,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryinforid != null">
+        deliveryInforId = #{deliveryinforid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstate != 0">
+        orderstate = #{orderstate,jdbcType=INTEGER},
+      </if>
+      <if test="deptno != null">
+        deptNo = #{deptno,jdbcType=INTEGER},
+      </if>
+      <if test="quoteno != null">
+        quoteNo = #{quoteno,jdbcType=VARCHAR},
+      </if>
+      <if test="underwritingcode != null and underwritingcode!=0">
+        underWritingCode = #{underwritingcode,jdbcType=INTEGER},
+      </if>
+      <if test="sypolicystatus != null">  
+      	syPolicyStatus = #{sypolicystatus, jdbcType=VARCHAR},
+      </if>
+      <if test="jqpolicystatus != null">
+      	jqPolicyStatus = #{jqpolicystatus, jdbcType=VARCHAR},
+      </if>
+      <if test="paymentinforid != null and paymentinforid != 0 ">
+      	paymentinforId = #{paymentinforid, jdbcType=INTEGER},
+      </if>
+      <if test="claimAdjustRsn != null">
+      	claimAdjustRsn = #{claimAdjustRsn, jdbcType=INTEGER},
+      </if>
+      <if test="applyTotalAdj != null">
+      	applyTotalAdj = #{applyTotalAdj, jdbcType=INTEGER},
+      </if>
+      <if test="totalPremium != null">
+      	totalPremium = #{totalPremium, jdbcType=REAL},
+      </if>
+      <if test="deptAddress != null">
+      	deptAddress = #{deptAddress, jdbcType=VARCHAR},
+      </if>
+      <if test="agentCode != null">
+      	agentCode = #{agentCode, jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null and paymentMethod != 0">
+      	paymentMethod = #{paymentMethod, jdbcType=INTEGER},
+      </if>
+      <if test="syquerySequenceNo != null and syquerySequenceNo!=''">
+        syquerySequenceNo = #{syquerySequenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="jqquerySequenceNo != null and jqquerySequenceNo!=''">
+        jqquerySequenceNo = #{jqquerySequenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lastImplementPage != null and lastImplementPage != 0">
+      	lastImplementPage = #{lastImplementPage, jdbcType=INTEGER},
+      </if>
+       <if test="origFlg != null and origFlg!=''">
+      origFlg = #{origFlg, jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderNo = #{orderno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Baseinfor">
+    update ludimb_baseinfor
+    set OwnersName = #{ownersname,jdbcType=VARCHAR},
+      base_applicationName = #{base_applicationname,jdbcType=VARCHAR},
+      insrntName = #{insrntname,jdbcType=VARCHAR},
+      businessSource = #{businesssource,jdbcType=INTEGER},
+      jqpolicyStartDate = #{jqpolicystartdate,jdbcType=TIMESTAMP},
+      jqpolicyEndDate = #{jqpolicyenddate,jdbcType=TIMESTAMP},
+      sypolicyStartDate = #{sypolicystartdate,jdbcType=TIMESTAMP},
+      syapplicationNo = #{syapplicationno,jdbcType=VARCHAR},
+      sypolicyNo = #{sypolicyno,jdbcType=VARCHAR},
+      jqpolicyNo = #{jqpolicyno,jdbcType=VARCHAR},
+      jqapplicationNo = #{jqapplicationno,jdbcType=VARCHAR},
+      sypolicyEndDate = #{sypolicyenddate,jdbcType=TIMESTAMP},
+      vehicleName = #{vehiclename,jdbcType=VARCHAR},
+      taxPremium = #{taxpremium,jdbcType=REAL},
+      jqPremium = #{jqpremium,jdbcType=REAL},
+      syPremium = #{sypremium,jdbcType=REAL},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      userInforId = #{userinforid,jdbcType=INTEGER},
+      insuranceperinforId = #{insuranceperinforid,jdbcType=INTEGER},
+      taxinforId = #{taxinforid,jdbcType=INTEGER},
+      vhlinforId = #{vhlinforid,jdbcType=INTEGER},
+      deliveryInforId = #{deliveryinforid,jdbcType=INTEGER},
+      orderstate = #{orderstate,jdbcType=INTEGER},
+      deptNo = #{deptno,jdbcType=INTEGER},
+      quoteNo = #{quoteno,jdbcType=VARCHAR},
+      underWritingCode = #{underwritingcode,jdbcType=INTEGER},
+      syPolicyStatus = #{sypolicystatus, jdbcType=VARCHAR},
+      jqPolicyStatus = #{jqpolicystatus, jdbcType=VARCHAR},
+      paymentinforId = #{paymentinforid, jdbcType=INTEGER},
+      lastImplementPage = #{lastImplementPage, jdbcType=INTEGER},
+      totalPremium = #{totalPremium, jdbcType=REAL}
+    where orderNo = #{orderno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateOrderState" parameterType="com.quicksure.insurance.entity.Baseinfor">
+  	update ludimb_baseinfor
+  	<set>
+  	  <if test="deliveryinforid != null">
+        deliveryInforId = #{deliveryinforid,jdbcType=INTEGER},
+      </if>
+  	  <if test="orderstate != null">
+        orderstate = #{orderstate,jdbcType=INTEGER},
+      </if>
+  	</set>
+  	where orderNo = #{orderno,jdbcType=VARCHAR}
+  	<!-- set orderstate = #{orderstate,jdbcType=INTEGER},
+  	    deliveryInforId=(select deliveryId from ludimb_deliveryinfor order by createDateTime desc LIMIT 0,1)
+  	where orderNo = #{orderno,jdbcType=VARCHAR} -->
+  </update>
+  <update id="updateMultiplePolicyStatus" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" separator=";">  
+  		update ludimb_baseinfor
+  		<set>
+  		  <if test="item.sypolicyno != null">
+	        sypolicyNo = #{item.sypolicyno,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.jqpolicyno != null">
+	        jqpolicyNo = #{item.jqpolicyno,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.sypolicystatus != null">  
+	      	syPolicyStatus = #{item.sypolicystatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.jqpolicystatus != null">
+	      	jqPolicyStatus = #{item.jqpolicystatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.orderstate != null">
+	      	orderstate = #{item.orderstate,jdbcType=INTEGER},
+	      </if>
+	      <if test="item.userinforid != null">
+			userInforId = #{item.userinforid,jdbcType=INTEGER},
+		  </if>
+		  <if test="item.vhlinforid != null">
+			vhlinforId = #{item.vhlinforid,jdbcType=INTEGER},
+		  </if>
+  		</set>
+  		where orderNo = #{item.orderno,jdbcType=VARCHAR}
+  	</foreach>
+  </update>
+</mapper>

@@ -1,0 +1,486 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>quicksure</groupId>
+  <artifactId>quickSureServerProvider</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <properties>
+	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  <spring.version>4.1.4.RELEASE</spring.version>
+	  <jackson.version>2.5.0</jackson.version>
+  </properties>
+  <repositories>
+	<repository>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+		<id>public</id>
+		<name>Public Repositories</name>
+		<url>http://172.16.55.103:8090/nexus/content/groups/public/</url>
+	</repository>
+  </repositories>
+  <pluginRepositories>
+	<pluginRepository>
+		<id>public</id>
+		<name>Public Repositories</name>
+		<url>http://172.16.55.103:8090/nexus/content/groups/public/</url>
+	</pluginRepository>
+  </pluginRepositories>
+  
+  <dependencies>
+  	<dependency>
+		<groupId>org.apache.openejb</groupId>
+		<artifactId>javaee-api</artifactId>
+		<version>5.0-1</version>
+		<!-- <scope>provided</scope> -->
+	</dependency>
+	<dependency>
+		<groupId>javax.faces</groupId>
+		<artifactId>jsf-api</artifactId>
+		<version>1.2_04</version>
+		<!-- <scope>provided</scope> -->
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+		<!-- <scope>provided</scope> -->
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>2.1</version>
+		<!-- <scope>provided</scope> -->
+	</dependency>
+	<dependency>
+		<groupId>javax.faces</groupId>
+		<artifactId>jsf-impl</artifactId>
+		<version>1.2_04</version>
+		<!-- <scope>provided</scope> -->
+	</dependency>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+		<scope>test</scope>
+	</dependency>
+	<!-- starts add spring jar files -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- ends add spring jar files -->
+
+	<!-- mybatis 包 -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.2.8</version>
+	</dependency>
+
+	<!--mybatis spring 插件 -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.2.2</version>
+	</dependency>
+
+	<!-- mysql连接 -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.34</version>
+	</dependency>
+	<!-- log4j -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	<!-- json -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.8.3</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.5.0</version>
+	</dependency>
+	<dependency>
+		<groupId>net.sf.json-lib</groupId>
+		<artifactId>json-lib</artifactId>
+		<classifier>jdk15</classifier>
+		<version>2.2.3</version>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.7.2</version>
+	</dependency>
+	<!-- httpclient start -->
+	<dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>1.1.1</version>
+	</dependency>
+
+	<dependency>
+		<groupId>commons-codec</groupId>
+		<artifactId>commons-codec</artifactId>
+		<version>1.4</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpcore</artifactId>
+		<version>4.1.2</version>
+	</dependency>
+	<!-- httpclient end -->
+	<dependency>
+		<groupId>org.apache.velocity</groupId>
+		<artifactId>velocity</artifactId>
+		<version>1.7</version>
+	</dependency>
+	<dependency>
+		<groupId>dom4j</groupId>
+		<artifactId>dom4j</artifactId>
+		<version>1.6</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-io</groupId>
+		<artifactId>commons-io</artifactId>
+		<version>1.3</version>
+	</dependency>
+	<dependency>
+		<groupId>jaxen</groupId>
+		<artifactId>jaxen</artifactId>
+		<version>1.1.6</version>
+	</dependency>
+	<!-- 定時器 jar -->  
+    <dependency>
+	    <groupId>org.quartz-scheduler</groupId>
+	    <artifactId>quartz</artifactId>
+	    <version>2.2.0</version>
+    </dependency>     
+	<!-- ehcache  jar-->
+	<dependency>
+	    <groupId>net.sf.ehcache</groupId>
+	    <artifactId>ehcache-core</artifactId>
+	    <version>2.6.0</version>
+    </dependency>
+    <dependency>
+	    <groupId>com.googlecode.ehcache-spring-annotations</groupId>
+	    <artifactId>ehcache-spring-annotations</artifactId>
+	    <version>1.1.3</version>
+	</dependency> 
+    <dependency>  
+        <groupId>org.codehaus.jackson</groupId>  
+        <artifactId>jackson-mapper-asl</artifactId>  
+        <version>1.9.8</version>  
+        <type>jar</type>  
+        <scope>compile</scope>  
+ 	</dependency>
+	<!-- <dependency>
+	  	<groupId>org.codehaus.plexus</groupId>
+	  	<artifactId>plexus-container-default</artifactId>
+	  	<version>1.5.5</version>
+	</dependency> -->
+	<dependency>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>3.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>net.coobird</groupId>
+	    <artifactId>thumbnailator</artifactId>
+	    <version>0.4.8</version>
+	</dependency>
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.3</version>
+	</dependency>
+
+	<!-- 导出excel -->
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>3.9</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi-ooxml</artifactId>
+		<version>3.9</version>
+	</dependency>
+	<dependency>
+	  	<groupId>org.apache.poi</groupId>
+	  	<artifactId>poi-ooxml-schemas</artifactId>
+	  	<version>3.9</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+	<dependency>
+	    <groupId>c3p0</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.1.2</version>
+	</dependency>
+	
+	<!-- dubbo所需jar包：dubbo、zookeeper、zkclient -->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>2.5.3</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <!-- Zookeeper 用于分布式服务管理 -->
+    <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>3.4.5</version>
+    </dependency>
+    <dependency>
+        <groupId>com.101tec</groupId>
+        <artifactId>zkclient</artifactId>
+        <version>0.3</version>
+    </dependency>
+    <!-- Zookeeper 用于分布式服务管理 end -->
+    
+    <!-- config redis data and client jar -->    
+    <dependency>
+	    <groupId>redis.clients</groupId>
+	    <artifactId>jedis</artifactId>
+	    <version>2.7.3</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.data</groupId>
+	    <artifactId>spring-data-redis</artifactId>
+	    <version>1.6.2.RELEASE</version>
+	</dependency>
+    
+    <dependency>
+        <groupId>quicksure</groupId>
+        <artifactId>quickSureServerInterface</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+	<dependency>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-resources-plugin</artifactId>
+	    <version>2.4.3</version>
+	</dependency>
+  </dependencies>
+  
+  <profiles>
+  	<profile>
+  		<id>dev</id>
+  		<properties>
+  			<!-- jdbc properties -->
+  			<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+  			<jdbc.jdbcUrl>jdbc:mysql://10.77.55.161:3306/quicksureuat?allowMultiQueries=true</jdbc.jdbcUrl>
+  			<jdbc.username>ludidevelop</jdbc.username>
+  			<jdbc.password>Ludi@12345</jdbc.password>
+  			
+  			<!-- dubbo properties -->
+  			<zookeeper.registry.address>10.77.55.161:2181</zookeeper.registry.address>
+  			<dubbo.port>20882</dubbo.port>
+  			
+  			<!-- redis properties -->
+  			<redis.host>10.77.55.161</redis.host>
+  			<redis.port>6379</redis.port>
+  			<redis.pass>123456</redis.pass>
+  			
+  			<provide.method>dev</provide.method>
+  		</properties>
+  		<!-- 默认环境,tomcat打包的时候也是读这个默认配置 -->
+	  	<activation>
+	  		<activeByDefault>true</activeByDefault>
+	  	</activation>
+  	</profile>
+  	<profile>
+  		<id>test</id>
+  		<properties>
+  			<!-- jdbc properties -->
+  			<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+  			<jdbc.jdbcUrl>jdbc:mysql://10.77.55.161:3306/quicksureuat?allowMultiQueries=true</jdbc.jdbcUrl>
+  			<jdbc.username>ludidevelop</jdbc.username>
+  			<jdbc.password>Ludi@12345</jdbc.password>
+  			
+  			<!-- dubbo properties -->
+  			<zookeeper.registry.address>10.77.55.161:2181</zookeeper.registry.address>
+  			<dubbo.port>20881</dubbo.port>
+  			
+  			<!-- redis properties -->
+  			<redis.host>10.77.55.161</redis.host>
+  			<redis.port>6379</redis.port>
+  			<redis.pass>123456</redis.pass>
+  			
+  			<provide.method>test</provide.method>
+  		</properties>
+  	</profile>
+  	<profile>
+  		<id>prod</id>
+  		<properties>
+  			<jdbc.driverClassName></jdbc.driverClassName>
+  			<jdbc.jdbcUrl></jdbc.jdbcUrl>
+  			<jdbc.username></jdbc.username>
+  			<jdbc.password></jdbc.password>
+  			
+  			<zookeeper.registry.address></zookeeper.registry.address>
+  			<dubbo.port></dubbo.port>
+  			
+  			<provide.method>prod</provide.method>
+  		</properties>
+  	</profile>
+  </profiles>
+  
+  <!-- 打包 -->
+  <build>
+      <finalName>quicksure_Server_Provider</finalName>
+      <resources>
+          <resource>
+              <targetPath>${project.build.directory}/classes</targetPath>
+              <directory>src/main/resources</directory>
+              <filtering>true</filtering>
+              <includes>
+                  <include>**/*.xml</include>
+                  <include>**/*.properties</include>
+              </includes>
+          </resource>
+          <!-- mapper.xml打进相应的文件夹 -->
+          <resource>
+              <targetPath>${project.build.directory}/classes/com/quicksure/insurance/mapper</targetPath>
+              <directory>src/main/java/com/quicksure/insurance/mapper</directory>
+              <filtering>true</filtering>
+              <includes>
+                  <include>**/*.xml</include>
+              </includes>
+          </resource>
+          <!-- template.xml模板打进相应的文件夹 -->
+          <resource>
+              <targetPath>${project.build.directory}/classes/com/quicksure/insurance/velocity/template</targetPath>
+              <directory>src/main/java/com/quicksure/insurance/velocity/template</directory>
+              <filtering>true</filtering>
+              <includes>
+                  <include>**/*.xml</include>
+              </includes>
+          </resource>
+          <!-- 结合com.alibaba.dubbo.container.Main -->
+		  <resource>
+			  <targetPath>${project.build.directory}/classes/META-INF/spring</targetPath>
+			  <directory>src/main/resources</directory>
+			  <filtering>true</filtering>
+			  <includes>
+				  <include>spring.xml</include>
+			  </includes>
+		  </resource>
+      </resources>
+      <pluginManagement>
+	      <plugins>
+	          <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+	          <plugin>
+	              <groupId>org.apache.maven.plugins</groupId>
+	              <artifactId>maven-jar-plugin</artifactId>
+	              <version>2.6</version>
+	              <configuration>
+	                  <classesDirectory>target/classes/</classesDirectory>
+	                  <archive>
+	                      <manifest>
+	                          <mainClass>com.alibaba.dubbo.container.Main</mainClass>
+	                          <!-- <mainClass>com.quicksure.test.util.Launcher</mainClass> -->
+	                          <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+	                          <useUniqueVersions>false</useUniqueVersions>
+	                          <addClasspath>true</addClasspath>
+	                          <classpathPrefix>lib/</classpathPrefix>
+	                      </manifest>
+	                      <manifestEntries>
+	                          <Class-Path>.</Class-Path>
+	                      </manifestEntries>
+	                  </archive>
+	              </configuration>
+	          </plugin>
+	          <!-- 解决Maven插件在Eclipse内执行了一系列的生命周期引起冲突 -->
+	          <plugin>
+	              <groupId>org.eclipse.m2e</groupId>
+	              <artifactId>lifecycle-mapping</artifactId>
+	              <version>1.0.0</version>
+	              <configuration>
+	                  <lifecycleMappingMetadata>
+	                      <pluginExecutions>
+	                          <pluginExecution>
+	                              <pluginExecutionFilter>
+	                                  <groupId>org.apache.maven.plugins</groupId>
+	                                  <artifactId>maven-dependency-plugin</artifactId>
+	                                  <versionRange>[2.0,)</versionRange>
+	                                  <goals>
+	                                      <goal>copy-dependencies</goal>
+	                                  </goals>
+	                              </pluginExecutionFilter>
+	                              <action>
+	                                  <ignore />
+	                              </action>
+	                          </pluginExecution>
+	                      </pluginExecutions>
+	                  </lifecycleMappingMetadata>
+	              </configuration>
+	          </plugin>
+	      </plugins>
+      </pluginManagement>
+  </build>
+</project>

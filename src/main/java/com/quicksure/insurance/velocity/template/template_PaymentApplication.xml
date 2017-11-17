@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PACKET>
+    <HEAD>
+        <TRANSTYPE>SNY</TRANSTYPE>
+		<SYSCODE></SYSCODE>
+		<TRANSCODE>100010</TRANSCODE>
+		<CONTENTTYPE></CONTENTTYPE>
+		<VERIFYTYPE></VERIFYTYPE>
+        <USER>$!{SinosafeUserName}</USER>
+        <PASSWORD>$!{SinosafePassword}</PASSWORD>
+		<SVCSEQNO></SVCSEQNO>
+    </HEAD>
+    <THIRD>
+        <EXTENTERPCODE>$!{SinosafeExtenterCode}</EXTENTERPCODE>
+        <PRODNO>0000</PRODNO>
+        <PLANNO>0000</PLANNO>
+        <TRANSCODE>100010</TRANSCODE>
+        <TRANSDATE>$!{date}</TRANSDATE>
+        <TRANSTIME>$!{times}</TRANSTIME>
+    </THIRD>
+    <BODY>
+        <BASE>
+          #if($!{dataObj.getBaseinfor().getSyapplicationno()} && ""!=$!{dataObj.getBaseinfor().getSyapplicationno()})
+            <APP_INFO>
+                <APPLICANTNO>$!{dataObj.getBaseinfor().getSyapplicationno()}</APPLICANTNO>
+                <AMOUNT></AMOUNT>
+                <APPLICANTNAME></APPLICANTNAME>
+                <STARTDATE>${dataObj.getBaseinfor().getSypolicystartdate()}</STARTDATE>
+                <DEPARTMENTCODE>$!{dataObj.getBaseinfor().getDeptno()}</DEPARTMENTCODE>
+            </APP_INFO>  
+          #end    
+          #if($!{dataObj.getBaseinfor().getJqapplicationno()} && ""!=$!{dataObj.getBaseinfor().getJqapplicationno()})
+            <APP_INFO>
+                <APPLICANTNO>$!{dataObj.getBaseinfor().getJqapplicationno()}</APPLICANTNO>
+                <AMOUNT></AMOUNT>
+                <APPLICANTNAME></APPLICANTNAME>
+                <STARTDATE>${dataObj.getBaseinfor().getJqpolicystartdate()}</STARTDATE>
+                <DEPARTMENTCODE>$!{dataObj.getBaseinfor().getDeptno()}</DEPARTMENTCODE>
+            </APP_INFO>
+          #end
+            <BACKURL>$!{returnURL}</BACKURL>
+        </BASE>
+    </BODY>
+</PACKET>
+

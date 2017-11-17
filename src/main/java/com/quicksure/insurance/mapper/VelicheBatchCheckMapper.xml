@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quicksure.insurance.dao.VelicheBatchCheckMapper">
+  <resultMap id="queryBatchPolicy" type="com.quicksure.insurance.entity.InsuranceDetailsVO">
+  	<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+  	<collection property="baseinfor" ofType="com.quicksure.insurance.entity.Baseinfor" resultMap="baseinforResult"></collection>
+  	<collection property="vhlinfor" ofType="com.quicksure.insurance.entity.Vhlinfor" resultMap="vhlinforResult"></collection>
+  </resultMap>
+  
+  <resultMap id="queryBatchPolicy1" type="com.quicksure.insurance.entity.InsuranceDetailsVO">
+  	<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+  	<collection property="baseinfor" ofType="com.quicksure.insurance.entity.Baseinfor" resultMap="baseinforResult"></collection>
+  	<collection property="vhlinfor" ofType="com.quicksure.insurance.entity.Vhlinfor" resultMap="vhlinforResult"></collection>
+  	<collection property="coverageinfors" ofType="com.quicksure.insurance.entity.Coverageinfor" resultMap="coverageinforResult"></collection>
+  </resultMap>
+  
+  <resultMap id="queryInterfacesLogList" type="com.quicksure.insurance.entity.InsuranceDetailsVO">
+	<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+	<collection property="interfaceslogList" ofType="com.quicksure.insurance.entity.Interfaceslogs" resultMap="interfaceslogsResult"></collection>
+  </resultMap>
+  
+  <resultMap id="baseinforResult" type="com.quicksure.insurance.entity.Baseinfor">
+	<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="OwnersName" jdbcType="VARCHAR" property="ownersname" />
+    <result column="base_applicationName" jdbcType="VARCHAR" property="base_applicationname" />
+    <result column="insrntName" jdbcType="VARCHAR" property="insrntname" />
+    <result column="businessSource" jdbcType="INTEGER" property="businesssource" />
+    <result column="jqpolicyStartDate" jdbcType="TIMESTAMP" property="jqpolicystartdate" />
+    <result column="jqpolicyEndDate" jdbcType="TIMESTAMP" property="jqpolicyenddate" />
+    <result column="sypolicyStartDate" jdbcType="TIMESTAMP" property="sypolicystartdate" />
+    <result column="syapplicationNo" jdbcType="VARCHAR" property="syapplicationno" />
+    <result column="sypolicyNo" jdbcType="VARCHAR" property="sypolicyno" />
+    <result column="jqpolicyNo" jdbcType="VARCHAR" property="jqpolicyno" />
+    <result column="jqapplicationNo" jdbcType="VARCHAR" property="jqapplicationno" />
+    <result column="sypolicyEndDate" jdbcType="TIMESTAMP" property="sypolicyenddate" />
+    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+    <result column="taxPremium" jdbcType="REAL" property="taxpremium" />
+    <result column="jqPremium" jdbcType="REAL" property="jqpremium" />
+    <result column="syPremium" jdbcType="REAL" property="sypremium" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="userInforId" jdbcType="INTEGER" property="userinforid" />
+    <result column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+    <result column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+    <result column="vhlinforId" jdbcType="INTEGER" property="vhlinforid" />
+    <result column="deliveryInforId" jdbcType="INTEGER" property="deliveryinforid" />
+    <result column="orderstate" jdbcType="INTEGER" property="orderstate" />
+    <result column="deptNo" jdbcType="INTEGER" property="deptno" />
+    <result column="quoteNo" jdbcType="VARCHAR" property="quoteno" />
+    <result column="underWritingCode" jdbcType="INTEGER" property="underwritingcode" />
+    <result column="jqPolicyStatus" jdbcType="VARCHAR" property="jqpolicystatus" />
+    <result column="syPolicyStatus" jdbcType="VARCHAR" property="sypolicystatus" />
+    <result column="paymentinforId" jdbcType="INTEGER" property="paymentinforid" />
+    <result column="totalPremium" jdbcType="VARCHAR" property="totalPremium" />
+    <result column="deptAddress" jdbcType="VARCHAR" property="deptAddress" />
+    <result column="agentCode" jdbcType="VARCHAR" property="agentCode" />
+    <result column="paymentMethod" jdbcType="INTEGER" property="paymentMethod" />
+  </resultMap>
+  
+  <resultMap id="vhlinforResult" type="com.quicksure.insurance.entity.Vhlinfor">
+	<id column="vhiinforId" jdbcType="INTEGER" property="vhiinforid" />
+    <result column="lcnNo" jdbcType="VARCHAR" property="lcnno" />
+    <result column="engNo" jdbcType="VARCHAR" property="engno" />
+    <result column="vinNo" jdbcType="VARCHAR" property="vinno" />
+    <result column="brandCode" jdbcType="VARCHAR" property="brandcode" />
+    <result column="vhlVal" jdbcType="REAL" property="vhlval" />
+    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+    <result column="carSort" jdbcType="INTEGER" property="carsort" />
+    <result column="carStyle" jdbcType="VARCHAR" property="carstyle" />
+    <result column="carMaker" jdbcType="VARCHAR" property="carmaker" />
+    <result column="tonnage" jdbcType="REAL" property="tonnage" />
+    <result column="setNo" jdbcType="INTEGER" property="setno" />
+    <result column="displacement" jdbcType="REAL" property="displacement" />
+    <result column="quality" jdbcType="REAL" property="quality" />
+    <result column="marketYear" jdbcType="DATE" property="marketyear" />
+    <result column="carReMark" jdbcType="VARCHAR" property="carremark" />
+    <result column="riskName" jdbcType="VARCHAR" property="riskname" />
+    <result column="fuelFlag" jdbcType="INTEGER" property="fuelflag" />
+    <result column="newEnergyFlag" jdbcType="INTEGER" property="newenergyflag" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="registerDate" jdbcType="DATE" property="registerdate" />
+    <result column="chgownerFlag" jdbcType="INTEGER" property="chgownerflag" />
+    <result column="transferDate" jdbcType="DATE" property="transferdate" />
+    <result column="glassType" jdbcType="VARCHAR" property="glasstype" />
+    <result column="certiFicateType" jdbcType="VARCHAR" property="certificatetype" />
+    <result column="certiFicateNo" jdbcType="VARCHAR" property="certificateno" />
+    <result column="certiFicateDate" jdbcType="DATE" property="certificatedate" />
+    <result column="drvOwner" jdbcType="VARCHAR" property="drvowner" />
+    <result column="certIType" jdbcType="VARCHAR" property="certitype" />
+    <result column="certICode" jdbcType="VARCHAR" property="certicode" />
+    <result column="phoneNo" jdbcType="INTEGER" property="phoneno" />
+    <result column="createDataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="brandName" jdbcType="VARCHAR" property="brandName" />
+    <result column="codeName" jdbcType="VARCHAR" property="codeName" />
+  </resultMap>
+  
+  <resultMap id="coverageinforResult" type="com.quicksure.insurance.entity.Coverageinfor">
+    <id column="coverageId" jdbcType="INTEGER" property="coverageid" />
+    <result column="baseinforOrderNo" jdbcType="VARCHAR" property="baseinfororderno" />
+    <result column="insrncCode" jdbcType="INTEGER" property="insrnccode" />
+    <result column="sumInsured" jdbcType="REAL" property="suminsured" />
+    <result column="premium" jdbcType="VARCHAR" property="premium" />
+    <result column="deductibleFlag" jdbcType="VARCHAR" property="deductibleflag" />
+    <result column="seqNo" jdbcType="INTEGER" property="seqno" />
+    <result column="numberDay" jdbcType="INTEGER" property="numberday" />
+    <result column="numberPerson" jdbcType="INTEGER" property="numberperson" />
+    <result column="rate" jdbcType="REAL" property="rate" />
+    <result column="basePremium" jdbcType="REAL" property="basepremium" />
+    <result column="beforePremium" jdbcType="REAL" property="beforepremium" />
+    <result column="cyl15" jdbcType="VARCHAR" property="cyl15" />
+    <result column="cyl12" jdbcType="VARCHAR" property="cyl12" />
+    <result column="cyl11" jdbcType="VARCHAR" property="cyl11" />
+    <result column="nyl12" jdbcType="VARCHAR" property="nyl12" />
+    <result column="riskPremium" jdbcType="REAL" property="riskpremium" />
+    <result column="varRescFunds" jdbcType="REAL" property="varrescfunds" />
+    <result column="ptGrescFunds" jdbcType="REAL" property="ptgrescfunds" />
+    <result column="RescFunds" jdbcType="REAL" property="rescfunds" />
+    <result column="createDataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+    <result column="updateDataTime" jdbcType="TIMESTAMP" property="updatedatatime" />
+  </resultMap>
+  
+  <resultMap id="interfaceslogsResult" type="com.quicksure.insurance.entity.Interfaceslogs">
+	<id column="interfaceslogsId" jdbcType="INTEGER" property="interfaceslogsid" />
+	<result column="responseMessage" jdbcType="VARCHAR" property="responsemessage" />
+	<result column="resposneTime" jdbcType="TIMESTAMP" property="resposnetime" />
+  </resultMap>
+  
+ <select id="velicheBatchQuery" parameterType="java.util.Map" resultMap="queryBatchPolicy">
+  	select 
+  		   baseinfor.orderNo,baseinfor.OwnersName,baseinfor.syapplicationNo,baseinfor.sypolicyNo,
+  		   baseinfor.syPremium,baseinfor.totalPremium,baseinfor.sypolicyStartDate,baseinfor.sypolicyEndDate,
+  		   baseinfor.orderstate,baseinfor.jqapplicationNo,baseinfor.jqpolicyNo,baseinfor.jqpolicyStartDate,
+  		   baseinfor.jqpolicyEndDate,baseinfor.insrntName,vhinfor.lcnNo,vhinfor.engNo,vhinfor.drvOwner,
+  		   baseinfor.deptAddress,baseinfor.paymentMethod,baseinfor.createTime
+	from 
+		ludimb_baseinfor baseinfor 		
+	LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId = vhinfor.vhiinforId
+	
+ 	where  1=1
+ 		 <if test="deptcode!=null and deptcode!='' and deptcode!=1"> 
+ 		   and baseinfor.deptNo=#{deptcode}
+ 		 </if>
+ 		 <if test="orderNo!=null and orderNo!=''"> 
+ 		   and baseinfor.orderNo=#{orderNo}
+ 		 </if>
+ 		  <if test="drvowner!=null and drvowner!=''"> 
+ 		   and vhinfor.drvOwner=#{drvowner}
+ 		 </if>
+ 		 <if test="lcnNo!=null and lcnNo!=''"> 
+ 		   and vhinfor.lcnNo=#{lcnNo}
+ 		 </if> 		
+ 		 <choose>
+ 		 	<when test="orderstate==1">
+ 		 		and baseinfor.orderstate in (30,40)
+ 		 	</when>
+ 		 	<when test="orderstate==2">
+ 		 		and baseinfor.orderstate in (50,60,70)
+ 		 	</when>
+ 		 	<when test="orderstate==3">
+ 		 		and baseinfor.orderstate in (10,20)
+ 		 	</when>
+ 		 	<when test="orderstate==4">
+ 		 		and baseinfor.orderstate = 80
+ 		 	</when>
+ 		 	<otherwise>
+ 		 	</otherwise>
+ 		 </choose>
+ 		 <if test="createStartTime!=null and createStartTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.updateTime >= #{createStartTime} ]]>
+ 		 </if>
+ 		 <if test="createEndTime!=null and createEndTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.updateTime <= #{createEndTime} ]]>
+ 		 </if>
+ 	order by orderNo
+ 	limit #{currentNum},#{pageSize}
+  </select>
+  
+  <select id="interfaceslogsQuery" parameterType="java.util.List" resultMap="queryInterfacesLogList">
+   	select interfacelog.responseMessage,interfacelog.resposneTime,baseinfor.orderNo
+   	from ludimb_baseinfor baseinfor
+   	LEFT JOIN ludimb_interfaceslogs interfacelog on baseinfor.orderNo = interfacelog.baseinforOrderNo
+   	where baseinforOrderNo in
+   	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+  </select>
+  
+  <select id="searchPolicyCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	select 
+  		count(*) 
+	from 
+		ludimb_baseinfor baseinfor 		
+		LEFT JOIN ludimb_vhlinfor vhinfor 
+		on baseinfor.vhlinforId = vhinfor.vhiinforId
+	where 1=1
+		 <if test="deptcode!=null and deptcode!='' and deptcode!=1"> 
+ 		   and baseinfor.deptNo=#{deptcode}
+ 		 </if>
+ 		 <if test="orderNo!=null and orderNo!=''"> 
+ 		   and baseinfor.orderNo=#{orderNo}
+ 		 </if>
+ 		 <if test="drvowner!=null and drvowner!=''"> 
+ 		   and vhinfor.drvOwner=#{drvowner}
+ 		 </if>
+ 		 <if test="lcnNo!=null and lcnNo!=''"> 
+ 		   and vhinfor.lcnNo=#{lcnNo}
+ 		 </if>
+ 		 <choose>
+ 		 	<when test="orderstate==1">
+ 		 		and baseinfor.orderstate in (30,40)
+ 		 	</when>
+ 		 	<when test="orderstate==2">
+ 		 		and baseinfor.orderstate in (50,60,70)
+ 		 	</when>
+ 		 	<when test="orderstate==3">
+ 		 		and baseinfor.orderstate in (10,20)
+ 		 	</when>
+ 		 	<when test="orderstate==4">
+ 		 		and baseinfor.orderstate = 80
+ 		 	</when>
+ 		 	<otherwise>
+ 		 	</otherwise>
+ 		 </choose> 		
+ 		 <if test="createStartTime!=null and createStartTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.updateTime >= #{createStartTime} ]]>
+ 		 </if>
+ 		 <if test="createEndTime!=null and createEndTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.updateTime <= #{createEndTime} ]]>
+ 		 </if>
+  </select>
+  
+  <!-- CSR导出excel时查询对应的数据 -->
+  <select id="CSRExportExcel" parameterType="java.util.Map" resultMap="queryBatchPolicy1">
+  	select 
+  		baseinfor.orderNo,baseinfor.syapplicationNo,baseinfor.jqapplicationNo,baseinfor.sypolicyNo,baseinfor.jqpolicyNo,
+ 		baseinfor.deptAddress,vhinfor.drvOwner,vhinfor.lcnNo,baseinfor.sypolicyStartDate,baseinfor.jqpolicyStartDate,
+ 		baseinfor.orderstate,baseinfor.syPremium,baseinfor.jqPremium,baseinfor.taxPremium,baseinfor.totalPremium,
+ 		baseinfor.updateTime,baseinfor.paymentMethod,baseinfor.jqpolicyNo,baseinfor.sypolicyNo,baseinfor.createTime,baseinfor.agentCode,
+ 		coverage.*
+  	from 
+		ludimb_baseinfor baseinfor 		
+		LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId = vhinfor.vhiinforId
+		LEFT JOIN ludimb_coverageinfor coverage on baseinfor.orderNo = coverage.baseinforOrderNo
+	where 1=1
+		 <if test="deptcode!=null and deptcode!='' and deptcode!=1"> 
+ 		   and baseinfor.deptNo=#{deptcode}
+ 		 </if>
+ 		 <if test="orderNo!=null and orderNo!=''"> 
+ 		   and baseinfor.orderNo=#{orderNo}
+ 		 </if>
+ 		 <if test="drvowner!=null and drvowner!=''"> 
+ 		   and vhinfor.drvOwner=#{drvowner}
+ 		 </if>
+ 		 <if test="lcnNo!=null and lcnNo!=''"> 
+ 		   and vhinfor.lcnNo=#{lcnNo}
+ 		 </if>	
+ 		 <choose>
+ 		 	<when test="orderstate==1">
+ 		 		and baseinfor.orderstate in (30,40)
+ 		 	</when>
+ 		 	<when test="orderstate==2">
+ 		 		and baseinfor.orderstate in (50,60,70)
+ 		 	</when>
+ 		 	<when test="orderstate==3">
+ 		 		and baseinfor.orderstate in (10,20)
+ 		 	</when>
+ 		 	<when test="orderstate==4">
+ 		 		and baseinfor.orderstate = 80
+ 		 	</when>
+ 		 	<otherwise>
+ 		 	</otherwise>
+ 		 </choose>
+ 		 <if test="createStartTime!=null and createStartTime!=''"> 
+ 		  	<![CDATA[ and baseinfor.updateTime >= #{createStartTime} ]]>
+ 		 </if>
+ 		 <if test="createEndTime!=null and createEndTime!=''"> 
+ 		 	<![CDATA[ and baseinfor.updateTime <= #{createEndTime} ]]>
+ 		 </if>
+  </select>
+  
+</mapper>

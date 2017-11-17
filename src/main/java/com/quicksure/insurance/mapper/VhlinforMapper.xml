@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.VhlinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Vhlinfor">
+    <id column="vhiinforId" jdbcType="INTEGER" property="vhiinforid" />
+    <result column="lcnNo" jdbcType="VARCHAR" property="lcnno" />
+    <result column="engNo" jdbcType="VARCHAR" property="engno" />
+    <result column="vinNo" jdbcType="VARCHAR" property="vinno" />
+    <result column="brandCode" jdbcType="VARCHAR" property="brandcode" />
+    <result column="vhlVal" jdbcType="REAL" property="vhlval" />
+    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+    <result column="carSort" jdbcType="INTEGER" property="carsort" />
+    <result column="carStyle" jdbcType="VARCHAR" property="carstyle" />
+    <result column="carMaker" jdbcType="VARCHAR" property="carmaker" />
+    <result column="tonnage" jdbcType="REAL" property="tonnage" />
+    <result column="setNo" jdbcType="INTEGER" property="setno" />
+    <result column="displacement" jdbcType="REAL" property="displacement" />
+    <result column="quality" jdbcType="REAL" property="quality" />
+    <result column="marketYear" jdbcType="DATE" property="marketyear" />
+    <result column="carReMark" jdbcType="VARCHAR" property="carremark" />
+    <result column="riskName" jdbcType="VARCHAR" property="riskname" />
+    <result column="fuelFlag" jdbcType="INTEGER" property="fuelflag" />
+    <result column="newEnergyFlag" jdbcType="INTEGER" property="newenergyflag" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="registerDate" jdbcType="DATE" property="registerdate" />
+    <result column="chgownerFlag" jdbcType="INTEGER" property="chgownerflag" />
+    <result column="transferDate" jdbcType="DATE" property="transferdate" />
+    <result column="glassType" jdbcType="VARCHAR" property="glasstype" />
+    <result column="certiFicateType" jdbcType="VARCHAR" property="certificatetype" />
+    <result column="certiFicateNo" jdbcType="VARCHAR" property="certificateno" />
+    <result column="certiFicateDate" jdbcType="DATE" property="certificatedate" />
+    <result column="drvOwner" jdbcType="VARCHAR" property="drvowner" />
+    <result column="certIType" jdbcType="VARCHAR" property="certitype" />
+    <result column="certICode" jdbcType="VARCHAR" property="certicode" />
+    <result column="owner_phoneNo" jdbcType="VARCHAR" property="phoneno" />
+    <result column="createDataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="brandName" jdbcType="VARCHAR" property="brandName" />
+	<result column="codeName" jdbcType="VARCHAR" property="codeName" />
+	<result column="familyKind" jdbcType="VARCHAR" property="familyKind" />
+    <result column="absFlag" jdbcType="VARCHAR" property="absflag" />
+	<result column="alarmFlag" jdbcType="INTEGER" property="alarmflag" />
+	<result column="airBagFalg" jdbcType="INTEGER" property="airbagfalg" />
+	<result column="gearBoxType" jdbcType="VARCHAR" property="gearboxtype" />
+	<result column="fullWeight" jdbcType="VARCHAR" property="fullweight" />
+	<result column="setNumber" jdbcType="VARCHAR" property="setNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    vhiinforId, lcnNo, engNo, vinNo, brandCode, vhlVal, vehicleName, carSort, carStyle, 
+    carMaker, tonnage, setNo, displacement, quality, marketYear, carReMark, riskName, 
+    fuelFlag, newEnergyFlag, model, registerDate, chgownerFlag, transferDate, glassType, 
+    certiFicateType, certiFicateNo, certiFicateDate, drvOwner, certIType, certICode, 
+    owner_phoneNo, createDataTime, updateTime
+  </sql>
+  <sql id="Base_Column_List1">
+    vhiinforId, lcnNo, engNo, vinNo, brandCode, vhlVal, carSort, carStyle, 
+    carMaker, tonnage, setNo, displacement, quality, marketYear, carReMark, riskName, 
+    fuelFlag, newEnergyFlag, model, registerDate, chgownerFlag, transferDate, glassType, 
+    certiFicateType, certiFicateNo, certiFicateDate, drvOwner, certIType, certICode, 
+    owner_phoneNo, createDataTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_vhlinfor
+    where vhiinforId = #{vhiinforid,jdbcType=INTEGER}
+  </select>
+  <select id="csrgetVhlinforByorderno" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List1" />
+  	from ludimb_vhlinfor vh LEFT JOIN ludimb_baseinfor base  on vh.vhiinforid=base.vhlinforid 
+  	WHERE base.orderno=#{orderno,jdbcType=VARCHAR}
+  	
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_vhlinfor
+    where vhiinforId = #{vhiinforid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="vhiinforid" parameterType="com.quicksure.insurance.entity.Vhlinfor">
+    insert into ludimb_vhlinfor (vhiinforId, lcnNo, engNo, 
+      vinNo, brandCode, vhlVal, 
+      vehicleName, carSort, carStyle, 
+      carMaker, tonnage, setNo, 
+      displacement, quality, marketYear, 
+      carReMark, riskName, fuelFlag, 
+      newEnergyFlag, model, registerDate, 
+      chgownerFlag, transferDate, glassType, 
+      certiFicateType, certiFicateNo, certiFicateDate, 
+      drvOwner, certIType, certICode, 
+      owner_phoneNo, createDataTime, updateTime
+      )
+    values (#{vhiinforid,jdbcType=INTEGER}, #{lcnno,jdbcType=VARCHAR}, #{engno,jdbcType=VARCHAR}, 
+      #{vinno,jdbcType=VARCHAR}, #{brandcode,jdbcType=VARCHAR}, #{vhlval,jdbcType=REAL}, 
+      #{vehiclename,jdbcType=VARCHAR}, #{carsort,jdbcType=INTEGER}, #{carstyle,jdbcType=VARCHAR}, 
+      #{carmaker,jdbcType=VARCHAR}, #{tonnage,jdbcType=REAL}, #{setno,jdbcType=INTEGER}, 
+      #{displacement,jdbcType=REAL}, #{quality,jdbcType=REAL}, #{marketyear,jdbcType=DATE}, 
+      #{carremark,jdbcType=VARCHAR}, #{riskname,jdbcType=VARCHAR}, #{fuelflag,jdbcType=INTEGER}, 
+      #{newenergyflag,jdbcType=INTEGER}, #{model,jdbcType=VARCHAR}, #{registerdate,jdbcType=DATE}, 
+      #{chgownerflag,jdbcType=INTEGER}, #{transferdate,jdbcType=DATE}, #{glasstype,jdbcType=VARCHAR}, 
+      #{certificatetype,jdbcType=VARCHAR}, #{certificateno,jdbcType=VARCHAR}, #{certificatedate,jdbcType=DATE}, 
+      #{drvowner,jdbcType=VARCHAR}, #{certitype,jdbcType=VARCHAR}, #{certicode,jdbcType=VARCHAR}, 
+      #{phoneno,jdbcType=INTEGER}, #{createdatatime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="vhiinforid" parameterType="com.quicksure.insurance.entity.Vhlinfor">
+    insert into ludimb_vhlinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vhiinforid != null">
+        vhiinforId,
+      </if>
+      <if test="lcnno != null">
+        lcnNo,
+      </if>
+      <if test="engno != null">
+        engNo,
+      </if>
+      <if test="vinno != null">
+        vinNo,
+      </if>
+      <if test="brandcode != null">
+        brandCode,
+      </if>
+      <if test="vhlval != null">
+        vhlVal,
+      </if>
+      <if test="vehiclename != null">
+        vehicleName,
+      </if>
+      <if test="carsort != null">
+        carSort,
+      </if>
+      <if test="carstyle != null">
+        carStyle,
+      </if>
+      <if test="carmaker != null">
+        carMaker,
+      </if>
+      <if test="tonnage != null">
+        tonnage,
+      </if>
+      <if test="setno != null">
+        setNo,
+      </if>
+      <if test="displacement != null">
+        displacement,
+      </if>
+      <if test="quality != null">
+        quality,
+      </if>
+      <if test="marketyear != null">
+        marketYear,
+      </if>
+      <if test="carremark != null">
+        carReMark,
+      </if>
+      <if test="riskname != null">
+        riskName,
+      </if>
+      <if test="fuelflag != null">
+        fuelFlag,
+      </if>
+      <if test="newenergyflag != null">
+        newEnergyFlag,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+      <if test="registerdate != null">
+        registerDate,
+      </if>
+      <if test="chgownerflag != null">
+        chgownerFlag,
+      </if>
+      <if test="transferdate != null">
+        transferDate,
+      </if>
+      <if test="glasstype != null">
+        glassType,
+      </if>
+      <if test="certificatetype != null">
+        certiFicateType,
+      </if>
+      <if test="certificateno != null">
+        certiFicateNo,
+      </if>
+      <if test="certificatedate != null">
+        certiFicateDate,
+      </if>
+      <if test="drvowner != null">
+        drvOwner,
+      </if>
+      <if test="certitype != null">
+        certIType,
+      </if>
+      <if test="certicode != null">
+        certICode,
+      </if>
+      <if test="phoneno != null">
+        owner_phoneNo,
+      </if>
+      <if test="createdatatime != null">
+        createDataTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="brandName != null">
+        brandName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vhiinforid != null">
+        #{vhiinforid,jdbcType=INTEGER},
+      </if>
+      <if test="lcnno != null">
+        #{lcnno,jdbcType=VARCHAR},
+      </if>
+      <if test="engno != null">
+        #{engno,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="brandcode != null">
+        #{brandcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vhlval != null">
+        #{vhlval,jdbcType=REAL},
+      </if>
+      <if test="vehiclename != null">
+        #{vehiclename,jdbcType=VARCHAR},
+      </if>
+      <if test="carsort != null">
+        #{carsort,jdbcType=INTEGER},
+      </if>
+      <if test="carstyle != null">
+        #{carstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="carmaker != null">
+        #{carmaker,jdbcType=VARCHAR},
+      </if>
+      <if test="tonnage != null">
+        #{tonnage,jdbcType=REAL},
+      </if>
+      <if test="setno != null">
+        #{setno,jdbcType=INTEGER},
+      </if>
+      <if test="displacement != null">
+        #{displacement,jdbcType=REAL},
+      </if>
+      <if test="quality != null">
+        #{quality,jdbcType=REAL},
+      </if>
+      <if test="marketyear != null">
+        #{marketyear,jdbcType=DATE},
+      </if>
+      <if test="carremark != null">
+        #{carremark,jdbcType=VARCHAR},
+      </if>
+      <if test="riskname != null">
+        #{riskname,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelflag != null">
+        #{fuelflag,jdbcType=INTEGER},
+      </if>
+      <if test="newenergyflag != null">
+        #{newenergyflag,jdbcType=INTEGER},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="chgownerflag != null">
+        #{chgownerflag,jdbcType=INTEGER},
+      </if>
+      <if test="transferdate != null">
+        #{transferdate,jdbcType=DATE},
+      </if>
+      <if test="glasstype != null">
+        #{glasstype,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatetype != null">
+        #{certificatetype,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateno != null">
+        #{certificateno,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatedate != null">
+        #{certificatedate,jdbcType=DATE},
+      </if>
+      <if test="drvowner != null">
+        #{drvowner,jdbcType=VARCHAR},
+      </if>
+      <if test="certitype != null">
+        #{certitype,jdbcType=VARCHAR},
+      </if>
+      <if test="certicode != null">
+        #{certicode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="createdatatime != null">
+        #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Vhlinfor">
+    update ludimb_vhlinfor
+    <set>
+      <if test="lcnno != null">
+        lcnNo = #{lcnno,jdbcType=VARCHAR},
+      </if>
+      <if test="engno != null">
+        engNo = #{engno,jdbcType=VARCHAR},
+      </if>
+      <if test="vinno != null">
+        vinNo = #{vinno,jdbcType=VARCHAR},
+      </if>
+      <if test="brandcode != null">
+        brandCode = #{brandcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vhlval != null">
+        vhlVal = #{vhlval,jdbcType=REAL},
+      </if>
+      <if test="vehiclename != null">
+        vehicleName = #{vehiclename,jdbcType=VARCHAR},
+      </if>
+      <if test="carsort != null">
+        carSort = #{carsort,jdbcType=INTEGER},
+      </if>
+      <if test="carstyle != null">
+        carStyle = #{carstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="carmaker != null">
+        carMaker = #{carmaker,jdbcType=VARCHAR},
+      </if>
+      <if test="tonnage != null">
+        tonnage = #{tonnage,jdbcType=REAL},
+      </if>
+      <if test="setno != null">
+        setNo = #{setno,jdbcType=INTEGER},
+      </if>
+      <if test="displacement != null">
+        displacement = #{displacement,jdbcType=REAL},
+      </if>
+      <if test="quality != null">
+        quality = #{quality,jdbcType=REAL},
+      </if>
+      <if test="marketyear != null">
+        marketYear = #{marketyear,jdbcType=DATE},
+      </if>
+      <if test="carremark != null">
+        carReMark = #{carremark,jdbcType=VARCHAR},
+      </if>
+      <if test="riskname != null">
+        riskName = #{riskname,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelflag != null">
+        fuelFlag = #{fuelflag,jdbcType=INTEGER},
+      </if>
+      <if test="newenergyflag != null">
+        newEnergyFlag = #{newenergyflag,jdbcType=INTEGER},
+      </if>
+      <if test="model != null">
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        registerDate = #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="chgownerflag != null">
+        chgownerFlag = #{chgownerflag,jdbcType=INTEGER},
+      </if>
+      <if test="transferdate != null">
+        transferDate = #{transferdate,jdbcType=DATE},
+      </if>
+      <if test="glasstype != null">
+        glassType = #{glasstype,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatetype != null">
+        certiFicateType = #{certificatetype,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateno != null">
+        certiFicateNo = #{certificateno,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatedate != null">
+        certiFicateDate = #{certificatedate,jdbcType=DATE},
+      </if>
+      <if test="drvowner != null">
+        drvOwner = #{drvowner,jdbcType=VARCHAR},
+      </if>
+      <if test="certitype != null">
+        certIType = #{certitype,jdbcType=VARCHAR},
+      </if>
+      <if test="certicode != null">
+        certICode = #{certicode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        owner_phoneNo = #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="createdatatime != null">
+        createDataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="brandName != null">
+        brandName=#{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="codeName != null">
+        codeName=#{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="setNumber != null">
+        setNumber=#{setNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vhiinforId = #{vhiinforid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Vhlinfor">
+    update ludimb_vhlinfor
+    set lcnNo = #{lcnno,jdbcType=VARCHAR},
+      engNo = #{engno,jdbcType=VARCHAR},
+      vinNo = #{vinno,jdbcType=VARCHAR},
+      brandCode = #{brandcode,jdbcType=VARCHAR},
+      vhlVal = #{vhlval,jdbcType=REAL},
+      vehicleName = #{vehiclename,jdbcType=VARCHAR},
+      carSort = #{carsort,jdbcType=INTEGER},
+      carStyle = #{carstyle,jdbcType=VARCHAR},
+      carMaker = #{carmaker,jdbcType=VARCHAR},
+      tonnage = #{tonnage,jdbcType=REAL},
+      setNo = #{setno,jdbcType=INTEGER},
+      displacement = #{displacement,jdbcType=REAL},
+      quality = #{quality,jdbcType=REAL},
+      marketYear = #{marketyear,jdbcType=DATE},
+      carReMark = #{carremark,jdbcType=VARCHAR},
+      riskName = #{riskname,jdbcType=VARCHAR},
+      fuelFlag = #{fuelflag,jdbcType=INTEGER},
+      newEnergyFlag = #{newenergyflag,jdbcType=INTEGER},
+      model = #{model,jdbcType=VARCHAR},
+      registerDate = #{registerdate,jdbcType=DATE},
+      chgownerFlag = #{chgownerflag,jdbcType=INTEGER},
+      transferDate = #{transferdate,jdbcType=DATE},
+      glassType = #{glasstype,jdbcType=VARCHAR},
+      certiFicateType = #{certificatetype,jdbcType=VARCHAR},
+      certiFicateNo = #{certificateno,jdbcType=VARCHAR},
+      certiFicateDate = #{certificatedate,jdbcType=DATE},
+      drvOwner = #{drvowner,jdbcType=VARCHAR},
+      certIType = #{certitype,jdbcType=VARCHAR},
+      certICode = #{certicode,jdbcType=VARCHAR},
+      owner_phoneNo = #{phoneno,jdbcType=INTEGER},
+      <if test="createdatatime != null">
+        createDataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      brandName = #{brandName,jdbcType=VARCHAR},
+      gearBoxType=#{gearboxtype,jdbcType=VARCHAR},
+      airBagFalg=#{airbagfalg,jdbcType=INTEGER},
+      alarmFlag=#{alarmflag,jdbcType=INTEGER},
+      fullWeight=#{fullweight,jdbcType=VARCHAR},
+      absFlag=#{absflag,jdbcType=VARCHAR},
+      familyKind=#{familyKind,jdbcType=VARCHAR},
+      codeName=#{codeName,jdbcType=VARCHAR}
+    where vhiinforId = #{vhiinforid,jdbcType=INTEGER}
+  </update>
+</mapper>

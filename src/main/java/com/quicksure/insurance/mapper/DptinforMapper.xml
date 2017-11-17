@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.DptinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Dptinfor">
+    <id column="deptinforId" jdbcType="INTEGER" property="deptinforid" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="ParentId" jdbcType="INTEGER" property="parentid" />
+    <result column="ShortName" jdbcType="VARCHAR" property="shortname" />
+    <result column="LevelType" jdbcType="INTEGER" property="leveltype" />
+    <result column="CityCode" jdbcType="VARCHAR" property="citycode" />
+    <result column="ZipCode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="MergerName" jdbcType="VARCHAR" property="mergername" />
+    <result column="Lng" jdbcType="REAL" property="lng" />
+    <result column="Lat" jdbcType="REAL" property="lat" />
+    <result column="Pinyin" jdbcType="VARCHAR" property="pinyin" />
+    <result column="License plate" jdbcType="VARCHAR" property="licensePlate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    deptinforId, Name, ParentId, ShortName, LevelType, CityCode, ZipCode, MergerName, 
+    Lng, Lat, Pinyin, Licenseplate
+  </sql>
+   <select id="selectALL"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_dptinfor
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_dptinfor
+    where deptinforId = #{deptinforid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_dptinfor
+    where deptinforId = #{deptinforid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.Dptinfor">
+    insert into ludimb_dptinfor (deptinforId, Name, ParentId, 
+      ShortName, LevelType, CityCode, 
+      ZipCode, MergerName, Lng, 
+      Lat, Pinyin, "License plate"
+      )
+    values (#{deptinforid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{shortname,jdbcType=VARCHAR}, #{leveltype,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=VARCHAR}, #{mergername,jdbcType=VARCHAR}, #{lng,jdbcType=REAL}, 
+      #{lat,jdbcType=REAL}, #{pinyin,jdbcType=VARCHAR}, #{licensePlate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.Dptinfor">
+    insert into ludimb_dptinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptinforid != null">
+        deptinforId,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="parentid != null">
+        ParentId,
+      </if>
+      <if test="shortname != null">
+        ShortName,
+      </if>
+      <if test="leveltype != null">
+        LevelType,
+      </if>
+      <if test="citycode != null">
+        CityCode,
+      </if>
+      <if test="zipcode != null">
+        ZipCode,
+      </if>
+      <if test="mergername != null">
+        MergerName,
+      </if>
+      <if test="lng != null">
+        Lng,
+      </if>
+      <if test="lat != null">
+        Lat,
+      </if>
+      <if test="pinyin != null">
+        Pinyin,
+      </if>
+      <if test="licensePlate != null">
+        "License plate",
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptinforid != null">
+        #{deptinforid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null">
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null">
+        #{leveltype,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null">
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergername != null">
+        #{mergername,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=REAL},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=REAL},
+      </if>
+      <if test="pinyin != null">
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePlate != null">
+        #{licensePlate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Dptinfor">
+    update ludimb_dptinfor
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null">
+        ShortName = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null">
+        LevelType = #{leveltype,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null">
+        CityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        ZipCode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergername != null">
+        MergerName = #{mergername,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        Lng = #{lng,jdbcType=REAL},
+      </if>
+      <if test="lat != null">
+        Lat = #{lat,jdbcType=REAL},
+      </if>
+      <if test="pinyin != null">
+        Pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePlate != null">
+        "License plate" = #{licensePlate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where deptinforId = #{deptinforid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Dptinfor">
+    update ludimb_dptinfor
+    set Name = #{name,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      ShortName = #{shortname,jdbcType=VARCHAR},
+      LevelType = #{leveltype,jdbcType=INTEGER},
+      CityCode = #{citycode,jdbcType=VARCHAR},
+      ZipCode = #{zipcode,jdbcType=VARCHAR},
+      MergerName = #{mergername,jdbcType=VARCHAR},
+      Lng = #{lng,jdbcType=REAL},
+      Lat = #{lat,jdbcType=REAL},
+      Pinyin = #{pinyin,jdbcType=VARCHAR},
+      "License plate" = #{licensePlate,jdbcType=VARCHAR}
+    where deptinforId = #{deptinforid,jdbcType=INTEGER}
+  </update>
+</mapper>

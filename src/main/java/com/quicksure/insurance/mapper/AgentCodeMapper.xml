@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.AgentCodeMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.AgentCode">
+    <id column="agentCodeId" jdbcType="INTEGER" property="agentcodeid" />
+    <result column="agentCode" jdbcType="VARCHAR" property="agentcode" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="codeStatus" jdbcType="INTEGER" property="codestatus" />
+    <result column="createTimes" jdbcType="TIMESTAMP" property="createtimes" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    agentCodeId, agentCode, userId, codeStatus, createTimes
+  </sql>
+  
+  <select id="selectByAgentCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" /> 
+  	from ludimb_agentCode
+  	where codeStatus=10 and agentCode = #{agentCode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_agentCode
+    where agentCodeId = #{agentcodeid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_agentCode
+    where agentCodeId = #{agentcodeid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.AgentCode">
+    insert into ludimb_agentCode (agentCodeId, agentCode, userId, 
+      codeStatus, createTimes)
+    values (#{agentcodeid,jdbcType=INTEGER}, #{agentcode,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{codestatus,jdbcType=INTEGER}, #{createtimes,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.AgentCode">
+    insert into ludimb_agentCode
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="agentcodeid != null">
+        agentCodeId,
+      </if>
+      <if test="agentcode != null">
+        agentCode,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="codestatus != null">
+        codeStatus,
+      </if>
+      <if test="createtimes != null">
+        createTimes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="agentcodeid != null">
+        #{agentcodeid,jdbcType=INTEGER},
+      </if>
+      <if test="agentcode != null">
+        #{agentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="codestatus != null">
+        #{codestatus,jdbcType=INTEGER},
+      </if>
+      <if test="createtimes != null">
+        #{createtimes,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.AgentCode">
+    update ludimb_agentCode
+    <set>
+      <if test="agentcode != null">
+        agentCode = #{agentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="codestatus != null">
+        codeStatus = #{codestatus,jdbcType=INTEGER},
+      </if>
+      <if test="createtimes != null">
+        createTimes = #{createtimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where agentCodeId = #{agentcodeid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByagentCodeSelective" parameterType="com.quicksure.insurance.entity.AgentCode">
+    update ludimb_agentCode
+    <set>
+      <!-- <if test="agentcode != null">
+        agentCode = #{agentcode,jdbcType=VARCHAR},
+      </if> -->
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="codestatus != null">
+        codeStatus = #{codestatus,jdbcType=INTEGER},
+      </if>
+      <if test="createtimes != null">
+        createTimes = #{createtimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where agentCode = #{agentcode,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.AgentCode">
+    update ludimb_agentCode
+    set agentCode = #{agentcode,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      codeStatus = #{codestatus,jdbcType=INTEGER},
+      createTimes = #{createtimes,jdbcType=TIMESTAMP}
+    where agentCodeId = #{agentcodeid,jdbcType=INTEGER}
+  </update>
+</mapper>

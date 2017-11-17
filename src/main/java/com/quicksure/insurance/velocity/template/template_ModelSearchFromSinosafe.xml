@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<PACKET type="REQUEST" version="1.0">
+	<!-- 我方属性 -->
+	<HEAD>
+		<!--同步异步请求标志-->
+		<TRANSTYPE>SNY</TRANSTYPE>
+		<!--请求系统编码-->
+        <SYSCODE></SYSCODE>
+		<!--请求类型-->
+        <TRANSCODE ></TRANSCODE>
+		<!--业务属性格式-->
+        <CONTENTTYPE></CONTENTTYPE>
+		<!--验证类型-->
+        <VERIFYTYPE></VERIFYTYPE>
+		<!--验证用户名-->
+        <USER>$!{SinosafeUserName}</USER>
+		<!--验证用户密码-->
+		<PASSWORD>$!{SinosafePassword}</PASSWORD>
+		<!--交易标识号-->
+		<SVCSEQNO></SVCSEQNO>
+	</HEAD>
+	<THIRD>
+ 		<!--渠道类型-->
+		<EXTENTERPCODE>$!{SinosafeExtenterCode}</EXTENTERPCODE>
+ 		<!--产品代码-->
+		<PRODNO>0000</PRODNO>
+		<!--方案代码-->
+		<PLANNO>0000</PLANNO>
+ 		<!--交易类型-->
+		<TRANSCODE>100001</TRANSCODE>
+ 		<!--交易日期-->
+		<TRANSDATE>$!{date}</TRANSDATE>
+		<!--交易时间-->
+		<TRANSTIME>$!{times}</TRANSTIME>
+	</THIRD>
+	<!-- 业务属性 -->
+	<BODY>
+		<VhlTypeQuery>
+          	<VEHICLE_NO></VEHICLE_NO>
+          	<RACK_NO>$!{dataObj.getVhlinfor().getVinno()}</RACK_NO>
+          	<VEHICLE_CODE></VEHICLE_CODE>
+          	<VEHICLE_NAME>$!{dataObj.getVhlinfor().getVehiclename()}</VEHICLE_NAME>
+          	<DEPT_NO>${dataObj.getBaseinfor().getDeptno()}</DEPT_NO>
+       	</VhlTypeQuery>
+	</BODY>
+</PACKET>

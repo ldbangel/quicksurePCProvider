@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataPacket>
+	<PacketType>xml</PacketType>
+	<Requestor>
+		<Reference>17704FCE7037C5EAE050A8C01A32527A</Reference>
+		<Timestamp>$!{dateTime}</Timestamp>
+		<AccountNumber>
+			<UserName>$!{JYUserName}</UserName>
+			<UserPswd>$!{JYPassword}</UserPswd>
+			<CryptType>00</CryptType>
+		</AccountNumber>
+	</Requestor>
+	<ProductRequests>
+		<VehicleRequest>
+			<ProductRequestType>F</ProductRequestType>
+			<RequestId>VEH_02</RequestId>
+			<PagingFlag>T</PagingFlag>
+			<PageNo>1</PageNo>
+			<PageSize>15</PageSize>
+			<ServiceType>C</ServiceType>
+			<FamilyId></FamilyId>
+			<BrandId></BrandId>
+			<VehicleName>$!{dataObj.getVhlinfor().getVehiclename()}</VehicleName>
+			<GearboxType></GearboxType>
+			<EngineDesc></EngineDesc>
+		</VehicleRequest>
+	</ProductRequests>
+</DataPacket>
+
+
+

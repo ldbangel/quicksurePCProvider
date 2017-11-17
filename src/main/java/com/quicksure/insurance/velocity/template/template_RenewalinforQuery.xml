@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PACKET>
+	<HEAD>
+		<!-- 请求系统编码 -->
+		<SYSCODE>1</SYSCODE>
+		<!-- 请求服务编码 -->
+		<TRANSCODE></TRANSCODE>
+		<!-- 验证类型 -->
+		<VERIFYTYPE>1</VERIFYTYPE>
+		<!-- 用户名 -->
+		<USER>ludi</USER>
+		<!-- 密码 -->
+		<PASSWORD>ludi</PASSWORD>
+		<!-- 交易标识号 -->
+		<SVCSEQNO></SVCSEQNO>
+	</HEAD>
+	<!-- 第三方属性 -->
+	<THIRD>
+		<!-- 渠道编码 -->
+		<!-- 产品编码 -->
+		<PRODNO>0000</PRODNO>
+		<!-- 方案编码 -->
+		<!-- 固定0000-->
+		<PLANNO>0000</PLANNO>
+		<!-- 请求类型 -->
+		<TRANSCODE>100019</TRANSCODE>		
+		<!-- 地区代码 非空-->
+		<EXTPROVCODE>123</EXTPROVCODE>
+		<!-- 第三方交易流水号 非空-->
+		<EXTSEQUENCENO>1234</EXTSEQUENCENO>
+		<!-- 内部交易流水号 -->
+		<INTSEQUENCENO></INTSEQUENCENO>
+		<!-- 内部机构代码 -->
+		<INNERCOMCODE></INNERCOMCODE>
+		<!-- 交易日期 非空-->
+		<!-- 格式 YYYY-MM-DD -->
+		<TRANSDATE>$!{date}</TRANSDATE>
+		<!-- 交易时间 非空-->
+		<!-- 格式 HH-MM-SS -->
+		<TRANSTIME>$!{times}</TRANSTIME>
+		<!-- 外部操作员代码 非空-->
+		<EXTENTERPCODE>CMBC0601037059</EXTENTERPCODE>
+	</THIRD>
+	<BODY>
+		<PLY_NO></PLY_NO>
+		<LCN_NO>$!{dataObj.getVhlinfor().getLcnno()}</LCN_NO>
+		<ENG_NO/>
+		<FRM_NO></FRM_NO>
+		<INSRNT_CTCT_NO/>
+	</BODY>
+</PACKET>

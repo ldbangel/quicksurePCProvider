@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataPacket>
+	<PacketType>xml</PacketType>
+	<Requestor>
+		<Reference>17704FCE7037C5EAE050A8C01A32527A</Reference>
+		<Timestamp>$!{dateTime}</Timestamp>
+		<AccountNumber>
+			<UserName>$!{JYUserName}</UserName>
+			<UserPswd>$!{JYPassword}</UserPswd>
+			<CryptType>00</CryptType>
+		</AccountNumber>
+	</Requestor>
+	<ProductRequests>
+		<VehicleRequest>
+			<ProductRequestType>D</ProductRequestType>
+			<RequestId>VEH_03</RequestId>
+			<ServiceType>A</ServiceType>
+			<Vin>$!{dataObj.getVhlinfor().getVinno()}</Vin>
+			<PlateNo></PlateNo>
+			<FirstRegisterDate>$!{dataObj.getVhlinfor().getRegisterdate()}</FirstRegisterDate>			
+		</VehicleRequest>
+	</ProductRequests>
+</DataPacket>

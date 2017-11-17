@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.InterfaceDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.InterfaceDetails">
+    <id column="interfaceId" jdbcType="INTEGER" property="interfaceid" />
+    <result column="interfaceState" jdbcType="INTEGER" property="interfacestate" />
+    <result column="interfaceName" jdbcType="VARCHAR" property="interfacename" />
+    <result column="interfaceURL" jdbcType="VARCHAR" property="interfaceurl" />
+    <result column="uderWritingCode" jdbcType="INTEGER" property="uderwritingcode" />
+    <result column="ClientIP" jdbcType="VARCHAR" property="clientip" />
+    <result column="createDateTimes" jdbcType="TIMESTAMP" property="createdatetimes" />
+    <result column="updateTimes" jdbcType="TIMESTAMP" property="updatetimes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    interfaceId, interfaceState, interfaceName, interfaceURL, uderWritingCode, ClientIP, 
+    createDateTimes, updateTimes
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_interfacedetails
+    where interfaceId = #{interfaceid,jdbcType=INTEGER}
+  </select>
+   <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_interfacedetails   
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_interfacedetails
+    where interfaceId = #{interfaceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.InterfaceDetails">
+    insert into ludimb_interfacedetails (interfaceId, interfaceState, interfaceName, 
+      interfaceURL, uderWritingCode, ClientIP, 
+      createDateTimes, updateTimes)
+    values (#{interfaceid,jdbcType=INTEGER}, #{interfacestate,jdbcType=INTEGER}, #{interfacename,jdbcType=VARCHAR}, 
+      #{interfaceurl,jdbcType=VARCHAR}, #{uderwritingcode,jdbcType=INTEGER}, #{clientip,jdbcType=VARCHAR}, 
+      #{createdatetimes,jdbcType=TIMESTAMP}, #{updatetimes,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.InterfaceDetails">
+    insert into ludimb_interfacedetails
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="interfaceid != null">
+        interfaceId,
+      </if>
+      <if test="interfacestate != null">
+        interfaceState,
+      </if>
+      <if test="interfacename != null">
+        interfaceName,
+      </if>
+      <if test="interfaceurl != null">
+        interfaceURL,
+      </if>
+      <if test="uderwritingcode != null">
+        uderWritingCode,
+      </if>
+      <if test="clientip != null">
+        ClientIP,
+      </if>
+      <if test="createdatetimes != null">
+        createDateTimes,
+      </if>
+      <if test="updatetimes != null">
+        updateTimes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="interfaceid != null">
+        #{interfaceid,jdbcType=INTEGER},
+      </if>
+      <if test="interfacestate != null">
+        #{interfacestate,jdbcType=INTEGER},
+      </if>
+      <if test="interfacename != null">
+        #{interfacename,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceurl != null">
+        #{interfaceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="uderwritingcode != null">
+        #{uderwritingcode,jdbcType=INTEGER},
+      </if>
+      <if test="clientip != null">
+        #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetimes != null">
+        #{createdatetimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimes != null">
+        #{updatetimes,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.InterfaceDetails">
+    update ludimb_interfacedetails
+    <set>
+      <if test="interfacestate != null">
+        interfaceState = #{interfacestate,jdbcType=INTEGER},
+      </if>
+      <if test="interfacename != null">
+        interfaceName = #{interfacename,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceurl != null">
+        interfaceURL = #{interfaceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="uderwritingcode != null">
+        uderWritingCode = #{uderwritingcode,jdbcType=INTEGER},
+      </if>
+      <if test="clientip != null">
+        ClientIP = #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetimes != null">
+        createDateTimes = #{createdatetimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimes != null">
+        updateTimes = #{updatetimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where interfaceId = #{interfaceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.InterfaceDetails">
+    update ludimb_interfacedetails
+    set interfaceState = #{interfacestate,jdbcType=INTEGER},
+      interfaceName = #{interfacename,jdbcType=VARCHAR},
+      interfaceURL = #{interfaceurl,jdbcType=VARCHAR},
+      uderWritingCode = #{uderwritingcode,jdbcType=INTEGER},
+      ClientIP = #{clientip,jdbcType=VARCHAR},
+      createDateTimes = #{createdatetimes,jdbcType=TIMESTAMP},
+      updateTimes = #{updatetimes,jdbcType=TIMESTAMP}
+    where interfaceId = #{interfaceid,jdbcType=INTEGER}
+  </update>
+</mapper>

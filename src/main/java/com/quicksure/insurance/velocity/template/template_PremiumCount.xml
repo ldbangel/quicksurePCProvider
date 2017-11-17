@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PACKET>
+<HEAD>
+	<TRANSTYPE>SNY</TRANSTYPE>
+	<SYSCODE></SYSCODE>
+	<TRANSCODE></TRANSCODE>
+	<CONTENTTYPE></CONTENTTYPE>
+	<VERIFYTYPE></VERIFYTYPE>
+	<USER>$!{SinosafeUserName}</USER>
+	<PASSWORD>$!{SinosafePassword}</PASSWORD>
+	<SVCSEQNO></SVCSEQNO>
+</HEAD>
+<THIRD>
+	<EXTENTERPCODE>$!{SinosafeExtenterCode}</EXTENTERPCODE>
+	<PRODNO>0000</PRODNO>
+	<PLANNO>0000</PLANNO>
+	<TRANSCODE>100004</TRANSCODE>
+	<TRANSDATE>$!{date}</TRANSDATE>
+	<TRANSTIME>$!{times}</TRANSTIME>
+</THIRD>
+<BODY>
+<BASE>
+#if($!{dataObj.getBaseinfor().getAgentCode()})
+#if($!{dataObj.getUserinfor().getCouponCode()} && $!{dataObj.getUserinfor().getCouponCode()}!="")
+<DPT_CDE>$!{dataObj.getBaseinfor().getDeptno()}</DPT_CDE>
+#else
+<DPT_CDE></DPT_CDE>
+#end
+#else
+<DPT_CDE>$!{dataObj.getBaseinfor().getDeptno()}</DPT_CDE>
+#end
+<INSRNC_BGN_TM>$!{dataObj.getBaseinfor().getSypolicystartdate()}</INSRNC_BGN_TM>
+<INSRNC_END_TM>$!{dataObj.getBaseinfor().getSypolicyenddate()}</INSRNC_END_TM>
+<INSRNC_BGN_TM_JQ>$!{dataObj.getBaseinfor().getJqpolicystartdate()}</INSRNC_BGN_TM_JQ>
+<INSRNC_END_TM_JQ>$!{dataObj.getBaseinfor().getJqpolicyenddate()}</INSRNC_END_TM_JQ>
+#if($!{dataObj.getBaseinfor().getAgentCode()} && $!{dataObj.getUserinfor().getCouponCode()} && $!{dataObj.getUserinfor().getCouponCode()}!="")
+<SLS_CDE></SLS_CDE>
+#else
+<SLS_CDE>$!{dataObj.getBaseinfor().getAgentCode()}</SLS_CDE>
+#end
+<C_QRY_CDE></C_QRY_CDE>
+<C_CHECK_CODE></C_CHECK_CODE>
+<APP_NME>$!{dataObj.getVhlinfor().getDrvowner()}</APP_NME>
+<APP_CERT_TYPE>120001</APP_CERT_TYPE>
+<APP_CERT_NO>$!{dataObj.getVhlinfor().getCertificateno()}</APP_CERT_NO>
+<APP_TEL>$!{dataObj.getVhlinfor().getPhoneno()}</APP_TEL>
+</BASE>
+<VHL>
+<LCN_NO>$!{dataObj.getVhlinfor().getLcnno()}</LCN_NO>
+<ENG_NO>$!{dataObj.getVhlinfor().getEngno()}</ENG_NO>
+<VHL_FRM>$!{dataObj.getVhlinfor().getVinno()}</VHL_FRM>
+<BRND_CDE>$!{dataObj.getVhlinfor().getBrandcode()}</BRND_CDE>
+<REGISTER_DATE>$!{dataObj.getVhlinfor().getRegisterdate()}</REGISTER_DATE>
+<CHGOWNERFLAG>$!{dataObj.getVhlinfor().getChgownerflag()}</CHGOWNERFLAG>
+<TRANSFERDATE>$!{dataObj.getVhlinfor().getTransferdate()}</TRANSFERDATE>
+<GLASS_TYPE>$!{dataObj.getVhlinfor().getGlasstype()}</GLASS_TYPE>
+<DRV_OWNER>$!{dataObj.getVhlinfor().getDrvowner()}</DRV_OWNER>
+<CERTI_TYPE>120001</CERTI_TYPE>
+<CERTI_CODE>$!{dataObj.getVhlinfor().getCertificateno()}</CERTI_CODE>
+<CERTI_TEL>$!{dataObj.getVhlinfor().getPhoneno()}</CERTI_TEL>
+<TAX_FLAG></TAX_FLAG>
+<CAL_APP_NO></CAL_APP_NO>
+<VHL_VAL>$!{dataObj.getVhlinfor().getVhlval()}</VHL_VAL>
+</VHL>
+<CVRG_LIST>
+#if(${dataObj.coverageinfors.size()}>0)
+#if($!{dataObj.coverageinfors[0].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[0].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>1</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[0].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[0].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[0].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[0].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>1)
+#if($!{dataObj.coverageinfors[1].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[1].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>2</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[1].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[1].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[1].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[1].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>2)
+#if($!{dataObj.coverageinfors[2].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[2].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>3</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[2].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[2].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[2].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[2].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>3)
+#if($!{dataObj.coverageinfors[3].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[3].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>4</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[3].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[3].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[3].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[3].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>4)
+#if($!{dataObj.coverageinfors[4].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[4].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>5</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[4].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[4].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[4].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[4].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>5)
+#if($!{dataObj.coverageinfors[5].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[5].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>6</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[5].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[5].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[5].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[5].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>6)
+#if($!{dataObj.coverageinfors[6].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[6].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>7</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[6].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[6].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[6].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[6].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>7)
+#if($!{dataObj.coverageinfors[7].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[7].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>8</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[7].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[7].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[7].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[7].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>8)
+#if($!{dataObj.coverageinfors[8].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[8].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>9</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[8].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[8].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[8].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[8].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+#if(${dataObj.coverageinfors.size()}>9)
+#if($!{dataObj.coverageinfors[9].getInsrnccode()} && ""!=$!{dataObj.coverageinfors[9].getInsrnccode()})
+<CVRG_DATA>
+<SEQ_NO>10</SEQ_NO>
+<INSRNC_CDE>$!{dataObj.coverageinfors[9].getInsrnccode()}</INSRNC_CDE>
+<AMT>$!{dataObj.coverageinfors[9].getSuminsured()}</AMT>
+<NUMBER></NUMBER>
+<FRANCHISE_FLAG>$!{dataObj.coverageinfors[9].getDeductibleflag()}</FRANCHISE_FLAG>
+<C_YL15></C_YL15>
+<C_YL11></C_YL11>
+<BULLET_GLASS>$!{dataObj.coverageinfors[9].getBulletGlass()}</BULLET_GLASS>
+<REMARK></REMARK>
+</CVRG_DATA>
+#end
+#end
+</CVRG_LIST>
+</BODY>
+</PACKET>

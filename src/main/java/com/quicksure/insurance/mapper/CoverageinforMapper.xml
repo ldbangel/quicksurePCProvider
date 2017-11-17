@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.CoverageinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Coverageinfor">
+    <id column="coverageId" jdbcType="INTEGER" property="coverageid" />
+    <result column="baseinforOrderNo" jdbcType="VARCHAR" property="baseinfororderno" />
+    <result column="insrncCode" jdbcType="INTEGER" property="insrnccode" />
+    <result column="sumInsured" jdbcType="REAL" property="suminsured" />
+    <result column="premium" jdbcType="VARCHAR" property="premium" />
+    <result column="deductibleFlag" jdbcType="VARCHAR" property="deductibleflag" />
+    <result column="seqNo" jdbcType="INTEGER" property="seqno" />
+    <result column="numberDay" jdbcType="INTEGER" property="numberday" />
+    <result column="numberPerson" jdbcType="INTEGER" property="numberperson" />
+    <result column="rate" jdbcType="REAL" property="rate" />
+    <result column="basePremium" jdbcType="REAL" property="basepremium" />
+    <result column="beforePremium" jdbcType="REAL" property="beforepremium" />
+    <result column="cyl15" jdbcType="VARCHAR" property="cyl15" />
+    <result column="cyl12" jdbcType="VARCHAR" property="cyl12" />
+    <result column="cyl11" jdbcType="VARCHAR" property="cyl11" />
+    <result column="nyl12" jdbcType="VARCHAR" property="nyl12" />
+    <result column="riskPremium" jdbcType="REAL" property="riskpremium" />
+    <result column="varRescFunds" jdbcType="REAL" property="varrescfunds" />
+    <result column="ptGrescFunds" jdbcType="REAL" property="ptgrescfunds" />
+    <result column="RescFunds" jdbcType="REAL" property="rescfunds" />
+    <result column="createDataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+    <result column="updateDataTime" jdbcType="TIMESTAMP" property="updatedatatime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    coverageId, baseinforOrderNo, insrncCode, sumInsured, premium, deductibleFlag,  
+    seqNo, numberDay, numberPerson, rate, basePremium, beforePremium, cyl15, cyl12, cyl11, 
+    nyl12, riskPremium, varRescFunds, ptGrescFunds, RescFunds, createDataTime, updateDataTime
+  </sql>
+  <select id="getListCoverage" parameterType="java.lang.String" resultMap="BaseResultMap">
+   	select 
+    <include refid="Base_Column_List" />
+    from ludimb_coverageinfor
+  	where baseinforOrderNo=#{baseinforOrderNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_coverageinfor
+    where coverageId = #{coverageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_coverageinfor
+    where coverageId = #{coverageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.Coverageinfor">
+    insert into ludimb_coverageinfor (coverageId, baseinforOrderNo, insrncCode, 
+      sumInsured, premium, deductibleFlag, 
+      deductiblePremium, seqNo, numberDay, 
+      numberPerson, rate, basePremium, 
+      beforePremium, cyl15, cyl12, 
+      cyl11, nyl12, riskPremium, 
+      varRescFunds, ptGrescFunds, RescFunds, 
+      createDataTime, updateDataTime)
+    values (#{coverageid,jdbcType=INTEGER}, #{baseinfororderno,jdbcType=VARCHAR}, #{insrnccode,jdbcType=INTEGER}, 
+      #{suminsured,jdbcType=REAL}, #{premium,jdbcType=VARCHAR}, #{deductibleflag,jdbcType=VARCHAR}, 
+      #{deductiblepremium,jdbcType=REAL}, #{seqno,jdbcType=INTEGER}, #{numberday,jdbcType=INTEGER}, 
+      #{numberperson,jdbcType=INTEGER}, #{rate,jdbcType=REAL}, #{basepremium,jdbcType=REAL}, 
+      #{beforepremium,jdbcType=REAL}, #{cyl15,jdbcType=VARCHAR}, #{cyl12,jdbcType=VARCHAR}, 
+      #{cyl11,jdbcType=VARCHAR}, #{nyl12,jdbcType=VARCHAR}, #{riskpremium,jdbcType=REAL}, 
+      #{varrescfunds,jdbcType=REAL}, #{ptgrescfunds,jdbcType=REAL}, #{rescfunds,jdbcType=REAL}, 
+      #{createdatatime,jdbcType=TIMESTAMP}, #{updatedatatime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.Coverageinfor">
+    insert into ludimb_coverageinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coverageid != null">
+        coverageId,
+      </if>
+      <if test="baseinfororderno != null">
+        baseinforOrderNo,
+      </if>
+      <if test="insrnccode != null">
+        insrncCode,
+      </if>
+      <if test="suminsured != null">
+        sumInsured,
+      </if>
+      <if test="premium != null">
+        premium,
+      </if>
+      <if test="deductibleflag != null">
+        deductibleFlag,
+      </if>
+      <if test="deductiblepremium != null">
+        deductiblePremium,
+      </if>
+      <if test="seqno != null">
+        seqNo,
+      </if>
+      <if test="numberday != null">
+        numberDay,
+      </if>
+      <if test="numberperson != null">
+        numberPerson,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="basepremium != null">
+        basePremium,
+      </if>
+      <if test="beforepremium != null">
+        beforePremium,
+      </if>
+      <if test="cyl15 != null">
+        cyl15,
+      </if>
+      <if test="cyl12 != null">
+        cyl12,
+      </if>
+      <if test="cyl11 != null">
+        cyl11,
+      </if>
+      <if test="nyl12 != null">
+        nyl12,
+      </if>
+      <if test="riskpremium != null">
+        riskPremium,
+      </if>
+      <if test="varrescfunds != null">
+        varRescFunds,
+      </if>
+      <if test="ptgrescfunds != null">
+        ptGrescFunds,
+      </if>
+      <if test="rescfunds != null">
+        RescFunds,
+      </if>
+      <if test="createdatatime != null">
+        createDataTime,
+      </if>
+      <if test="updatedatatime != null">
+        updateDataTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coverageid != null">
+        #{coverageid,jdbcType=INTEGER},
+      </if>
+      <if test="baseinfororderno != null">
+        #{baseinfororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="insrnccode != null">
+        #{insrnccode,jdbcType=INTEGER},
+      </if>
+      <if test="suminsured != null">
+        #{suminsured,jdbcType=REAL},
+      </if>
+      <if test="premium != null">
+        #{premium,jdbcType=VARCHAR},
+      </if>
+      <if test="deductibleflag != null">
+        #{deductibleflag,jdbcType=VARCHAR},
+      </if>
+      <if test="deductiblepremium != null">
+        #{deductiblepremium,jdbcType=REAL},
+      </if>
+      <if test="seqno != null">
+        #{seqno,jdbcType=INTEGER},
+      </if>
+      <if test="numberday != null">
+        #{numberday,jdbcType=INTEGER},
+      </if>
+      <if test="numberperson != null">
+        #{numberperson,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=REAL},
+      </if>
+      <if test="basepremium != null">
+        #{basepremium,jdbcType=REAL},
+      </if>
+      <if test="beforepremium != null">
+        #{beforepremium,jdbcType=REAL},
+      </if>
+      <if test="cyl15 != null">
+        #{cyl15,jdbcType=VARCHAR},
+      </if>
+      <if test="cyl12 != null">
+        #{cyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="cyl11 != null">
+        #{cyl11,jdbcType=VARCHAR},
+      </if>
+      <if test="nyl12 != null">
+        #{nyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="riskpremium != null">
+        #{riskpremium,jdbcType=REAL},
+      </if>
+      <if test="varrescfunds != null">
+        #{varrescfunds,jdbcType=REAL},
+      </if>
+      <if test="ptgrescfunds != null">
+        #{ptgrescfunds,jdbcType=REAL},
+      </if>
+      <if test="rescfunds != null">
+        #{rescfunds,jdbcType=REAL},
+      </if>
+      <if test="createdatatime != null">
+        #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedatatime != null">
+        #{updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Coverageinfor">
+    update ludimb_coverageinfor
+    <set>
+      <if test="baseinfororderno != null">
+        baseinforOrderNo = #{baseinfororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="insrnccode != null">
+        insrncCode = #{insrnccode,jdbcType=INTEGER},
+      </if>
+      <if test="suminsured != null">
+        sumInsured = #{suminsured,jdbcType=REAL},
+      </if>
+      <if test="premium != null">
+        premium = #{premium,jdbcType=VARCHAR},
+      </if>
+      <if test="deductibleflag != null">
+        deductibleFlag = #{deductibleflag,jdbcType=VARCHAR},
+      </if>
+      <if test="deductiblepremium != null">
+        deductiblePremium = #{deductiblepremium,jdbcType=REAL},
+      </if>
+      <if test="seqno != null">
+        seqNo = #{seqno,jdbcType=INTEGER},
+      </if>
+      <if test="numberday != null">
+        numberDay = #{numberday,jdbcType=INTEGER},
+      </if>
+      <if test="numberperson != null">
+        numberPerson = #{numberperson,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=REAL},
+      </if>
+      <if test="basepremium != null">
+        basePremium = #{basepremium,jdbcType=REAL},
+      </if>
+      <if test="beforepremium != null">
+        beforePremium = #{beforepremium,jdbcType=REAL},
+      </if>
+      <if test="cyl15 != null">
+        cyl15 = #{cyl15,jdbcType=VARCHAR},
+      </if>
+      <if test="cyl12 != null">
+        cyl12 = #{cyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="cyl11 != null">
+        cyl11 = #{cyl11,jdbcType=VARCHAR},
+      </if>
+      <if test="nyl12 != null">
+        nyl12 = #{nyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="riskpremium != null">
+        riskPremium = #{riskpremium,jdbcType=REAL},
+      </if>
+      <if test="varrescfunds != null">
+        varRescFunds = #{varrescfunds,jdbcType=REAL},
+      </if>
+      <if test="ptgrescfunds != null">
+        ptGrescFunds = #{ptgrescfunds,jdbcType=REAL},
+      </if>
+      <if test="rescfunds != null">
+        RescFunds = #{rescfunds,jdbcType=REAL},
+      </if>
+      <if test="createdatatime != null">
+        createDataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedatatime != null">
+        updateDataTime = #{updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coverageId = #{coverageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Coverageinfor">
+    update ludimb_coverageinfor
+    set baseinforOrderNo = #{baseinfororderno,jdbcType=VARCHAR},
+      insrncCode = #{insrnccode,jdbcType=INTEGER},
+      sumInsured = #{suminsured,jdbcType=REAL},
+      premium = #{premium,jdbcType=VARCHAR},
+      deductibleFlag = #{deductibleflag,jdbcType=VARCHAR},
+      deductiblePremium = #{deductiblepremium,jdbcType=REAL},
+      seqNo = #{seqno,jdbcType=INTEGER},
+      numberDay = #{numberday,jdbcType=INTEGER},
+      numberPerson = #{numberperson,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=REAL},
+      basePremium = #{basepremium,jdbcType=REAL},
+      beforePremium = #{beforepremium,jdbcType=REAL},
+      cyl15 = #{cyl15,jdbcType=VARCHAR},
+      cyl12 = #{cyl12,jdbcType=VARCHAR},
+      cyl11 = #{cyl11,jdbcType=VARCHAR},
+      nyl12 = #{nyl12,jdbcType=VARCHAR},
+      riskPremium = #{riskpremium,jdbcType=REAL},
+      varRescFunds = #{varrescfunds,jdbcType=REAL},
+      ptGrescFunds = #{ptgrescfunds,jdbcType=REAL},
+      RescFunds = #{rescfunds,jdbcType=REAL},
+      createDataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      updateDataTime = #{updatedatatime,jdbcType=TIMESTAMP}
+    where coverageId = #{coverageid,jdbcType=INTEGER}
+  </update>
+  <insert id="insertCoverageBatch"  parameterType="java.util.List" >
+   <foreach collection="list" item="item" index="index" separator=";">
+    insert into ludimb_coverageinfor    
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="item.coverageid != null">
+        coverageId,
+      </if>
+      <if test="item.baseinfororderno != null">
+        baseinforOrderNo,
+      </if>
+      <if test="item.insrnccode != null">
+        insrncCode,
+      </if>
+      <if test="item.suminsured != null">
+        sumInsured,
+      </if>
+      <if test="item.premium != null">
+        premium,
+      </if>
+      <if test="item.deductibleflag != null">
+        deductibleFlag,
+      </if>
+      <if test="item.deductiblepremium != null">
+        deductiblePremium,
+      </if>
+      <if test="item.seqno != null">
+        seqNo,
+      </if>
+      <if test="item.numberday != null">
+        numberDay,
+      </if>
+      <if test="item.numberperson != null">
+        numberPerson,
+      </if>
+      <if test="item.rate != null">
+        rate,
+      </if>
+      <if test="item.basepremium != null">
+        basePremium,
+      </if>
+      <if test="item.beforepremium != null">
+        beforePremium,
+      </if>
+      <if test="item.cyl15 != null">
+        cyl15,
+      </if>
+      <if test="item.cyl12 != null">
+        cyl12,
+      </if>
+      <if test="item.cyl11 != null">
+        cyl11,
+      </if>
+      <if test="item.nyl12 != null">
+        nyl12,
+      </if>
+      <if test="item.riskpremium != null">
+        riskPremium,
+      </if>
+      <if test="item.varrescfunds != null">
+        varRescFunds,
+      </if>
+      <if test="item.ptgrescfunds != null">
+        ptGrescFunds,
+      </if>
+      <if test="item.rescfunds != null">
+        RescFunds,
+      </if>
+      <if test="item.createdatatime != null">
+        createDataTime,
+      </if>
+      <if test="item.updatedatatime != null">
+        updateDataTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="item.coverageid != null">
+        #{item.coverageid,jdbcType=INTEGER},
+      </if>
+      <if test="item.baseinfororderno != null">
+        #{item.baseinfororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insrnccode != null">
+        #{item.insrnccode,jdbcType=INTEGER},
+      </if>
+      <if test="item.suminsured != null">
+        #{item.suminsured,jdbcType=REAL},
+      </if>
+      <if test="item.premium != null">
+        #{item.premium,jdbcType=VARCHAR},
+      </if>
+      <if test="item.deductibleflag != null">
+        #{item.deductibleflag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.deductiblepremium != null">
+        #{item.deductiblepremium,jdbcType=REAL},
+      </if>
+      <if test="item.seqno != null">
+        #{item.seqno,jdbcType=INTEGER},
+      </if>
+      <if test="item.numberday != null">
+        #{item.numberday,jdbcType=INTEGER},
+      </if>
+      <if test="item.numberperson != null">
+        #{item.numberperson,jdbcType=INTEGER},
+      </if>
+      <if test="item.rate != null">
+        #{item.rate,jdbcType=REAL},
+      </if>
+      <if test="item.basepremium != null">
+        #{item.basepremium,jdbcType=REAL},
+      </if>
+      <if test="item.beforepremium != null">
+        #{item.beforepremium,jdbcType=REAL},
+      </if>
+      <if test="item.cyl15 != null">
+        #{item.cyl15,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cyl12 != null">
+        #{item.cyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cyl11 != null">
+        #{item.cyl11,jdbcType=VARCHAR},
+      </if>
+      <if test="item.nyl12 != null">
+        #{item.nyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="item.riskpremium != null">
+        #{item.riskpremium,jdbcType=REAL},
+      </if>
+      <if test="item.varrescfunds != null">
+        #{item.varrescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.ptgrescfunds != null">
+        #{item.ptgrescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.rescfunds != null">
+        #{item.rescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.createdatatime != null">
+        #{item.createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.updatedatatime != null">
+        #{item.updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    </foreach>
+  </insert>
+  <update id="updateCoverageBatch" parameterType="java.util.List" >  
+  <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+     update ludimb_coverageinfor
+    <set>
+      <if test="item.baseinfororderno != null">
+        baseinforOrderNo = #{item.baseinfororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insrnccode != null">
+        insrncCode = #{item.insrnccode,jdbcType=INTEGER},
+      </if>
+      <if test="item.suminsured != null">
+        sumInsured = #{item.suminsured,jdbcType=REAL},
+      </if>
+      <if test="item.premium != null">
+        premium = #{item.premium,jdbcType=VARCHAR},
+      </if>
+      <if test="item.deductibleflag != null">
+        deductibleFlag = #{item.deductibleflag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.seqno != null">
+        seqNo = #{item.seqno,jdbcType=INTEGER},
+      </if>
+      <if test="item.numberday != null">
+        numberDay = #{item.numberday,jdbcType=INTEGER},
+      </if>
+      <if test="item.numberperson != null">
+        numberPerson = #{item.numberperson,jdbcType=INTEGER},
+      </if>
+      <if test="item.rate != null">
+        rate = #{item.rate,jdbcType=REAL},
+      </if>
+      <if test="item.basepremium != null">
+        basePremium = #{item.basepremium,jdbcType=REAL},
+      </if>
+      <if test="item.beforepremium != null">
+        beforePremium = #{item.beforepremium,jdbcType=REAL},
+      </if>
+      <if test="item.cyl15 != null">
+        cyl15 = #{item.cyl15,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cyl12 != null">
+        cyl12 = #{item.cyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cyl11 != null">
+        cyl11 = #{item.cyl11,jdbcType=VARCHAR},
+      </if>
+      <if test="item.nyl12 != null">
+        nyl12 = #{item.nyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="item.riskpremium != null">
+        riskPremium = #{item.riskpremium,jdbcType=REAL},
+      </if>
+      <if test="item.varrescfunds != null">
+        varRescFunds = #{item.varrescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.ptgrescfunds != null">
+        ptGrescFunds = #{item.ptgrescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.rescfunds != null">
+        RescFunds = #{item.rescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.createdatatime != null">
+        createDataTime = #{item.createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.updatedatatime != null">
+        updateDataTime = #{item.updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coverageId = #{item.coverageid,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  
+  <update id="updateListCoverageBatch" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" separator=";">
+  		update ludimb_coverageinfor
+    <set>
+      <if test="item.baseinfororderno != null">
+        baseinforOrderNo = #{item.baseinfororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insrnccode != null">
+        insrncCode = #{item.insrnccode,jdbcType=INTEGER},
+      </if>
+      <if test="item.suminsured != null">
+        sumInsured = #{item.suminsured,jdbcType=REAL},
+      </if>
+      <if test="item.premium != null">
+        premium = #{item.premium,jdbcType=VARCHAR},
+      </if>
+      <if test="item.deductibleflag != null">
+        deductibleFlag = #{item.deductibleflag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.seqno != null">
+        seqNo = #{item.seqno,jdbcType=INTEGER},
+      </if>
+      <if test="item.numberday != null">
+        numberDay = #{item.numberday,jdbcType=INTEGER},
+      </if>
+      <if test="item.numberperson != null">
+        numberPerson = #{item.numberperson,jdbcType=INTEGER},
+      </if>
+      <if test="item.rate != null">
+        rate = #{item.rate,jdbcType=REAL},
+      </if>
+      <if test="item.basepremium != null">
+        basePremium = #{item.basepremium,jdbcType=REAL},
+      </if>
+      <if test="item.beforepremium != null">
+        beforePremium = #{item.beforepremium,jdbcType=REAL},
+      </if>
+      <if test="item.cyl15 != null">
+        cyl15 = #{item.cyl15,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cyl12 != null">
+        cyl12 = #{item.cyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cyl11 != null">
+        cyl11 = #{item.cyl11,jdbcType=VARCHAR},
+      </if>
+      <if test="item.nyl12 != null">
+        nyl12 = #{item.nyl12,jdbcType=VARCHAR},
+      </if>
+      <if test="item.riskpremium != null">
+        riskPremium = #{item.riskpremium,jdbcType=REAL},
+      </if>
+      <if test="item.varrescfunds != null">
+        varRescFunds = #{item.varrescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.ptgrescfunds != null">
+        ptGrescFunds = #{item.ptgrescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.rescfunds != null">
+        RescFunds = #{item.rescfunds,jdbcType=REAL},
+      </if>
+      <if test="item.createdatatime != null">
+        createDataTime = #{item.createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.updatedatatime != null">
+        updateDataTime = #{item.updatedatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coverageId = #{item.coverageid,jdbcType=INTEGER}
+  
+  	</foreach>
+  </update>
+  
+  <delete id="deleteCoverageBatch" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" separator=";">
+  		delete from  ludimb_coverageinfor 
+  		where coverageId = #{item.coverageid,jdbcType=INTEGER}
+  	</foreach>
+  </delete>
+  
+</mapper>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.DropdownListInforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.DropdownListInfor">
+    <id column="dropdownListid" jdbcType="INTEGER" property="dropdownlistid" />
+    <result column="dropdownListCode" jdbcType="INTEGER" property="dropdownlistcode" />
+    <result column="dropdownListName" jdbcType="VARCHAR" property="dropdownlistname" />
+    <result column="dropdownListDescript" jdbcType="VARCHAR" property="dropdownlistdescript" />
+    <result column="createDataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="referenceId" jdbcType="INTEGER" property="referenceid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dropdownListid, dropdownListCode, dropdownListName, dropdownListDescript, createDataTime, 
+    updateTime, referenceId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_dropdownlistinfor
+    where dropdownListid = #{dropdownlistid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_dropdownlistinfor
+    where dropdownListid = #{dropdownlistid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.DropdownListInfor">
+    insert into ludimb_dropdownlistinfor (dropdownListid, dropdownListCode, 
+      dropdownListName, dropdownListDescript, 
+      createDataTime, updateTime, referenceId
+      )
+    values (#{dropdownlistid,jdbcType=INTEGER}, #{dropdownlistcode,jdbcType=INTEGER}, 
+      #{dropdownlistname,jdbcType=VARCHAR}, #{dropdownlistdescript,jdbcType=VARCHAR}, 
+      #{createdatatime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{referenceid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.quicksure.insurance.entity.DropdownListInfor">
+    insert into ludimb_dropdownlistinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dropdownlistid != null">
+        dropdownListid,
+      </if>
+      <if test="dropdownlistcode != null">
+        dropdownListCode,
+      </if>
+      <if test="dropdownlistname != null">
+        dropdownListName,
+      </if>
+      <if test="dropdownlistdescript != null">
+        dropdownListDescript,
+      </if>
+      <if test="createdatatime != null">
+        createDataTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="referenceid != null">
+        referenceId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dropdownlistid != null">
+        #{dropdownlistid,jdbcType=INTEGER},
+      </if>
+      <if test="dropdownlistcode != null">
+        #{dropdownlistcode,jdbcType=INTEGER},
+      </if>
+      <if test="dropdownlistname != null">
+        #{dropdownlistname,jdbcType=VARCHAR},
+      </if>
+      <if test="dropdownlistdescript != null">
+        #{dropdownlistdescript,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatatime != null">
+        #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="referenceid != null">
+        #{referenceid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.DropdownListInfor">
+    update ludimb_dropdownlistinfor
+    <set>
+      <if test="dropdownlistcode != null">
+        dropdownListCode = #{dropdownlistcode,jdbcType=INTEGER},
+      </if>
+      <if test="dropdownlistname != null">
+        dropdownListName = #{dropdownlistname,jdbcType=VARCHAR},
+      </if>
+      <if test="dropdownlistdescript != null">
+        dropdownListDescript = #{dropdownlistdescript,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatatime != null">
+        createDataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="referenceid != null">
+        referenceId = #{referenceid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dropdownListid = #{dropdownlistid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.DropdownListInfor">
+    update ludimb_dropdownlistinfor
+    set dropdownListCode = #{dropdownlistcode,jdbcType=INTEGER},
+      dropdownListName = #{dropdownlistname,jdbcType=VARCHAR},
+      dropdownListDescript = #{dropdownlistdescript,jdbcType=VARCHAR},
+      createDataTime = #{createdatatime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      referenceId = #{referenceid,jdbcType=INTEGER}
+    where dropdownListid = #{dropdownlistid,jdbcType=INTEGER}
+  </update>
+</mapper>

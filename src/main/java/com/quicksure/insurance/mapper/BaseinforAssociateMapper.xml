@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.BaseinforAssociateMapper">
+  <resultMap type="com.quicksure.insurance.entity.InsuranceDetailsVO" id="insuranceDetailsVOList">
+  	<association property="baseinfor" javaType="com.quicksure.insurance.entity.Baseinfor">
+  		<id column="orderNo" jdbcType="VARCHAR" property="orderno" />
+	    <result column="OwnersName" jdbcType="VARCHAR" property="ownersname" />
+	    <result column="base_applicationName" jdbcType="VARCHAR" property="base_applicationname" />
+	    <result column="insrntName" jdbcType="VARCHAR" property="insrntname" />
+	    <result column="businessSource" jdbcType="INTEGER" property="businesssource" />
+	    <result column="jqpolicyStartDate" jdbcType="TIMESTAMP" property="jqpolicystartdate" />
+	    <result column="jqpolicyEndDate" jdbcType="TIMESTAMP" property="jqpolicyenddate" />
+	    <result column="sypolicyStartDate" jdbcType="TIMESTAMP" property="sypolicystartdate" />
+	    <result column="syapplicationNo" jdbcType="VARCHAR" property="syapplicationno" />
+	    <result column="sypolicyNo" jdbcType="VARCHAR" property="sypolicyno" />
+	    <result column="jqpolicyNo" jdbcType="VARCHAR" property="jqpolicyno" />
+	    <result column="jqapplicationNo" jdbcType="VARCHAR" property="jqapplicationno" />
+	    <result column="sypolicyEndDate" jdbcType="TIMESTAMP" property="sypolicyenddate" />
+	    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+	    <result column="taxPremium" jdbcType="REAL" property="taxpremium" />
+	    <result column="jqPremium" jdbcType="REAL" property="jqpremium" />
+	    <result column="syPremium" jdbcType="REAL" property="sypremium" />
+	    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+	    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+	    <result column="userInforId" jdbcType="INTEGER" property="userinforid" />
+	    <result column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+	    <result column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+	    <result column="vhlinforId" jdbcType="INTEGER" property="vhlinforid" />
+	    <result column="deliveryInforId" jdbcType="INTEGER" property="deliveryinforid" />
+	    <result column="orderstate" jdbcType="INTEGER" property="orderstate" />
+	    <result column="deptNo" jdbcType="INTEGER" property="deptno" />
+	    <result column="quoteNo" jdbcType="VARCHAR" property="quoteno" />
+	    <result column="underWritingCode" jdbcType="INTEGER" property="underwritingcode" />
+	    <result column="jqPolicyStatus" jdbcType="VARCHAR" property="jqpolicystatus" />
+	    <result column="syPolicyStatus" jdbcType="VARCHAR" property="sypolicystatus" />
+	    <result column="paymentinforId" jdbcType="INTEGER" property="paymentinforid" />
+	    <result column="totalPremium" jdbcType="VARCHAR" property="totalPremium" />
+	    <result column="deptAddress" jdbcType="VARCHAR" property="deptAddress" />
+  	</association>
+  	<association property="userinfor" javaType="com.quicksure.insurance.entity.Userinfor">
+  		<id column="userId" jdbcType="INTEGER" property="userid" />
+	    <result column="userName" jdbcType="VARCHAR" property="username" />
+	    <result column="password" jdbcType="VARCHAR" property="password" />
+	    <result column="phoneNo" jdbcType="INTEGER" property="phoneno" />
+	    <result column="address" jdbcType="VARCHAR" property="address" />
+	    <result column="emailsAddress" jdbcType="VARCHAR" property="emailsaddress" />
+	    <result column="userType" jdbcType="INTEGER" property="usertype" />
+	    <result column="zipAddress" jdbcType="VARCHAR" property="zipaddress" />
+	    <result column="createTimes" jdbcType="TIMESTAMP" property="createtimes" />
+	    <result column="updateTimes" jdbcType="TIMESTAMP" property="updatetimes" />
+  	</association>
+  	<association property="insuranceperinfor" javaType="com.quicksure.insurance.entity.Insuranceperinfor">
+  		<id column="insuranceperinforId" jdbcType="INTEGER" property="insuranceperinforid" />
+	    <result column="ownersName" jdbcType="VARCHAR" property="ownersname" />
+	    <result column="ownersCertIType" jdbcType="VARCHAR" property="ownerscertitype" />
+	    <result column="ownersCertICode" jdbcType="VARCHAR" property="ownerscerticode" />
+	    <result column="ownersPhoneNo" jdbcType="INTEGER" property="ownersphoneno" />
+	    <result column="ownersZipCode" jdbcType="INTEGER" property="ownerszipcode" />
+	    <result column="applicationName" jdbcType="VARCHAR" property="applicationname" />
+	    <result column="applicationCertIType" jdbcType="VARCHAR" property="applicationcertitype" />
+	    <result column="applicationCertICode" jdbcType="VARCHAR" property="applicationcerticode" />
+	    <result column="applicationPhoneNo" jdbcType="INTEGER" property="applicationphoneno" />
+	    <result column="applicationZipCode" jdbcType="INTEGER" property="applicationzipcode" />
+	    <result column="insureName" jdbcType="VARCHAR" property="insurename" />
+	    <result column="insureCertIType" jdbcType="VARCHAR" property="insurecertitype" />
+	    <result column="insureCertICode" jdbcType="VARCHAR" property="insurecerticode" />
+	    <result column="insurePhoneNo" jdbcType="INTEGER" property="insurephoneno" />
+	    <result column="insureZipCode" jdbcType="INTEGER" property="insurezipcode" />
+	    <result column="creatDataTime" jdbcType="TIMESTAMP" property="creatdatatime" />
+	    <result column="updateDataTime" jdbcType="TIMESTAMP" property="updatedatatime" />
+  	</association>
+  	<association property="vhlinfor" javaType="com.quicksure.insurance.entity.Vhlinfor">
+  		<id column="vhiinforId" jdbcType="INTEGER" property="vhiinforid" />
+	    <result column="lcnNo" jdbcType="VARCHAR" property="lcnno" />
+	    <result column="engNo" jdbcType="VARCHAR" property="engno" />
+	    <result column="vinNo" jdbcType="VARCHAR" property="vinno" />
+	    <result column="brandCode" jdbcType="VARCHAR" property="brandcode" />
+	    <result column="vhlVal" jdbcType="REAL" property="vhlval" />
+	    <result column="vehicleName" jdbcType="VARCHAR" property="vehiclename" />
+	    <result column="carSort" jdbcType="INTEGER" property="carsort" />
+	    <result column="carStyle" jdbcType="VARCHAR" property="carstyle" />
+	    <result column="carMaker" jdbcType="VARCHAR" property="carmaker" />
+	    <result column="tonnage" jdbcType="REAL" property="tonnage" />
+	    <result column="setNo" jdbcType="INTEGER" property="setno" />
+	    <result column="displacement" jdbcType="REAL" property="displacement" />
+	    <result column="quality" jdbcType="REAL" property="quality" />
+	    <result column="marketYear" jdbcType="DATE" property="marketyear" />
+	    <result column="carReMark" jdbcType="VARCHAR" property="carremark" />
+	    <result column="riskName" jdbcType="VARCHAR" property="riskname" />
+	    <result column="fuelFlag" jdbcType="INTEGER" property="fuelflag" />
+	    <result column="newEnergyFlag" jdbcType="INTEGER" property="newenergyflag" />
+	    <result column="model" jdbcType="VARCHAR" property="model" />
+	    <result column="registerDate" jdbcType="DATE" property="registerdate" />
+	    <result column="chgownerFlag" jdbcType="INTEGER" property="chgownerflag" />
+	    <result column="transferDate" jdbcType="DATE" property="transferdate" />
+	    <result column="glassType" jdbcType="VARCHAR" property="glasstype" />
+	    <result column="certiFicateType" jdbcType="VARCHAR" property="certificatetype" />
+	    <result column="certiFicateNo" jdbcType="VARCHAR" property="certificateno" />
+	    <result column="certiFicateDate" jdbcType="DATE" property="certificatedate" />
+	    <result column="drvOwner" jdbcType="VARCHAR" property="drvowner" />
+	    <result column="certIType" jdbcType="VARCHAR" property="certitype" />
+	    <result column="certICode" jdbcType="VARCHAR" property="certicode" />
+	    <result column="phoneNo" jdbcType="INTEGER" property="phoneno" />
+	    <result column="createDataTime" jdbcType="TIMESTAMP" property="createdatatime" />
+	    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+	    <result column="brandName" jdbcType="VARCHAR" property="brandName" />
+	    <result column="codeName" jdbcType="VARCHAR" property="codeName" />
+  	</association>
+  	<association property="taxinfor" javaType="com.quicksure.insurance.entity.Taxinfor">
+  		<id column="taxinforId" jdbcType="INTEGER" property="taxinforid" />
+	    <result column="taxType" jdbcType="VARCHAR" property="taxtype" />
+	    <result column="taxValType" jdbcType="VARCHAR" property="taxvaltype" />
+	    <result column="lateFee" jdbcType="DECIMAL" property="latefee" />
+	    <result column="currentTax" jdbcType="DECIMAL" property="currenttax" />
+	    <result column="formerTax" jdbcType="DECIMAL" property="formertax" />
+	    <result column="sumupTax" jdbcType="DECIMAL" property="sumuptax" />
+	    <result column="minusTaxAmt" jdbcType="DECIMAL" property="minustaxamt" />
+	    <result column="fuelType" jdbcType="VARCHAR" property="fueltype" />
+  	</association>
+  	<association property="deliveryinfor" javaType="com.quicksure.insurance.entity.Deliveryinfor">
+  		<id column="deliveryId" jdbcType="INTEGER" property="deliveryid" />
+	    <result column="deliveryName" jdbcType="VARCHAR" property="deliveryname" />
+	    <result column="deliveryPhone" jdbcType="VARCHAR" property="deliveryphone" />
+	    <result column="deliveryAddress" jdbcType="VARCHAR" property="deliveryaddress" />
+	    <result column="deliverydate" jdbcType="TIMESTAMP" property="deliverydate" />
+	    <result column="createDateTime" jdbcType="TIMESTAMP" property="createdatetime" />
+	    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+	    <result column="deliveryState" jdbcType="INTEGER" property="deliverystate" />
+	    <result column="jqsequenceNo" jdbcType="VARCHAR" property="jqsequenceno" />
+	    <result column="sysequenceNo" jdbcType="VARCHAR" property="sysequenceNo" />
+  	</association>
+  	<association property="paymentinfor" javaType="com.quicksure.insurance.entity.Paymentinfor">
+  		<id column="paymentInforId" jdbcType="INTEGER" property="paymentinforid" />
+	    <result column="paymentURL" jdbcType="VARCHAR" property="paymenturl" />
+	    <result column="paymentNo" jdbcType="VARCHAR" property="paymentno" />
+	    <result column="paymentState" jdbcType="INTEGER" property="paymentstate" />
+	    <result column="paymentPremium" jdbcType="VARCHAR" property="paymentpremium" />
+	    <result column="paymentTimes" jdbcType="TIMESTAMP" property="paymenttimes" />
+	    <result column="createdateTimes" jdbcType="TIMESTAMP" property="createdatetimes" />
+	    <result column="updateTimes" jdbcType="TIMESTAMP" property="updatetimes" />
+  	</association>
+  </resultMap>
+
+<select id="getOrderListinformation3" parameterType="java.util.Map" resultMap="insuranceDetailsVOList">
+  	
+  	select baseinfor.*,
+  		   userinfor.*,
+  		   insuranceperinfor.*,
+  		   vhinfor.*,
+  		   taxinfor.*,
+  		   deliveryinfor.*,	
+		   paymentinfor.*
+	from ludimb_baseinfor baseinfor 
+		 LEFT JOIN ludimb_userinfor userinfor on userinfor.userId=baseinfor.userInforId 
+		 LEFT JOIN ludimb_insuranceperinfor insuranceperinfor on baseinfor.insuranceperinforId=insuranceperinfor.insuranceperinforId
+		 LEFT JOIN ludimb_vhlinfor vhinfor on baseinfor.vhlinforId=vhinfor.vhiinforId
+		 LEFT JOIN ludimb_taxinfor taxinfor on taxinfor.taxinforId=baseinfor.taxinforId
+		 LEFT JOIN ludimb_deliveryinfor deliveryinfor on deliveryinfor.deliveryId=baseinfor.deliveryInforId
+		 LEFT JOIN ludimb_paymentinfor paymentinfor on paymentinfor.paymentInforId=baseinfor.paymentinforId
+		 
+ 	where    1=1 
+ 		 <!-- <if test="drvOwner!=null">
+ 		  and vhinfor.drvOwner=#{drvOwner}
+ 		 </if> 		
+ 		 <if test="userid!=null"> 
+ 		  and userinfor.userId=#{userid}
+ 		 </if> -->
+ 		 <if test="orderNo!=null"> 
+ 		   and baseinfor.orderNo=#{orderNo}
+ 		 </if> 		 	
+  </select>
+<select id="getALLOrderNo" parameterType="java.util.List"
+	resultType="String">
+	select orderNo from ludimb_baseinfor
+	where 1=1 and userInforId  in
+	<foreach collection="list" index="index" item="item" open="("
+		separator="," close=")">
+		#{item}
+	</foreach>
+</select>
+
+
+
+
+
+
+</mapper>

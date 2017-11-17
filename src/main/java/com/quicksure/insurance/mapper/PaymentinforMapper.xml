@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.PaymentinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Paymentinfor">
+    <id column="paymentInforId" jdbcType="INTEGER" property="paymentinforid" />
+    <result column="paymentURL" jdbcType="VARCHAR" property="paymenturl" />
+    <result column="paymentNo" jdbcType="VARCHAR" property="paymentno" />
+    <result column="paymentState" jdbcType="INTEGER" property="paymentstate" />
+    <result column="paymentPremium" jdbcType="VARCHAR" property="paymentpremium" />
+    <result column="paymentTimes" jdbcType="TIMESTAMP" property="paymenttimes" />
+    <result column="createdateTimes" jdbcType="TIMESTAMP" property="createdatetimes" />
+    <result column="updateTimes" jdbcType="TIMESTAMP" property="updatetimes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    paymentInforId, paymentURL, paymentNo, paymentState, paymentPremium, 
+    paymentTimes, createdateTimes, updateTimes
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_paymentinfor
+    where paymentInforId = #{paymentinforid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_paymentinfor
+    where paymentInforId = #{paymentinforid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.Paymentinfor">
+    insert into ludimb_paymentinfor (paymentInforId,  
+      paymentURL, paymentNo, paymentState, 
+      paymentPremium, paymentTimes, createdateTimes, 
+      updateTimes)
+    values (#{paymentinforid,jdbcType=INTEGER},
+      #{paymenturl,jdbcType=VARCHAR}, #{paymentno,jdbcType=VARCHAR}, #{paymentstate,jdbcType=INTEGER}, 
+      #{paymentpremium,jdbcType=VARCHAR}, #{paymenttimes,jdbcType=TIMESTAMP}, #{createdatetimes,jdbcType=TIMESTAMP}, 
+      #{updatetimes,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="paymentinforid" parameterType="com.quicksure.insurance.entity.Paymentinfor">
+    insert into ludimb_paymentinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <!-- <if test="paymentinforid != null">
+        paymentInforId,
+      </if> -->
+      <if test="paymenturl != null">
+        paymentURL,
+      </if>
+      <if test="paymentno != null">
+        paymentNo,
+      </if>
+      <if test="paymentstate != null">
+        paymentState,
+      </if>
+      <if test="paymentpremium != null">
+        paymentPremium,
+      </if>
+      <if test="paymenttimes != null">
+        paymentTimes,
+      </if>
+      <if test="createdatetimes != null">
+        createdateTimes,
+      </if>
+      <if test="updatetimes != null">
+        updateTimes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <!-- <if test="paymentinforid != null">
+        #{paymentinforid,jdbcType=INTEGER},
+      </if> -->
+      <if test="paymenturl != null">
+        #{paymenturl,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentno != null">
+        #{paymentno,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentstate != null">
+        #{paymentstate,jdbcType=INTEGER},
+      </if>
+      <if test="paymentpremium != null">
+        #{paymentpremium,jdbcType=VARCHAR},
+      </if>
+      <if test="paymenttimes != null">
+        #{paymenttimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdatetimes != null">
+        #{createdatetimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimes != null">
+        #{updatetimes,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Paymentinfor">
+    update ludimb_paymentinfor
+    <set>
+      <if test="paymenturl != null">
+        paymentURL = #{paymenturl,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentno != null">
+        paymentNo = #{paymentno,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentstate != null">
+        paymentState = #{paymentstate,jdbcType=INTEGER},
+      </if>
+      <if test="paymentpremium != null">
+        paymentPremium = #{paymentpremium,jdbcType=VARCHAR},
+      </if>
+      <if test="paymenttimes != null">
+        paymentTimes = #{paymenttimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdatetimes != null">
+        createdateTimes = #{createdatetimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimes != null">
+        updateTimes = #{updatetimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where paymentInforId = #{paymentinforid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Paymentinfor">
+    update ludimb_paymentinfor
+    set paymentURL = #{paymenturl,jdbcType=VARCHAR},
+      paymentNo = #{paymentno,jdbcType=VARCHAR},
+      paymentState = #{paymentstate,jdbcType=INTEGER},
+      paymentPremium = #{paymentpremium,jdbcType=VARCHAR},
+      paymentTimes = #{paymenttimes,jdbcType=TIMESTAMP},
+      createdateTimes = #{createdatetimes,jdbcType=TIMESTAMP},
+      updateTimes = #{updatetimes,jdbcType=TIMESTAMP}
+    where paymentInforId = #{paymentinforid,jdbcType=INTEGER}
+  </update>
+</mapper>

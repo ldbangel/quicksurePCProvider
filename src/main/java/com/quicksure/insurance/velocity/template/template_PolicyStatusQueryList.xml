@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PACKET> 
+  <HEAD> 
+    <TRANSTYPE>SNY</TRANSTYPE>  
+    <SYSCODE/>  
+    <TRANSCODE>100007</TRANSCODE>  
+    <CONTENTTYPE/>  
+    <VERIFYTYPE/>  
+    <USER>$!{SinosafeUserName}</USER>  
+    <PASSWORD>$!{SinosafePassword}</PASSWORD>  
+    <SVCSEQNO/> 
+  </HEAD>  
+  <THIRD> 
+    <EXTENTERPCODE>$!{SinosafeExtenterCode}</EXTENTERPCODE>  
+    <PRODNO>0000</PRODNO>  
+    <PLANNO>0000</PLANNO>  
+    <TRANSCODE>100007</TRANSCODE>  
+    <TRANSDATE>$!{date}</TRANSDATE>  
+    <TRANSTIME>$!{times}</TRANSTIME> 
+  </THIRD>  
+  <BODY> 
+  	#foreach($baseinfor in $dataObj.getBaseinforList())
+	  	#if($!{baseinfor.getSyapplicationno()} && ""!=$!{baseinfor.getSyapplicationno()})
+	    <APP_INFO> 
+	      <PLY_APP_NO>$!{baseinfor.getSyapplicationno()}</PLY_APP_NO> 
+	    </APP_INFO>  
+	    #end
+	    #if($!{baseinfor.getJqapplicationno()} && ""!=$!{baseinfor.getJqapplicationno()})
+	    <APP_INFO>
+	      <PLY_APP_NO>$!{baseinfor.getJqapplicationno()}</PLY_APP_NO> 
+	    </APP_INFO>
+	    #end
+	#end
+  </BODY> 
+</PACKET>

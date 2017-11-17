@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+		
+
+	<bean id="SY_BASE" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="INSRNC_BGN_TM" value="sypolicystartdate" />
+			<entry key="INSRNC_END_TM" value="sypolicyenddate" />
+			<entry key="ORIG_FLG" value="origFlg" />
+			<entry key="PREMIUM" value="sypremium" />
+			<entry key="CAL_APP_NO" value="quoteno" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="JQ_BASE" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="INSRNC_BGN_TM" value="jqpolicystartdate" />
+			<entry key="INSRNC_END_TM" value="jqpolicyenddate" />
+			<entry key="PREMIUM" value="jqpremium" />
+			</map>
+		</constructor-arg>
+	</bean> 
+	<bean id="VHL" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="ACTUAL_VAL" value="actualVal" />
+			<entry key="FAMILY_KIND" value="familyKind" />
+			</map>
+		</constructor-arg>
+	</bean> 
+	<bean id="ADJUST" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="CLAIM_ADJUST_RSN" value="claimAdjustRsn" />
+			<entry key="APPLY_TOTAL_ADJ" value="applyTotalAdj" />
+			</map>
+		</constructor-arg>
+	</bean> 
+	<bean id="VHLTAX" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="TAX_VHL_TYPE" value="taxvaltype" />
+			<entry key="TAX_TYPE" value="taxtype" />
+			<entry key="MINUS_TAX_AMT" value="minustaxamt" />
+			<entry key="LATE_FEE" value="latefee" />
+			<entry key="FUEL_TYPE" value="fueltype" />
+			<entry key="CURRENT_TAX" value="currenttax" />
+			<entry key="FORMER_TAX" value="formertax" />
+			<entry key="SUM_UP_TAX" value="sumuptax" />
+			</map>
+		</constructor-arg>
+	</bean> 
+	<bean id="CVRG_LIST" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="SEQ_NO" value="seqno" />
+			<entry key="INSRNC_CDE" value="insrnccode" />
+			<entry key="AMT" value="suminsured" />
+			<entry key="BASE_PRM" value="basepremium" />
+			<entry key="PREMIUM" value="premium" />
+			<entry key="PTG_RESC_FUNDS" value="ptgrescfunds" />
+			<entry key="RESC_FUNDS" value="rescfunds" />
+			<entry key="VAR_RESC_FUNDS" value="varrescfunds" />
+			<entry key="N_YL12" value="nyl12" />
+			<entry key="BEFORE_PREMIUM" value="beforepremium" />
+			<entry key="FRANCHISE_FLAG" value="deductibleflag" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="APPNT_LIST" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="PROD_NO" value="prodno" />
+			<entry key="APPNT_CDE" value="agreementcode" />
+			<entry key="APPNT_NME" value="agreementname" />
+			<entry key="APPNT_DTL" value="agreementdetailed" />
+			<entry key="IS_MODIFY" value="isModified" />
+			<entry key="IS_NEEDED" value="isMandatory" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- 续保字段 -->
+	<bean id="VHL_RENEWAL" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="BRND_CDE" value="brandcode" />
+			<entry key="BRND_NME" value="model" />
+			<entry key="VHL_FRM" value="vinno" />
+			<entry key="VHL_VAL" value="vhlval" />
+			<entry key="LCN_NO" value="lcnno" />
+			<entry key="DRV_OWNER" value="drvowner" />
+			<entry key="CERTI_CODE" value="certificateno" />
+			<entry key="REGISTER_DATE" value="registerdate" />
+			<entry key="ENG_NO" value="engno" />
+			<entry key="EXT_MSR" value="displacement" />
+			<entry key="SET_NUM" value="setno" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="BRANDNAME_LIST" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+			<entry key="阿尔宾娜" value="1001" />
+			<entry key="阿尔法罗密" value="1002" />
+			<entry key="阿斯顿马丁" value="1003" />
+			<entry key="奥迪" value="1004" />
+			<entry key="宝骏" value="1005" />
+			<entry key="宝马" value="1006" />
+			<entry key="宝腾" value="1007" />
+			<entry key="保时捷" value="1008" />
+			<entry key="北京汽车" value="1009" />
+			<entry key="奔驰" value="1010" />
+			<entry key="奔腾" value="1011" />
+			<entry key="本田" value="1012" />
+			<entry key="比亚迪" value="1013" />
+			<entry key="标致" value="1014" />
+			<entry key="别克" value="1015" />
+			<entry key="宾利" value="1016" />
+			<entry key="布加迪" value="1017" />
+			<entry key="长安" value="1018" />
+			<entry key="长城" value="1019" />
+			<entry key="大宇" value="1020" />
+			<entry key="大众" value="1021" />
+			<entry key="道奇" value="1022" />
+			<entry key="帝豪" value="1023" />
+			<entry key="东风" value="1024" />
+			<entry key="东风日产" value="1025" />
+			<entry key="法拉利" value="1026" />
+			<entry key="菲亚特" value="1027" />
+			<entry key="丰田" value="1028" />
+			<entry key="福特" value="1029" />
+			<entry key="海马" value="1030" />
+			<entry key="悍马" value="1031" />
+			<entry key="华宏" value="1032" />
+			<entry key="华菱" value="1033" />
+			<entry key="华普" value="1034" />
+			<entry key="吉利" value="1035" />
+			<entry key="江淮" value="1036" />
+			<entry key="捷豹" value="1037" />
+			<entry key="金杯" value="1038" />
+			<entry key="金龙" value="1039" />
+			<entry key="凯迪拉克" value="1040" />
+			<entry key="克莱斯勒" value="1041" />
+			<entry key="蓝旗亚" value="1042" />
+			<entry key="劳斯莱斯" value="1043" />
+			<entry key="雷克萨斯" value="1044" />
+			<entry key="雷诺" value="1045" />
+			<entry key="雷诺三星" value="1046" />
+			<entry key="莲花" value="1047" />
+			<entry key="猎豹" value="1048" />
+			<entry key="林肯" value="1049" />
+			<entry key="铃木" value="1050" />
+			<entry key="路虎" value="1051" />
+			<entry key="马自达" value="1052" />
+			<entry key="玛莎拉蒂" value="1053" />
+			<entry key="名爵" value="1054" />
+			<entry key="纳智捷" value="1055" />
+			<entry key="讴歌" value="1056" />
+			<entry key="欧宝" value="1057" />
+			<entry key="奇瑞" value="1058" />
+			<entry key="起亚" value="1059" />
+			<entry key="全球鹰" value="1060" />
+			<entry key="日野" value="1061" />
+			<entry key="荣威" value="1062" />
+			<entry key="瑞麟" value="1063" />
+			<entry key="三菱" value="1064" />
+			<entry key="神龙" value="1065" />
+			<entry key="世爵" value="1066" />
+			<entry key="双龙" value="1067" />
+			<entry key="水星" value="1068" />
+			<entry key="斯巴鲁" value="1069" />
+			<entry key="斯柯达" value="1070" />
+			<entry key="泰卡特" value="1071" />
+			<entry key="特斯拉" value="1072" />
+			<entry key="土星" value="1073" />
+			<entry key="威麟" value="1074" />
+			<entry key="威兹曼" value="1075" />
+			<entry key="沃尔沃" value="1076" />
+			<entry key="五菱" value="1077" />
+			<entry key="夏利" value="1078" />
+			<entry key="雪佛兰" value="1079" />
+			<entry key="雪铁龙" value="1080" />
+			<entry key="野马" value="1081" />
+			<entry key="依维柯" value="1082" />
+			<entry key="英菲尼迪" value="1083" />
+			<entry key="英伦" value="1084" />
+			<entry key="中国一汽" value="1085" />
+			<entry key="中华" value="1086" />
+			<entry key="中兴" value="1087" />
+			<entry key="众泰" value="1088" />
+			<entry key="北京现代" value="1089" />
+			</map>
+		</constructor-arg>
+	</bean>  	 
+	</beans>
+		

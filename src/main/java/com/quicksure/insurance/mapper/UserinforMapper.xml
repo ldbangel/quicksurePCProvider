@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quicksure.insurance.dao.UserinforMapper">
+  <resultMap id="BaseResultMap" type="com.quicksure.insurance.entity.Userinfor">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_phoneNo" jdbcType="INTEGER" property="phoneno" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="emailsAddress" jdbcType="VARCHAR" property="emailsaddress" />
+    <result column="userType" jdbcType="INTEGER" property="usertype" />
+    <result column="zipAddress" jdbcType="VARCHAR" property="zipaddress" />
+    <result column="createTimes" jdbcType="TIMESTAMP" property="createtimes" />
+    <result column="updateTimes" jdbcType="TIMESTAMP" property="updatetimes" />
+    <result column="agentFlag" jdbcType="INTEGER" property="agentFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userId, userName, password, user_phoneNo, address, emailsAddress, userType, agentFlag , zipAddress, 
+    createTimes, updateTimes
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_userinfor
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByName" parameterType="com.quicksure.insurance.entity.Userinfor" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ludimb_userinfor
+    where 1=1 
+     <if test="userid != null">
+        and userId= #{userid,jdbcType=INTEGER}
+     </if>
+     <if test="username != null">
+     	and userName = #{username,jdbcType=VARCHAR}	
+     </if>
+     <if test="password != null">
+		and password = #{password,jdbcType=VARCHAR}     	
+     </if>	
+	 <if test="phoneno!=null">
+	 	and user_phoneno = #{phoneno,jdbcType=VARCHAR}
+	 </if>
+	 <if test="address != null">
+        and address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="emailsaddress != null">
+        and emailsaddress = #{emailsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        and usertype = #{usertype,jdbcType=INTEGER}
+      </if>
+      <if test="zipaddress != null">
+        and zipaddress = #{zipaddress,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ludimb_userinfor
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.quicksure.insurance.entity.Userinfor">
+    insert into ludimb_userinfor (userId, userName, password, 
+      user_phoneNo, address, emailsAddress, 
+      userType, zipAddress, createTimes, 
+      updateTimes)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phoneno,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{emailsaddress,jdbcType=VARCHAR}, 
+      #{usertype,jdbcType=INTEGER}, #{zipaddress,jdbcType=VARCHAR}, #{createtimes,jdbcType=TIMESTAMP}, 
+      #{updatetimes,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="userid" parameterType="com.quicksure.insurance.entity.Userinfor" >
+    insert into ludimb_userinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phoneno != null">
+        user_phoneNo,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="emailsaddress != null">
+        emailsAddress,
+      </if>
+      <if test="usertype != null">
+        userType,
+      </if>
+      <if test="zipaddress != null">
+        zipAddress,
+      </if>
+      <if test="createtimes != null">
+        createTimes,
+      </if>
+      <if test="updatetimes != null">
+        updateTimes,
+      </if>
+      <if test="agentFlag != null and agentFlag !='' and agentFlag != 0">
+        agentFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emailsaddress != null">
+        #{emailsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="zipaddress != null">
+        #{zipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createtimes != null">
+        #{createtimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimes != null">
+        #{updatetimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentFlag != null and agentFlag !='' and agentFlag != 0">
+      	#{agentFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.quicksure.insurance.entity.Userinfor">
+    update ludimb_userinfor
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        user_phoneNo = #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emailsaddress != null">
+        emailsAddress = #{emailsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        userType = #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="agentFlag!= null">
+        agentFlag = #{agentFlag,jdbcType=INTEGER},
+      </if>
+      <if test="zipaddress != null">
+        zipAddress = #{zipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createtimes != null">
+        createTimes = #{createtimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimes != null">
+        updateTimes = #{updatetimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.quicksure.insurance.entity.Userinfor">
+    update ludimb_userinfor
+    set userName = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_phoneNo = #{phoneno,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      emailsAddress = #{emailsaddress,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=INTEGER},
+      zipAddress = #{zipaddress,jdbcType=VARCHAR},
+      createTimes = #{createtimes,jdbcType=TIMESTAMP},
+      agentFlag=#{agentFlag,jdbcType=INTEGER},
+      updateTimes = #{updatetimes,jdbcType=TIMESTAMP}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updatePasswordByName">
+  	update ludimb_userinfor
+  	<set>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+  	where userName = #{username,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>
